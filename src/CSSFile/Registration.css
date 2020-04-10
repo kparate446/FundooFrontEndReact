@@ -1,0 +1,96 @@
+.register{
+   margin-left: 5%;
+}
+.userpassword{
+    margin-right: 100px;
+    /* width: 100%; */
+    /* margin-right: 10px; */
+    /* padding: 5px; */
+    /* margin-top: 20px; */
+
+    /* margin-left:50px;
+     */
+     /* margin-right: 10px; */
+     /* width: 100%; */
+
+     /* margin-right: 10px; */
+     /* padding:5px  ; */
+     margin-top: 20px;
+}
+    .TextField{
+    margin-left: 10px;
+}
+.registercard{
+    margin-top: 2.5%;
+    margin-left: 22%;
+    /* height:25%;     */
+    width:55%;
+}
+.MuiCard-root{
+    height: 530px;
+}
+
+.button1{
+    margin-left: 70px;
+    display: flex;
+    justify-content: space-between;
+    height:10%;
+}
+.usersignUp{
+    /* margin-left: 20%; */
+    font-size:20px;
+    margin-top: 10px;
+    /* margin-left: 100px; */
+    font-size: x-large;
+   font-weight: 400;
+}
+.useremail1{
+    margin-top: 10px;
+}
+.userpassword{
+    display: flex;
+    justify-content: space-around;
+    height:10%;
+}
+.phonenumber{
+    margin-top: 2%;
+}
+.fundoo1{
+    margin-top: 10px;
+    font-size: 27px;
+}
+/* .flex-name{
+    display: flex;
+}
+.flex-name > div {
+    /* background-color: #f1f1f1; */
+    /* margin: 10px; */
+    /* padding: 20px; */
+    /* font-size: 30px; */
+    /* margin-top: 20px;
+    margin-left: 40px;
+    margin-right:115px; */
+  /* }
+  .firstName{
+    margin-right:115px;
+  } */ 
+.userfirstlastname{
+    display: flex;
+    /* justify-content: space-between; */
+    /* flex-direction: row; */
+    /* width:100%; */
+    /* padding-bottom: 1%;  */
+    /* margin-left: 10px; */
+}
+.firstName{
+margin-right: 10px;       
+}
+.userpassword1{
+    /* display: flex; */
+}
+.password{
+    /* margin-right: 10px; */
+}
+.botton1{
+    margin-right:50%;
+}
