@@ -8,18 +8,52 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { userRegistration } from '../Services/Services.jsx'; 
 
 class Registration extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      firstNAme: '',
+      firstName: '',
       lastName: '',
       email: '',
       password: '',
       confirmPassword: '',
+      phoneNo: '',
+
     };
   }
+
+  handleChangeText = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+     submitUserSignUpForm = () => {
+            let user = {};
+            user.firstName = this.state.firstName;
+            user.lastName = this.state.lastName;
+            user.email = this.state.email;
+            user.password = this.state.password;
+            user.confirmPassword = this.state.confirmPassword;
+            user.phoneNo = this.state.phoneNo;
+
+            console.log(user);
+
+            userRegistration(user)
+                .then(Response => {
+                    console.log(Response, "User Registered successfully!!");
+                    // localStorage.setItem("Token", Response.data.data)
+                    localStorage.setItem('token',Response.data.token)
+                    alert(`User Registered successfully`);
+                }).catch((error) => {
+                    console.log("Error", error.response)
+                    console.log(error.response.data.message, "User Registration failed");
+                    alert(error.response.data.message);
+                });
+        }
+    
   render () {
     return (
       <Card className="registercard">
@@ -39,6 +73,7 @@ class Registration extends Component {
                 <div>
                   <div className="userfirstlastname">
                     <TextField
+                      // required
                       margin="dense"
                       size="small"
                       name="firstName"
@@ -78,8 +113,7 @@ class Registration extends Component {
                     <TextField
                       margin="dense"
                       size="small"
-                      className="phoneNumber"
-                      name="phoneNumber"
+                      name="phoneNo"
                       id="outlined"
                       label="Phone Number"
                       variant="outlined"
@@ -88,65 +122,63 @@ class Registration extends Component {
                     <p className="passwordline">Do not add 0 in front</p>
                     <br />
                   </div>
-                  <div className="userpassword">
-                    <TextField
-                      size="small"
-                      id="outlined-adornment-password"
-                      variant="outlined"
-                      name="password"
-                      type={this.state.showPassword ? 'text' : 'password'}
-                      label="password"
-                      margin="dense"
-                      style={{width: '48%'}}
-                      onChange={this.handleChangeText}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end" sytle={{width: '1px'}}>
-                            <IconButton
-                              onClick={() =>
-                                this.setState ({
-                                  showPassword: !this.state.showPassword,
-                                })}
-                            >
-                              {this.state.showPassword
-                                ? <Visibility />
-                                : <VisibilityOff />}
-                            </IconButton>
+                         <div className="userpassword">
+                                    <TextField
+                                        size="small"
+                                        id="outlined-adornment-password"
+                                        variant="outlined"
+                                        name="password"
+                                        type={this.state.showPassword ? "text" : "password"}
+                                        label="password"
+                                        margin="dense"
+                                        style={{ width: "48%" }}
+                                        onChange={this.handleChangeText}
+                                      
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end" sytle={{ width: "1px" }}>
+                                                    <IconButton
+                                                        onClick={
+                                                            () => this.setState({ showPassword: !this.state.showPassword })
+                                                        }
+                                                    >
+                                                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
 
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <br></br>
 
-                    <TextField
-                      size="small"
-                      id="outlined-adornment-password"
-                      variant="outlined"
-                      name="confirmpassword"
-                      type={this.state.showPassword ? 'text' : 'password'}
-                      label="confirm"
-                      margin="dense"
-                      style={{width: '48%'}}
-                      onChange={this.handleChangeText}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end" sytle={{width: '1px'}}>
-                            <IconButton
-                              onClick={() =>
-                                this.setState ({
-                                  showPassword: !this.state.showPassword,
-                                })}
-                            >
-                              {this.state.showPassword
-                                ? <Visibility />
-                                : <VisibilityOff />}
-                            </IconButton>
+                                    <TextField
+                                        size="small"
+                                        margin="dense"
+                                        name="confirmPassword"
+                                        id="outlined-adornment-password"
+                                        variant="outlined"
+                                        type={this.state.showPassword ? "text" : "password"}
+                                        label=" confirm "
+                                        value={this.state.confirmPassword}
+                                        onChange={this.handleChangeText}
+                                       
+                                        style={{ width: "48%" }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end" sytle={{ width: "1px" }}>
+                                                    <IconButton
+                                                        onClick={
+                                                            () => this.setState({ showPassword: !this.state.showPassword })
+                                                        }
+                                                    >
+                                                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
 
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                </div>
                   <p className="passwordline">
                     Use 8 or more characters with mix of letters,numbers & symbols
                   </p>
@@ -168,7 +200,7 @@ class Registration extends Component {
                       size="small"
                       variant="contained"
                       color="primary"
-                      onClick={() => this.props.history.push ()}
+                      onClick={this.submitUserSignUpForm}
                     >
                       Submit
                     </Button>

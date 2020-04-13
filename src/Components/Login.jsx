@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
+import {userLogin} from "../Services/Services";
 
 export class Login extends Component {
   constructor (props) {
@@ -18,6 +19,35 @@ export class Login extends Component {
       password: '',
     };
   }
+
+  handleChangeText = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+     submitUserSignInForm = () => {
+            let user = {};
+            user.email = this.state.email;
+            user.password = this.state.password;
+
+            userLogin(user)
+                .then(Response => {
+                    console.log('data', Response.data.data);
+                    localStorage.setItem("Email", Response.data.userData.email)
+                    localStorage.setItem("Token", Response.data.data)
+
+                    console.log("Res", Response)
+                    alert(`Login Successfull!!`);
+
+                })
+                .catch(err => {
+                    console.log(Response, "User login failed");
+                    alert(`user login failed`);
+                });
+    }
+
+  
   render () {
     return (
       <Card className="log">
@@ -115,7 +145,7 @@ export class Login extends Component {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={() => this.props.history.push ('')}
+                  onClick={this.submitUserSignInForm}
                 >
                   Login
                 </Button>
