@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
-import {userLogin} from "../Services/Services";
+import {userLogin} from '../Services/UserService/UserServices';
 
 export class Login extends Component {
   constructor (props) {
@@ -20,40 +20,46 @@ export class Login extends Component {
     };
   }
 
-  handleChangeText = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
+  axios = event => {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  };
 
-     submitUserSignInForm = () => {
-            let user = {};
-            user.email = this.state.email;
-            user.password = this.state.password;
+  loginForm = () => {
+    let user = {};
 
-            userLogin(user)
-                .then(Response => {
-                    console.log('data', Response.data.data);
-                    localStorage.setItem("Email", Response.data.userData.email)
-                    localStorage.setItem("Token", Response.data.data)
+    user.email = this.state.email;
+    user.password = this.state.password;
 
-                    console.log("Res", Response)
-                    alert(`Login Successfull!!`);
-
-                })
-                .catch(err => {
-                    console.log(Response, "User login failed");
-                    alert(`user login failed`);
-                });
-    }
-
-  
+    // userLogin(user)
+    //     .then(Response => {
+    //         console.log('data', Response.data.data);
+    //         localStorage.setItem("Email", Response.data.userData.email)
+    //         localStorage.setItem("Token", Response.data.data)
+    //         console.log("Login Success", Response)
+    //         alert(`Login Successfull!!`);
+    //     })
+    //     .catch(err => {
+    //         console.log(Response, "User login failed");
+    //         alert(`user login failed`);
+    //     });
+    userLogin (user)
+      .then (function (response) {
+        console.log (response);
+        localStorage.setItem ('Token', response.data.data);
+        alert (`Login Successfull`);
+      })
+      .catch (function (error) {
+        console.log (error);
+        alert (`Login Failed`);
+      });
+  };
   render () {
     return (
       <Card className="log">
         <CardContent>
           <div className="loginpage">
-            {/* <h2>Fundoo</h2> */}
             <div className="fundoo">
               <span style={{color: 'blue'}}>F</span>
               <span style={{color: 'red'}}>u</span>
@@ -82,7 +88,7 @@ export class Login extends Component {
                       height: 35,
                     },
                   }}
-                  onChange={this.handleChangeText}
+                  onChange={this.axios}
                 />
               </div>
 
@@ -101,7 +107,7 @@ export class Login extends Component {
                       height: 35,
                     },
                   }}
-                  onChange={this.handleChangeText}
+                  onChange={this.axios}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end" sytle={{width: '10px'}}>
@@ -145,7 +151,7 @@ export class Login extends Component {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={this.submitUserSignInForm}
+                  onClick={this.loginForm}
                 >
                   Login
                 </Button>

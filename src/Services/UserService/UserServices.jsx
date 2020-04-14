@@ -1,23 +1,36 @@
-import axios from 'axios';
-import  AxiosService from '../Axios/AxiosService';
-var axiosService = new AxiosService;
-var apiBaseUrl = "http://localhost:8080/userapi/";
+import AxiosService from '../Axios/AxiosServices';
+var axiosService=new AxiosService();
 
-// export default class UserService
-// {
-//     userRegistration(regDto){
-//         return axiosService.axiosPost(apiBaseUrl+`addusers`,regDto,{
-//             headers: {
-//             "Content-Type": "application/json;charset=utf-8"
-//         }
-//         });
-//     }
-// }
+export function userRegistration(registrationDto) {
+    return axiosService.axiosPost("http://localhost:8080/userapi/addusers", registrationDto, {
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+}
 
-// export function userRegistration(regDto) {
-//     return axios.post("http://localhost:8080/userapi/addusers", regDto, {
-//         headers: {
-//             "Content-Type": "application/json;charset=utf-8"
-//         }
-//     });
-// }
+export function userLogin(loginDTO) {
+    return axiosService.axiosPost("http://localhost:8080/userapi/loginusers", loginDTO, {
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+}
+
+export function forgotPassword(forgotPasswordDTO) {
+
+    return axiosService.axiosPost("http://localhost:8080/userapi/forgotpassword", forgotPasswordDTO, {
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+}
+export function resetPassword(resetPasswordDTO) {
+
+    return axiosService.axiosPost("http://localhost:8080/userapi/resetpassword", resetPasswordDTO, {
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+}
+

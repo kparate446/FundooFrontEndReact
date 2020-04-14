@@ -8,7 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { userRegistration } from '../Services/Services.jsx'; 
+import {userRegistration} from '../Services/UserService/UserServices';
 
 class Registration extends Component {
   constructor (props) {
@@ -18,42 +18,95 @@ class Registration extends Component {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      confirm: '',
       phoneNo: '',
-
+      errors: {},
     };
   }
 
-  handleChangeText = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+  axios = event => {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+    if (!this.state.firstName) {
+      errors['firstName'] = '*Enter the First Name';
+      formIsValid = false;
     }
+    if (!this.state.lastName) {
+      errors['lastName'] = '*Enter the Last Name';
+      formIsValid = false;
+    }
+    if (
+      !RegExp (
+        '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\. [A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+      ).test (this.state.email)
+    ) {
+      errors['email'] = '*Enter valid Email id';
+    }
+    if (!this.state.email) {
+      errors['email'] = '*Enter the Email Id';
+      formIsValid = false;
+    }
+    // if (!RegExp("(0/91)?[7-9][0-9]{9}").test(this.state.phoneNumber)) {
+    //     errors['phoneNumber'] = '*Enter valid Phone Number'
+    // }
+    // if (!this.state.phoneNumber) {
+    //     errors['phoneNumber'] = '*Enter your Phone Number'
+    //     formIsValid = false
+    // }
 
-     submitUserSignUpForm = () => {
-            let user = {};
-            user.firstName = this.state.firstName;
-            user.lastName = this.state.lastName;
-            user.email = this.state.email;
-            user.password = this.state.password;
-            user.confirmPassword = this.state.confirmPassword;
-            user.phoneNo = this.state.phoneNo;
-
-            console.log(user);
-
-            userRegistration(user)
-                .then(Response => {
-                    console.log(Response, "User Registered successfully!!");
-                    // localStorage.setItem("Token", Response.data.data)
-                    localStorage.setItem('token',Response.data.token)
-                    alert(`User Registered successfully`);
-                }).catch((error) => {
-                    console.log("Error", error.response)
-                    console.log(error.response.data.message, "User Registration failed");
-                    alert(error.response.data.message);
-                });
+    /**if (!RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})").test(this.state.password)) {
+            errors['password'] = '*Enter the valid password'
+            formIsValid = false
         }
-    
+        if (!this.state.password) {
+            errors['password'] = '*Enter the password'
+            formIsValid = false
+        }
+        if (!this.state.confirmPassword) {
+            errors['confirmPassword'] = '*Enter the confirm password'
+            formIsValid = false
+        }
+        if (this.state.password !== this.state.confirmPassword) {
+            errors['confirmPassword'] = '*Password doesn\'t match'
+            formIsValid = false
+        }*/
+
+    this.setState ({
+      errors: errors,
+    });
+    return formIsValid;
+  };
+
+  registrationForm = () => {
+    if (this.validateForm ()) {
+      let user = {};
+      user.firstName = this.state.firstName;
+      user.lastName = this.state.lastName;
+      user.email = this.state.email;
+      user.password = this.state.password;
+      user.confirm = this.state.confirm;
+      user.phoneNo = this.state.phoneNo;
+      console.log (user);
+
+      userRegistration (user)
+        .then (Response => {
+          console.log (Response, 'User Registered successfully!!');
+          alert (`User Registered successfully`);
+        })
+        .catch (error => {
+          console.log ('Error', error.response);
+          console.log (error.response.data.message, 'User Registration failed');
+          alert (error.response.data.message);
+        });
+    }
+  };
+
   render () {
     return (
       <Card className="registercard">
@@ -81,7 +134,9 @@ class Registration extends Component {
                       label="First Name"
                       variant="outlined"
                       style={{width: '48%'}}
-                      onChange={this.handleChangeText}
+                      onChange={this.axios}
+                      error={this.state.errors.firstName}
+                      helperText={this.state.errors.firstName}
                     />
 
                     <TextField
@@ -92,7 +147,9 @@ class Registration extends Component {
                       label="Last Name"
                       variant="outlined"
                       style={{width: '48%'}}
-                      onChange={this.handleChangeText}
+                      onChange={this.axios}
+                      error={this.state.errors.lastName}
+                      helperText={this.state.errors.lastName}
                     />
                   </div>
                   <div className="useremail1">
@@ -103,7 +160,9 @@ class Registration extends Component {
                       id="outlined"
                       label="Email"
                       variant="outlined"
-                      onChange={this.handleChangeText}
+                      onChange={this.axios}
+                      error={this.state.errors.email}
+                      helperText={this.state.errors.email}
                     />
                     <p className="passwordline">
                       You'll need to confirm that this email belongs to you
@@ -117,68 +176,78 @@ class Registration extends Component {
                       id="outlined"
                       label="Phone Number"
                       variant="outlined"
-                      onChange={this.handleChangeText}
+                      onChange={this.axios}
+                      error={this.state.errors.phoneNumber}
+                      helperText={this.state.errors.phoneNumber}
                     />
                     <p className="passwordline">Do not add 0 in front</p>
                     <br />
                   </div>
-                         <div className="userpassword">
-                                    <TextField
-                                        size="small"
-                                        id="outlined-adornment-password"
-                                        variant="outlined"
-                                        name="password"
-                                        type={this.state.showPassword ? "text" : "password"}
-                                        label="password"
-                                        margin="dense"
-                                        style={{ width: "48%" }}
-                                        onChange={this.handleChangeText}
-                                      
-                                        InputProps={{
-                                            endAdornment: (
-                                                <InputAdornment position="end" sytle={{ width: "1px" }}>
-                                                    <IconButton
-                                                        onClick={
-                                                            () => this.setState({ showPassword: !this.state.showPassword })
-                                                        }
-                                                    >
-                                                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                                                    </IconButton>
+                  <div className="userpassword">
+                    <TextField
+                      size="small"
+                      id="outlined-adornment-password"
+                      variant="outlined"
+                      name="password"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      label="password"
+                      margin="dense"
+                      style={{width: '48%'}}
+                      onChange={this.axios}
+                      error={this.state.errors.password}
+                      helperText={this.state.errors.password}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end" sytle={{width: '1px'}}>
+                            <IconButton
+                              onClick={() =>
+                                this.setState ({
+                                  showPassword: !this.state.showPassword,
+                                })}
+                            >
+                              {this.state.showPassword
+                                ? <Visibility />
+                                : <VisibilityOff />}
+                            </IconButton>
 
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                    <br></br>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    <br />
 
-                                    <TextField
-                                        size="small"
-                                        margin="dense"
-                                        name="confirmPassword"
-                                        id="outlined-adornment-password"
-                                        variant="outlined"
-                                        type={this.state.showPassword ? "text" : "password"}
-                                        label=" confirm "
-                                        value={this.state.confirmPassword}
-                                        onChange={this.handleChangeText}
-                                       
-                                        style={{ width: "48%" }}
-                                        InputProps={{
-                                            endAdornment: (
-                                                <InputAdornment position="end" sytle={{ width: "1px" }}>
-                                                    <IconButton
-                                                        onClick={
-                                                            () => this.setState({ showPassword: !this.state.showPassword })
-                                                        }
-                                                    >
-                                                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
-                                                    </IconButton>
+                    <TextField
+                      size="small"
+                      margin="dense"
+                      name="confirm"
+                      id="outlined-adornment-password"
+                      variant="outlined"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      label=" confirm "
+                      value={this.state.confirmPassword}
+                      onChange={this.axios}
+                      error={this.state.errors.confirmPassword}
+                      helperText={this.state.errors.confirmPassword}
+                      style={{width: '48%'}}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end" sytle={{width: '1px'}}>
+                            <IconButton
+                              onClick={() =>
+                                this.setState ({
+                                  showPassword: !this.state.showPassword,
+                                })}
+                            >
+                              {this.state.showPassword
+                                ? <Visibility />
+                                : <VisibilityOff />}
+                            </IconButton>
 
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                </div>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
                   <p className="passwordline">
                     Use 8 or more characters with mix of letters,numbers & symbols
                   </p>
@@ -200,7 +269,7 @@ class Registration extends Component {
                       size="small"
                       variant="contained"
                       color="primary"
-                      onClick={this.submitUserSignUpForm}
+                      onClick={this.registrationForm}
                     >
                       Submit
                     </Button>

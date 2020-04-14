@@ -2,14 +2,14 @@
     margin-top: 5%;
     margin-left: 400px;
     width: 600px;
-    height: 520px;
+    /* height: 520px; */
+    height: 580px;
 }
 
 .userregister {
     padding: 3%;
     justify-content: space-evenly;
     flex-direction: column;
-    
 }
 
 .passwordline {

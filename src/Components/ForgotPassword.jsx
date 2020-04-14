@@ -1,20 +1,70 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import '../CSSFile/ForgotPassword.css';
+// import Snackbar from '@material-ui/core/Snackbar';
+import {forgotPassword} from '../Services/UserService/UserServices';
 
 export class ForgotPassword extends Component {
   constructor (props) {
     super (props);
-
     this.state = {
       email: '',
+      errors: {},
     };
   }
+
+  axios = event => {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  validateForm = () => {
+    let errors = {};
+    let formIsValid = true;
+
+    if (
+      !RegExp (
+        '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\. [A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'
+      ).test (this.state.email)
+    ) {
+      errors['email'] = '*Enter valid Email id';
+    }
+    if (!this.state.email) {
+      errors['email'] = '*Enter the Email Id';
+      formIsValid = false;
+    }
+    this.setState ({
+      errors: errors,
+    });
+    return formIsValid;
+  };
+
+  forgotPasswordForm = () => {
+    if (this.validateForm ()) {
+      let user = {};
+      user.email = this.state.email;
+      console.log (user);
+
+      forgotPassword (user)
+        .then (Response => {
+          console.log (
+            Response,
+            'Token has been sent to your mail, Please Verify it first'
+          );
+          //  <SnackbarContent message="Token has been sent to your mail, Please Verify it first" />
+          alert (`Token has been sent to youbr mail, Please Verify it first`);
+        })
+        .catch (err => {
+          console.log (Response, 'Account Recovery Failed');
+          alert (" Email Id Doesn't Exists");
+        });
+    }
+  };
+
   render () {
     return (
       <Card className="forgot">
@@ -47,7 +97,9 @@ export class ForgotPassword extends Component {
                     width: 340,
                   },
                 }}
-                onChange={this.handleChangeText}
+                onChange={this.axios}
+                error={this.state.errors.email}
+                helperText={this.state.errors.email}
               />
             </div>
             <br />
@@ -55,7 +107,7 @@ export class ForgotPassword extends Component {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => this.props.history.push ()}
+                onClick={this.forgotPasswordForm}
               >
                 Next
               </Button>
