@@ -1,0 +1,38 @@
+.search {
+    /* margin-left: 50px; */
+    display: flex;
+    /* border-radius: 8px; */
+    justify-content: space-around;
+    /* flex-direction: row; */
+    /* background-color: #E5E7E9; */
+}
+
+.icon {
+    margin-top: 10px;
+    margin-left: 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
+.card {
+    margin-left: 3.5%;
+    margin-top: 2px;
+    width: 55%;
+}
+
+.card1 {
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    margin-top: 4.75%;
+    /* margin-top: 9%; */
+    height: 595px;
+    background-color: white;
+}
+
+.AppBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
