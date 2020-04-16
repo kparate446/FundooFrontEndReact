@@ -5,26 +5,32 @@ import Login from '../Components/Login';
 import ForgotPassword from '../Components/ForgotPassword';
 import ResetPassword from '../Components/ResetPassword';
 import Dashboard from '../Components/Dashboard';
+import Profile from '../Components/Profile';
 
 const Router = () => {
     return ( < BrowserRouter >
-        <
-        Route path = "/register"
-        component = { Registration }
-        /> <
-        Route path = "/forgotpassword"
-        component = { ForgotPassword }
-        /> <
-        Route path = "/resetpassword"
-        component = { ResetPassword }
-        /> <
-        Route path = "/"
-        exact component = { Login }
-        /> <
-        Route path = "/dashboard"
-        exact component = { Dashboard }
-        />< /
-        BrowserRouter >
+        <Route path = "/register"
+        component = { Registration }/>
+
+        <Route path = "/forgotpassword"
+        component = { ForgotPassword }/>
+
+        <Route path = "/resetpassword"
+        component = { ResetPassword }/>
+
+        <Route path = "/"
+        exact component = { Login }/> 
+        
+        <Route path = "/dashboard"
+         component = { Dashboard }/>
+
+        {/* <Route path = "/dashboard/notes"
+         component = { Login }/> */}
+         
+        <Route path = "/profile"
+        exact component = { Profile }/>
+         
+         </BrowserRouter >
     );
 };
 

@@ -20,7 +20,8 @@ import ViewAgendaSharpIcon from '@material-ui/icons/ViewAgendaSharp';
 import {Tooltip} from '@material-ui/core';
 import AppsIcon from '@material-ui/icons/Apps';
 // import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Profile from '../Components/Profile';
 
 const theme = createMuiTheme ({});
 
@@ -36,7 +37,12 @@ export class Dashboard extends Component {
         <MuiThemeProvider theme={theme}>
           <AppBar position="static" style={{backgroundColor: 'white'}}>
             <Toolbar style={{color: 'black'}}>
-              <IconButton title="Main menu" edge="start" color="inherit" aria-label="menu">
+              <IconButton
+                title="Main menu"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              >
                 <MenuIcon />
               </IconButton>
               <div>
@@ -65,37 +71,47 @@ export class Dashboard extends Component {
 
               <Tooltip
                 title="Refresh"
-                style={{color: 'grey', marginLeft: '10%'}}>
+                style={{color: 'grey', marginLeft: '10%'}}
+              >
                 <RefreshOutlinedIcon />
               </Tooltip>
 
-              <Tooltip title="List View"
-              style={{color: 'grey', marginLeft: '1.7%'}}>
+              <Tooltip
+                title="List View"
+                style={{color: 'grey', marginLeft: '1.7%'}}
+              >
                 <ViewAgendaSharpIcon />
               </Tooltip>
 
-              <Tooltip title="Settings"
-              style={{color: 'grey', marginLeft: '1.7%'}}>
+              <Tooltip
+                title="Settings"
+                style={{color: 'grey', marginLeft: '1.7%'}}
+              >
                 <SettingsOutlinedIcon />
               </Tooltip>
 
-              <Tooltip title="Fundoo apps"
-              style={{color: 'grey', marginLeft: '4%'}}>
-                <AppsIcon/>
+              <Tooltip
+                title="Fundoo apps"
+                style={{color: 'grey', marginLeft: '3.5%',marginRight:'1%'}}
+              >
+                <AppsIcon />
               </Tooltip>
               {/* onClick={handleClose} */}
               {/* <MenuItem title="Fundoo Account" >My account</MenuItem> */}
-              <IconButton title="Fundoo Account"  >
-              <AccountCircleIcon/>
-              </IconButton>
+
+              {/* <IconButton title="Fundoo Account"  >
+              <AccountCircleIcon onClick={() => this.props.history.push ('/dashboard/profile')}/>
+              </IconButton> */}
+              <Tooltip title="Fundoo Account">
+                <Profile PropsDashboard={this.props} />
+              </Tooltip>
             </Toolbar>
+
           </AppBar>
 
+          {/* <AppBar className="card1"  style={{backgroundColor: ''}}>
+          </AppBar>  */}
 
-          <AppBar className="card1"  style={{backgroundColor: 'white'}}>
-          
-          </AppBar>
-          
         </MuiThemeProvider>
       </div>
     );
