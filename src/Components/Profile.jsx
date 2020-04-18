@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Avatar} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+// import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 const useStyles = makeStyles (theme => ({
   typography: {
@@ -44,7 +44,7 @@ export default function SimplePopover (props) {
         </Tooltip>
       </div>
       <Popover
-        // style={{height: '100%'}}
+        style={{marginTop:"-7.5%"}}
         id={id}
         open={open}
         anchor={anchor}
@@ -60,7 +60,7 @@ export default function SimplePopover (props) {
       >
         <Typography className={classes.typography}>
           <div className="mainprofile">
-            <div style={{justifyContent: 'center', display: 'flex', top: '3%'}}>
+            <div style={{justifyContent: 'center', display: 'flex', top: '%'}}>
               <Badge
                 overlap="circle"
                 anchorOrigin={{
