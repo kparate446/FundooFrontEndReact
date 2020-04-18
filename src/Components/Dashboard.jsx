@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -22,6 +22,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 // import MenuItem from '@material-ui/core/MenuItem';
 // import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Profile from '../Components/Profile';
+import MainManu from '../Components/MainMenu';
 
 const theme = createMuiTheme ({});
 
@@ -37,14 +38,24 @@ export class Dashboard extends Component {
         <MuiThemeProvider theme={theme}>
           <AppBar position="static" style={{backgroundColor: 'white'}}>
             <Toolbar style={{color: 'black'}}>
-              <IconButton
+              {/* <IconButton
                 title="Main menu"
                 edge="start"
                 color="inherit"
                 aria-label="menu"
               >
                 <MenuIcon />
-              </IconButton>
+              </IconButton> */}
+              <div>
+                <MainManu
+                  // handleLabelclick={this.showlabelnotehandle}
+                  showNoteclick={this.handleShowAllNotes}
+                  // trashclick={this.handleAllTrashnote}
+                  // reminderClick={this.handleAllReminderNote}
+                  archiveclick={this.handleShowAllArchiveNote}
+                  {...this.props}
+                />
+              </div>
               <div>
                 <img src={Keeplogo} alt="Kepp Logo" />
               </div>
@@ -92,7 +103,7 @@ export class Dashboard extends Component {
 
               <Tooltip
                 title="Fundoo apps"
-                style={{color: 'grey', marginLeft: '3.5%',marginRight:'1%'}}
+                style={{color: 'grey', marginLeft: '3.5%', marginRight: '1%'}}
               >
                 <AppsIcon />
               </Tooltip>
