@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-// import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 // import MenuIcon from '@material-ui/icons/Menu';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -46,30 +46,23 @@ export class Dashboard extends Component {
               >
                 <MenuIcon />
               </IconButton> */}
-              <div>
-                <MainManu
-                  // handleLabelclick={this.showlabelnotehandle}
-                  showNoteclick={this.handleShowAllNotes}
-                  // trashclick={this.handleAllTrashnote}
-                  // reminderClick={this.handleAllReminderNote}
-                  archiveclick={this.handleShowAllArchiveNote}
-                  {...this.props}
-                />
+              <div title="Main Menu" style={{marginLeft: '-1%'}}>
+                <MainManu />
               </div>
-              <div>
-                <img src={Keeplogo} alt="Kepp Logo" />
+              <div className="image" >
+                <img src={Keeplogo} alt="Kepp Logo"style={{width:"85%"}} />
               </div>
               <Typography
                 className="keep"
                 variant="h5"
-                style={{color: 'grey', marginLeft: '1%'}}
+                style={{color: 'grey', marginRight: '1.2%'}}
               >
                 Fundoo
               </Typography>
               <Card className="card">
                 <div
                   className="search"
-                  style={{marginLeft: '%', height: '7vh'}}
+                  style={{ height: '7vh'}}
                 >
                   <SearchIcon className="icon" />
                   <InputBase
@@ -94,12 +87,14 @@ export class Dashboard extends Component {
                 <ViewAgendaSharpIcon />
               </Tooltip>
 
-              <Tooltip
+              {/* <Tooltip */}<IconButton
                 title="Settings"
                 style={{color: 'grey', marginLeft: '1.7%'}}
+                onClick={() => this.props.history.push ('/chrome://settings')}
               >
                 <SettingsOutlinedIcon />
-              </Tooltip>
+                {/* </Tooltip> */}
+              </IconButton>
 
               <Tooltip
                 title="Fundoo apps"
@@ -114,7 +109,7 @@ export class Dashboard extends Component {
               <AccountCircleIcon onClick={() => this.props.history.push ('/dashboard/profile')}/>
               </IconButton> */}
               <Tooltip title="Fundoo Account">
-                <Profile PropsDashboard={this.props} />
+                <Profile />
               </Tooltip>
             </Toolbar>
 

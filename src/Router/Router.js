@@ -6,7 +6,8 @@ import ForgotPassword from '../Components/ForgotPassword';
 import ResetPassword from '../Components/ResetPassword';
 import Dashboard from '../Components/Dashboard';
 import Profile from '../Components/Profile';
-import Notes from '../Components/Notes';
+import TakeNotes from '../Components/TakeNotes';
+import WholeNotes from '../Components/WholeNotes';
 
 const Router = () => {
     return ( < BrowserRouter >
@@ -26,12 +27,15 @@ const Router = () => {
          component = { Dashboard }/>
 
         <Route path = "/dashboard/notes"
-         component = { Notes }/>
+         component = { TakeNotes }/>
          
         <Route path = "/profile"
         exact component = { Profile }/>
          
-         </BrowserRouter >
+        <Route path = "/dashboard/wholenotes"
+        component = {WholeNotes}/> 
+
+        </BrowserRouter >
     );
 };
 

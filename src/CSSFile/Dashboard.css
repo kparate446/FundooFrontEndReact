@@ -37,6 +37,10 @@
     align-items: center;
 }
 
+image {
+    width: 1%;
+}
+
 @media (max-width :600px) {
     .card {
         margin-left: 3.5%;

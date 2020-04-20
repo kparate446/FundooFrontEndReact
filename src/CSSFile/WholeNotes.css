@@ -1,0 +1,26 @@
+.titleAndPin {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.wholeNoteCard {
+    width: 42%;
+    padding: 0.5%;
+    margin: auto;
+    border: ridge;
+}
+
+.pinImage {
+    width: 6%;
+    margin-right: 2%;
+}
+
+.wholeTitle {
+    width: 95%;
+    margin-left: 3%;
+}
+
+.closeButton {
+    margin-left: 2%;
+    /* margin-top: 2%; */
+}
