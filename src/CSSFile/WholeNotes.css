@@ -1,10 +1,10 @@
-.titleAndPin {
+.Pin {
     display: flex;
     /* justify-content: space-between; */
 }
 
-.wholeNoteCard {
-    width: 42%;
+.NoteCard {
+    width: 47%;
     padding: 0.5%;
     margin: auto;
     border: ridge;
@@ -15,7 +15,7 @@
     margin-right: 2%;
 }
 
-.wholeTitle {
+.Title {
     width: 95%;
     margin-left: 3%;
 }

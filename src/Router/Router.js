@@ -8,6 +8,7 @@ import Dashboard from '../Components/Dashboard';
 import Profile from '../Components/Profile';
 import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
+import Notes from '../Components/Notes';
 
 const Router = () => {
     return ( < BrowserRouter >
@@ -24,9 +25,9 @@ const Router = () => {
         exact component = { Login }/> 
         
         <Route path = "/dashboard"
-         component = { Dashboard }/>
+         component = { Dashboard } />
 
-        <Route path = "/dashboard/notes"
+        <Route path = "/dashboard/takenotes"
          component = { TakeNotes }/>
          
         <Route path = "/profile"
@@ -34,7 +35,9 @@ const Router = () => {
          
         <Route path = "/dashboard/wholenotes"
         component = {WholeNotes}/> 
-
+        
+        <Route path = "/dashboard"
+        component = {Notes}/>
         </BrowserRouter >
     );
 };

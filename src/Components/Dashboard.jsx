@@ -90,7 +90,7 @@ export class Dashboard extends Component {
               {/* <Tooltip */}<IconButton
                 title="Settings"
                 style={{color: 'grey', marginLeft: '1.7%'}}
-                onClick={() => this.props.history.push ('/chrome://settings')}
+                onClick={() => this.props.history.push ('/')}
               >
                 <SettingsOutlinedIcon />
                 {/* </Tooltip> */}

@@ -15,6 +15,7 @@ class Note extends Component {
       title: '',
       description: '',
     };
+    console.log(this.props);
   }
 
   // clickNote = () => {
@@ -25,14 +26,14 @@ class Note extends Component {
 
   render () {
     return (
-      <Card
+      <Card 
         className="wholeMiniNoteCard"
         style={{marginTop: '3.5%', borderRadius: 10}}
       >
         <div>
-          <div className="takeNote">
+          <div onClick={this.props.handleClick} className="takeNote">
             <InputBase
-              style={{marginRight: '35%'}}
+              style={{marginRight: '28%'}}
               className="newNote"
               placeholder="Take a note..."
             />

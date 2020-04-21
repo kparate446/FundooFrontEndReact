@@ -26,26 +26,25 @@ class WholeNotes extends Component {
   render () {
     return (
       <div>
-           
+
         <Card
-          className="wholeNoteCard"
+          className="NoteCard"
           style={{marginTop: '3.5%', borderRadius: 10}}
         >
-           {/* <Popover> */}
-          <div className="titleAndPin">
-            <InputBase
-              className="wholeTitle"
-              name="title"
-              placeholder="Title"
-            />
+          {/* <Popover> */}
+          <div className="Pin">
+            <InputBase className="Title" name="title" placeholder="Title"label="Multiline Placeholder"
+              multiline />
             <Tooltip title="Pin note">
               <img className="pinImage" src={Images} alt="pin logo" />
             </Tooltip>
           </div>
           <div>
             <InputBase
-              className="wholeTitle"
-              name="description"
+              className="Title"
+              label="Multiline Placeholder"
+              multiline
+              // name="description"
               placeholder="Take a note..."
             />
           </div>
@@ -100,7 +99,7 @@ class WholeNotes extends Component {
             </IconButton>
 
             <Tooltip title="Close" style={{marginLeft: '20%'}}>
-              <Button>Close</Button>
+              <Button onClick={this.props.handleClick}>Close</Button>
             </Tooltip>
           </div>
           {/* </Popover> */}

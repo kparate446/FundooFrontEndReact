@@ -44,7 +44,7 @@ export default function SimplePopover (props) {
         </Tooltip>
       </div>
       <Popover
-        style={{marginTop:"0%"}}
+        style={{marginTop:"-6.6%"}}
         id={id}
         open={open}
         anchor={anchor}
