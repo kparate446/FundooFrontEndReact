@@ -3,26 +3,57 @@ import InputBase from '@material-ui/core/InputBase';
 import Images from '../Image/Pin.png';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
-import ImageIcon from '@material-ui/icons/Image';
-import ArchiveIcon from '@material-ui/icons/Archive';
-import AddAlertIcon from '@material-ui/icons/AddAlert';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import ColorLensIcon from '@material-ui/icons/ColorLens';
 import UndoIcon from '@material-ui/icons/Undo';
 import RedoIcon from '@material-ui/icons/Redo';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import '../CSSFile/WholeNotes.css';
 import {Card, Button} from '@material-ui/core';
-// import Popover from '@material-ui/core/Popover';
+import Labels from '../Components/Labels';
+import {createNote} from '../Services/UserService/UserServices';
 
 class WholeNotes extends Component {
   constructor (props) {
     super (props);
     this.state = {
       title: '',
-      description: '',
+      discription: '',
     };
   }
+
+  axios = event => {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  notesForm = () => {
+    let notes = {};
+    notes.title = this.state.title;
+    notes.discription = this.state.discription;
+    console.log (notes);
+    let token=localStorage.getItem("Token");
+  //   createNote(notes)
+  //     .then (Response => {
+  //       console.log (Response, 'Notes Created successfully!!');
+  //       localStorage.getItem ('Token', Response.data.data);
+  //       alert (`Notes Created successfully`);
+  //     })
+  //     .catch (error => {
+  //       console.log ('Error', error.response);
+  //       console.log (error.response.data.message, 'Notes Created failed');
+  //       alert (error.response.data.message);
+  //     });
+  // };
+  createNote (notes,token)
+  .then (function (response) {
+    console.log (response);
+    
+    alert (`Notes Created`);
+  })
+  .catch (function (error) {
+    console.log (error);
+    alert (error.response.data.message);
+  });
+};
   render () {
     return (
       <div>
@@ -33,8 +64,14 @@ class WholeNotes extends Component {
         >
           {/* <Popover> */}
           <div className="Pin">
-            <InputBase className="Title" name="title" placeholder="Title"label="Multiline Placeholder"
-              multiline />
+            <InputBase
+              className="Title"
+              name="title"
+              placeholder="Title"
+              label="Multiline Placeholder"
+              multiline
+              onChange={this.axios}
+            />
             <Tooltip title="Pin note">
               <img className="pinImage" src={Images} alt="pin logo" />
             </Tooltip>
@@ -42,49 +79,16 @@ class WholeNotes extends Component {
           <div>
             <InputBase
               className="Title"
+              name="discription"
               label="Multiline Placeholder"
               multiline
-              // name="description"
+              onChange={this.axios}
               placeholder="Take a note..."
             />
           </div>
 
           <div>
-            <IconButton aria-label="Remind me">
-              <Tooltip title="Reminde me">
-                <AddAlertIcon />
-              </Tooltip>
-            </IconButton>
-
-            <IconButton aria-label="Collaborator">
-              <Tooltip title="Collaborator">
-                <PersonAddIcon />
-              </Tooltip>
-            </IconButton>
-
-            <IconButton aria-label="Change color">
-              <Tooltip title="Change color">
-                <ColorLensIcon />
-              </Tooltip>
-            </IconButton>
-
-            <IconButton aria-label="Add image">
-              <Tooltip title="Add image">
-                <ImageIcon />
-              </Tooltip>
-            </IconButton>
-
-            <IconButton aria-label="Archive note">
-              <Tooltip title="Archive">
-                <ArchiveIcon />
-              </Tooltip>
-            </IconButton>
-
-            <IconButton aria-label="More">
-              <Tooltip title="More">
-                <MoreVertIcon />
-              </Tooltip>
-            </IconButton>
+            <Labels />
 
             <IconButton aria-label="Undo">
               <Tooltip title="Undo">
@@ -99,7 +103,12 @@ class WholeNotes extends Component {
             </IconButton>
 
             <Tooltip title="Close" style={{marginLeft: '20%'}}>
-              <Button onClick={this.props.handleClick}>Close</Button>
+              <Button
+                // onClick={this.props.handleClick}
+                onClick={this.notesForm}
+              >
+                Close
+              </Button>
             </Tooltip>
           </div>
           {/* </Popover> */}

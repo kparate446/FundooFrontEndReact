@@ -17,6 +17,9 @@ export class Login extends Component {
     this.state = {
       userName: '',
       password: '',
+      firstName:'',
+      lastName:'',
+      email:'',
     };
   }
 
@@ -47,7 +50,11 @@ export class Login extends Component {
     userLogin (user)
       .then (function (response) {
         console.log (response);
-        localStorage.setItem ('Token', response.data.data);
+        console.log('data', response.data.data);
+        localStorage.setItem('Token', response.data.message);
+        localStorage.setItem('Email', response.data.data.email);
+        localStorage.setItem('FirstName',response.data.data.firstName);
+        localStorage.setItem('LastName',response.data.data.lastName);
         alert (`Login Successfull`);
       })
       .catch (function (error) {

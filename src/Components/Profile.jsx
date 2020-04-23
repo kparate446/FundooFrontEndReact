@@ -13,11 +13,15 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles (theme => ({
   typography: {
-    padding: theme.spacing (5),
+    padding: theme.spacing (3),
   },
 }));
 
 export default function SimplePopover (props) {
+  let email = localStorage.getItem ('Email');
+  let firstName = localStorage.getItem ('FirstName');
+  let lastName = localStorage.getItem ('LastName');
+
   const classes = useStyles ();
   const [anchor, setAnchor] = React.useState (null);
 
@@ -44,7 +48,7 @@ export default function SimplePopover (props) {
         </Tooltip>
       </div>
       <Popover
-        style={{marginTop:"-6.6%"}}
+        style={{marginTop: '-9.1%'}}
         id={id}
         open={open}
         anchor={anchor}
@@ -84,32 +88,40 @@ export default function SimplePopover (props) {
                 top: '2%',
                 padding: '2%',
               }}
-            />
+            >
+              <b>{firstName} {lastName}</b>
+              </div>
+              <div style={{ justifyContent: "center", display: "flex", top: "5%", color: "gray" }}>
+              <b>{email}</b>
+              
+            </div>
+            <br/>
             <div
               className="profileaccount"
               style={{
                 backgroundColor: '#e0e0e0',
                 padding: '3% ',
                 paddingBottom: '3%',
-                borderRadius:'10px'
+                borderRadius: '10px',
               }}
             >
               Manage Your Fundoo Account
             </div>
-            <br/>
+            <br />
             {/* <Divider /> */}
 
             <Divider />
             <div style={{marginTop: '5%'}}>
-            {/* <PersonAddIcon/> */}
+              {/* <PersonAddIcon/> */}
               <MenuItem
                 title="Fundoo Account"
+                // onClick={() => this.props.history.push ('/')}
                 onClick={handleLoginChange}
                 style={{justifyContent: 'center', display: 'flex'}}
               >
                 Add another account
               </MenuItem>
-              
+
             </div>
             <div
               style={{
@@ -119,7 +131,6 @@ export default function SimplePopover (props) {
               }}
             >
               <Button
-                variant="contained"
                 color="white"
                 style={{justifyContent: 'center', display: 'flex'}}
                 onClick={handleLoginChange}

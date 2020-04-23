@@ -3,6 +3,8 @@ import Container from '@material-ui/core/Container';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
+import NoteCard  from '../Components/NoteCard';
+import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
 
 class Notes extends Component {
   constructor (props) {
@@ -11,6 +13,7 @@ class Notes extends Component {
       clickAway: false,
       title: '',
       description: '',
+      notes: null
     };
   }
 
@@ -34,6 +37,29 @@ class Notes extends Component {
     });
   };
 
+  showAllNotes = () => {
+
+    let token = localStorage.getItem("Token");
+    console.log('show all notes');
+
+    getAllNotes(token)
+
+        .then(Response => {
+            console.log("savg");
+            console.log('res:----- ', Response);
+            console.log('res data:----- ', Response.data.data);
+            this.setState({
+                notes: (Response.data.data).reverse()
+            })
+        })
+}
+
+componentDidMount() {
+    console.log('Component did mount');
+
+    this.showAllNotes()
+}
+
   render () {
     return (
       <Container>
@@ -49,6 +75,20 @@ class Notes extends Component {
               : <TakeNotes handleClick={this.handleClick} />}
           </div>
         </ClickAwayListener>
+        <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    marginTop: '2em'
+                }}>
+                  {
+                        this.state.notes !== null &&
+                        (this.state.notes).map((items) => (
+                            <NoteCard items={items} />
+                        ))
+                    }
+                   {/* <NoteCard/> */}
+                </div>
       </Container>
     );
   }

@@ -37,7 +37,7 @@ export function resetPassword(resetPasswordDTO) {
 
 export function createNote(createNoteDto, token) {
 
-    return axiosService.axiosPost("http://localhost:8080/notesapi/createNote", createNoteDto, {
+    return axios.post("http://localhost:8080/notesapi/createNote", createNoteDto, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token
@@ -47,11 +47,22 @@ export function createNote(createNoteDto, token) {
 
 export function getAllNotes(token) {
 
-    return axios.get("http://localhost:8080/note/getallnotes", {
+    return axios.get("http://localhost:8080/notesapi/getNotes", {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token
         }
     });
 }
+export function updateNote(id, updateNoteDto, token) {
 
+    return axios.put("http://localhost:8080/notesapi/updateNote", {
+        params: {
+            noteId: id
+        },
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}
