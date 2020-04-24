@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import {userRegistration} from '../Services/UserService/UserServices';
+import Logo from '../Assets/Logo.png';
 
 class Registration extends Component {
   constructor (props) {
@@ -274,6 +275,10 @@ class Registration extends Component {
                       Submit
                     </Button>
                   </div>
+                </div>
+                <div>
+                  <img src={Logo} width="80%" height="60%" alt="hello" />
+                  <p> One account.All of Fundoo working for you</p>
                 </div>
               </div>
             </div>

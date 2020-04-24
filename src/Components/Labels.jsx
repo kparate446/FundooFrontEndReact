@@ -9,6 +9,7 @@ import ColorLensIcon from '@material-ui/icons/ColorLens';
 import '../CSSFile/WholeNotes.css';
 import More from '../Components/More';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import Color from '../Components/ChangeColor';
 
 const theme = createMuiTheme ({});
 
@@ -36,7 +37,9 @@ class Labels extends Component {
 
           <IconButton aria-label="Change color">
             <Tooltip title="Change color">
-              <ColorLensIcon />
+              {/* <ColorLensIcon /> */}
+               <Color />
+               {/* <Color noteId={this.props.noteData.id} handleGetNotes={this.props.handleGetNotes}></Color> */}
             </Tooltip>
           </IconButton>
 

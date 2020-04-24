@@ -11,15 +11,20 @@ import UndoTwoToneIcon from '@material-ui/icons/UndoTwoTone';
 import RedoTwoToneIcon from '@material-ui/icons/RedoTwoTone';
 import Tooltip from '@material-ui/core/Tooltip';
 import Labels from '../Components/Labels';
+import Images from '../Assets/Pin.png';
+import '../CSSFile/WholeNotes.css';
+import axios from 'axios';
 
 export default function ShowNote (data) {
-  console.log ('title=>', data.id);
+  console.log ('title', data);
 
   const noteArray = '';
 
   const [open, setOpen] = React.useState (false);
 
-  const [title, discription] = '';
+  const [title, setTitle] = React.useState (data.title);
+  const [discription, setDiscription] = React.useState (data.discription);
+
 
   const handleClickOpen = () => {
     setOpen (true);
@@ -29,23 +34,34 @@ export default function ShowNote (data) {
     setOpen (false);
   };
 
+
   const handleEditClose = () => {
-    setOpen (false);
-    let updateNote = {};
+    let updateNotes = {};
 
     console.log (title, discription);
-
-    updateNote.title = title;
-    updateNote.discription = discription;
-
+     // updateNote.title = this.state.title;
+    // updateNote.discription = this.state.discription;
+    updateNotes.title = title;
+    updateNotes.discription = discription;
+    updateNotes.id=data.id;
+   
     let token = localStorage.getItem ('Token');
     let noteId = noteArray.id;
 
-    updateNote (noteId, updateNote, token)
-      .then (Response => {
+    // updateNote (data.id, updateNote, token)
+    axios.post("http://localhost:8080/notesapi/updateNote/"+data.id,updateNotes, {
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          token: token,
+      }
+  })
+    .then (Response => {
         console.log (Response.data.data);
-        showAllNotes ();
+        console.log(Response.data.noteId);
+        // showAllNotes ();
         alert ('Note Updated Successfully!!');
+
+    setOpen (false);
       })
       .catch (error => {
         console.log (error.response.message, 'Note Not Updated');
@@ -53,24 +69,29 @@ export default function ShowNote (data) {
       });
   };
 
-  const showAllNotes = () => {
-    let token = localStorage.getItem ('Token');
-    console.log ('show allnotes');
+  // const showAllNotes = () => {
+  //   let token = localStorage.getItem ('Token');
+  //   console.log ('show allnotes');
 
-    getAllNotes (token).then (Response => {
-      console.log ( Response.data.data);
-      this.setState ({
-        notes: Response.data.data.reverse (),
-      });
-    });
-  }
-
+  //   getAllNotes (token).then (Response => {
+  //     console.log (Response.data.data);
+  //     this.setState ({
+  //       notes: Response.data.data.reverse (),
+  //     });
+  //   });
+  // };
 
   return (
     <div>
       <div>
-        <Typography onClick={handleClickOpen}> {data.title}</Typography>
-
+      {/* <img className="pinImage" src={Images} alt="pin logo" /> */}
+      <div>
+        <Typography  onClick={handleClickOpen}> {data.title}
+        </Typography>
+        {/* <Tooltip title="Pin note">
+            <img className="pinImage" src={Images} alt="pin logo" />
+          </Tooltip> */}
+        </div>
         <Typography onClick={handleClickOpen}> {data.discription}</Typography>
 
         <div className="iconsDialog">
@@ -87,16 +108,31 @@ export default function ShowNote (data) {
         aria-describedby="alert-dialog-discription"
       >
         <DialogContent>
-          <InputBase defaultValue={data.title} />
+          <InputBase
+            label="Multiline Placeholder"
+            multiline
+            value={title}
+            style={{width: '92%'}}
+            onChange = {e=>setTitle(e.target.value)}
+          />
+
+          <Tooltip title="Pin note">
+            <img className="pinImage" src={Images} alt="pin logo" />
+          </Tooltip>
         </DialogContent>
 
         <DialogContent>
-          <InputBase defaultValue={data.discription} />
+          <InputBase
+            label="Multiline Placeholder"
+            multiline
+            value={discription}
+            onChange = {e=>setDiscription(e.target.value)}
+          />
         </DialogContent>
 
         <DialogActions>
 
-          <Labels/>
+          <Labels />
 
           <IconButton aria-label="Undo">
             <Tooltip title="Undo">
@@ -116,7 +152,7 @@ export default function ShowNote (data) {
               margin="dense"
               size="small"
               color="primary"
-              onClick={handleClose}
+              onClick={handleEditClose}
             >
               Close
             </Button>

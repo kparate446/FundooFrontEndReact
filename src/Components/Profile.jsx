@@ -3,6 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Badge from '@material-ui/core/Badge';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import Tooltip from '@material-ui/core/Tooltip';
+import { withRouter } from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -17,7 +18,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
-export default function SimplePopover (props) {
+ function SimplePopover (props) {
   let email = localStorage.getItem ('Email');
   let firstName = localStorage.getItem ('FirstName');
   let lastName = localStorage.getItem ('LastName');
@@ -35,7 +36,7 @@ export default function SimplePopover (props) {
 
   const handleLoginChange = () => {
     console.log (props);
-    props.PropsDashboard.history.push ('/');
+    props.history.push ('/');
   };
   const open = Boolean (anchor);
   const id = open ? 'simple-popover' : null;
@@ -148,3 +149,4 @@ export default function SimplePopover (props) {
     </div>
   );
 }
+export default withRouter(SimplePopover)

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import InputBase from '@material-ui/core/InputBase';
-import Images from '../Image/Pin.png';
+import Images from '../Assets/Pin.png';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import UndoIcon from '@material-ui/icons/Undo';
@@ -9,6 +9,7 @@ import '../CSSFile/WholeNotes.css';
 import {Card, Button} from '@material-ui/core';
 import Labels from '../Components/Labels';
 import {createNote} from '../Services/UserService/UserServices';
+
 
 class WholeNotes extends Component {
   constructor (props) {
@@ -51,7 +52,8 @@ class WholeNotes extends Component {
   })
   .catch (function (error) {
     console.log (error);
-    alert (error.response.data.message);
+    
+    // alert (error.response.data.message);
   });
 };
   render () {
@@ -84,10 +86,12 @@ class WholeNotes extends Component {
               multiline
               onChange={this.axios}
               placeholder="Take a note..."
+              // style={{fontSize: 0}}
             />
           </div>
 
           <div>
+            
             <Labels />
 
             <IconButton aria-label="Undo">
@@ -102,7 +106,7 @@ class WholeNotes extends Component {
               </Tooltip>
             </IconButton>
 
-            <Tooltip title="Close" style={{marginLeft: '20%'}}>
+            <Tooltip title="Close" style={{marginLeft: '15%'}}>
               <Button
                 // onClick={this.props.handleClick}
                 onClick={this.notesForm}

@@ -10,7 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import '../CSSFile/Dashboard.css';
-import Keeplogo from '../Image/KeepLogo.png';
+import Keeplogo from '../Assets/KeepLogo.png';
 import Card from '@material-ui/core/Card';
 // import Refresh from "@bit/mui-org.material-ui-icons.refresh";
 // import RefreshIcon from '@material-ui/icons/Refresh';

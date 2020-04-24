@@ -45,9 +45,7 @@ class Notes extends Component {
     getAllNotes(token)
 
         .then(Response => {
-            console.log("savg");
-            console.log('res:----- ', Response);
-            console.log('res data:----- ', Response.data.data);
+            console.log( Response.data.data);
             this.setState({
                 notes: (Response.data.data).reverse()
             })

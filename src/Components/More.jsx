@@ -1,6 +1,7 @@
 import React from 'react';
 import {Menu, MenuItem} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Color from '../Components/ChangeColor';
 
 export default function SimplePopover (props) {
   const [anchorEl, setAnchorEl] = React.useState (null);
@@ -8,6 +9,10 @@ export default function SimplePopover (props) {
   const handleClick = event => {
     setAnchorEl (event.currentTarget);
   };
+  const handleClose = () => {
+    setAnchorEl (null);
+  };
+
   return (
     <div>
       <MoreVertIcon onClick={handleClick} />
@@ -16,6 +21,7 @@ export default function SimplePopover (props) {
         style={{top: '6%'}}
         anchorEl={anchorEl}
         open={Boolean (anchorEl)}
+        onClose={handleClose}
       >
         {' '}
         <MenuItem>Add Label</MenuItem>

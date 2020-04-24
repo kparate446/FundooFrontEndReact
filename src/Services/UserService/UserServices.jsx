@@ -56,13 +56,11 @@ export function getAllNotes(token) {
 }
 export function updateNote(id, updateNoteDto, token) {
 
-    return axios.put("http://localhost:8080/notesapi/updateNote", {
-        params: {
-            noteId: id
-        },
+    return axios.post("http://localhost:8080/notesapi/updateNote/"+id,updateNoteDto, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
-            token: token
+            token: token,
         }
     });
 }
+
