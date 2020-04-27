@@ -49,8 +49,8 @@ export class Dashboard extends Component {
               <div title="Main Menu" style={{marginLeft: '-1%'}}>
                 <MainManu />
               </div>
-              <div className="image" >
-                <img src={Keeplogo} alt="Kepp Logo"style={{width:"85%"}} />
+              <div className="image">
+                <img src={Keeplogo} alt="Kepp Logo" style={{width: '85%'}} />
               </div>
               <Typography
                 className="keep"
@@ -60,10 +60,7 @@ export class Dashboard extends Component {
                 Fundoo
               </Typography>
               <Card className="card">
-                <div
-                  className="search"
-                  style={{ height: '7vh'}}
-                >
+                <div className="search" style={{height: '7vh'}}>
                   <SearchIcon className="icon" />
                   <InputBase
                     style={{width: '100vh', marginLeft: '3%'}}

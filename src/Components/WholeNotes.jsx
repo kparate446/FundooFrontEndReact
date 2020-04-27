@@ -9,8 +9,7 @@ import '../CSSFile/WholeNotes.css';
 import {Card, Button} from '@material-ui/core';
 import Labels from '../Components/Labels';
 import {createNote} from '../Services/UserService/UserServices';
-
-
+import More from '../Components/More';
 class WholeNotes extends Component {
   constructor (props) {
     super (props);
@@ -31,31 +30,18 @@ class WholeNotes extends Component {
     notes.title = this.state.title;
     notes.discription = this.state.discription;
     console.log (notes);
-    let token=localStorage.getItem("Token");
-  //   createNote(notes)
-  //     .then (Response => {
-  //       console.log (Response, 'Notes Created successfully!!');
-  //       localStorage.getItem ('Token', Response.data.data);
-  //       alert (`Notes Created successfully`);
-  //     })
-  //     .catch (error => {
-  //       console.log ('Error', error.response);
-  //       console.log (error.response.data.message, 'Notes Created failed');
-  //       alert (error.response.data.message);
-  //     });
-  // };
-  createNote (notes,token)
-  .then (function (response) {
-    console.log (response);
-    
-    alert (`Notes Created`);
-  })
-  .catch (function (error) {
-    console.log (error);
-    
-    // alert (error.response.data.message);
-  });
-};
+    let token = localStorage.getItem ('Token');
+
+    createNote (notes, token)
+      .then (function (response) {
+        console.log (response);
+
+        alert (`Notes Created`);
+      })
+      .catch (function (error) {
+        console.log (error);
+      });
+  };
   render () {
     return (
       <div>
@@ -91,8 +77,14 @@ class WholeNotes extends Component {
           </div>
 
           <div>
-            
+
             <Labels />
+            <IconButton aria-label="More">
+              <Tooltip title="More">
+                {/* <MoreVertIcon /> */}
+                <More />
+              </Tooltip>
+            </IconButton>
 
             <IconButton aria-label="Undo">
               <Tooltip title="Undo">

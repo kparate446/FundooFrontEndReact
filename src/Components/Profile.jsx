@@ -3,7 +3,7 @@ import Popover from '@material-ui/core/Popover';
 import Badge from '@material-ui/core/Badge';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import Tooltip from '@material-ui/core/Tooltip';
-import { withRouter } from "react-router-dom";
+import {withRouter} from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ const useStyles = makeStyles (theme => ({
   },
 }));
 
- function SimplePopover (props) {
+function SimplePopover (props) {
   let email = localStorage.getItem ('Email');
   let firstName = localStorage.getItem ('FirstName');
   let lastName = localStorage.getItem ('LastName');
@@ -91,12 +91,19 @@ const useStyles = makeStyles (theme => ({
               }}
             >
               <b>{firstName} {lastName}</b>
-              </div>
-              <div style={{ justifyContent: "center", display: "flex", top: "5%", color: "gray" }}>
-              <b>{email}</b>
-              
             </div>
-            <br/>
+            <div
+              style={{
+                justifyContent: 'center',
+                display: 'flex',
+                top: '5%',
+                color: 'gray',
+              }}
+            >
+              <b>{email}</b>
+
+            </div>
+            <br />
             <div
               className="profileaccount"
               style={{
@@ -149,4 +156,4 @@ const useStyles = makeStyles (theme => ({
     </div>
   );
 }
-export default withRouter(SimplePopover)
+export default withRouter (SimplePopover);

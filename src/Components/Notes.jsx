@@ -3,8 +3,9 @@ import Container from '@material-ui/core/Container';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
-import NoteCard  from '../Components/NoteCard';
-import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
+import NoteCard from '../Components/NoteCard';
+// import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
+import {getAllNotes} from '../Services/UserService/UserServices';
 
 class Notes extends Component {
   constructor (props) {
@@ -13,7 +14,7 @@ class Notes extends Component {
       clickAway: false,
       title: '',
       description: '',
-      notes: null
+      notes: null,
     };
   }
 
@@ -24,8 +25,8 @@ class Notes extends Component {
   };
 
   handleClick = () => {
-      console.log("in handle click");
-      
+    console.log ('in handle click');
+
     this.setState ({
       clickAway: !this.state.clickAway,
     });
@@ -38,25 +39,21 @@ class Notes extends Component {
   };
 
   showAllNotes = () => {
+    let token = localStorage.getItem ('Token');
+    console.log ('show all notes');
 
-    let token = localStorage.getItem("Token");
-    console.log('show all notes');
+    getAllNotes (token).then (Response => {
+      console.log (Response.data.data);
+      this.setState ({
+        notes: Response.data.data.reverse (),
+      });
+    });
+  };
 
-    getAllNotes(token)
-
-        .then(Response => {
-            console.log( Response.data.data);
-            this.setState({
-                notes: (Response.data.data).reverse()
-            })
-        })
-}
-
-componentDidMount() {
-    console.log('Component did mount');
-
-    this.showAllNotes()
-}
+  componentDidMount () {
+    console.log ('Component did mount');
+    this.showAllNotes ();
+  }
 
   render () {
     return (
@@ -73,20 +70,21 @@ componentDidMount() {
               : <TakeNotes handleClick={this.handleClick} />}
           </div>
         </ClickAwayListener>
-        <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                    marginTop: '2em'
-                }}>
-                  {
-                        this.state.notes !== null &&
-                        (this.state.notes).map((items) => (
-                            <NoteCard items={items} />
-                        ))
-                    }
-                   {/* <NoteCard/> */}
-                </div>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            // justifyContent: 'padding',
+            // padding :'5%',
+            marginTop: '2em',
+            marginLeft: '15%',
+          }}
+        >
+          {this.state.notes !== null &&
+            this.state.notes.map (items => <NoteCard items={items} />)}
+          {/* <NoteCard/> */}
+        </div>
       </Container>
     );
   }

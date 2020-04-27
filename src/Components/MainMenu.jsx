@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import {
   IconButton,
   Drawer,
@@ -33,8 +34,7 @@ export class MainManu extends Component {
   constructor (props) {
     super (props);
 
-    this.state = {
-    };
+    this.state = {};
   }
 
   handleDrawer = event => {
@@ -56,7 +56,12 @@ export class MainManu extends Component {
           <div>
             <Drawer variant="persistent" anchor="left" open={open}>
               <List>
-                <ListItem className="over" button key="Notes">
+                <ListItem
+                  className="over"
+                  onClick={() => this.props.history.push ('/dashboard/notes')}
+                  button
+                  key="Notes"
+                >
                   <ListItemIcon>
                     <EmojiObjectsOutlinedIcon />
                   </ListItemIcon>
@@ -98,4 +103,4 @@ export class MainManu extends Component {
     );
   }
 }
-export default MainManu;
+export default withRouter (MainManu);

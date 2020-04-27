@@ -17,9 +17,9 @@ export class Login extends Component {
     this.state = {
       userName: '',
       password: '',
-      firstName:'',
-      lastName:'',
-      email:'',
+      firstName: '',
+      lastName: '',
+      email: '',
     };
   }
 
@@ -50,11 +50,11 @@ export class Login extends Component {
     userLogin (user)
       .then (function (response) {
         console.log (response);
-        console.log('data', response.data.data);
-        localStorage.setItem('Token', response.data.message);
-        localStorage.setItem('Email', response.data.data.email);
-        localStorage.setItem('FirstName',response.data.data.firstName);
-        localStorage.setItem('LastName',response.data.data.lastName);
+        console.log ('data', response.data.data);
+        localStorage.setItem ('Token', response.data.message);
+        localStorage.setItem ('Email', response.data.data.email);
+        localStorage.setItem ('FirstName', response.data.data.firstName);
+        localStorage.setItem ('LastName', response.data.data.lastName);
         alert (`Login Successfull`);
       })
       .catch (function (error) {
@@ -109,11 +109,11 @@ export class Login extends Component {
                   label="password"
                   margin="dense"
                   style={{width: '90%'}}
-                  inputProps={{
-                    style: {
-                      height: 35,
-                    },
-                  }}
+                  // inputProps={{
+                  //   style: {
+                  //     height: 35,
+                  //   },
+                  // }}
                   onChange={this.axios}
                   InputProps={{
                     endAdornment: (

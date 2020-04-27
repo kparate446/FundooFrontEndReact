@@ -1,5 +1,5 @@
 import React from 'react';
-import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
+// import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -14,17 +14,29 @@ import Labels from '../Components/Labels';
 import Images from '../Assets/Pin.png';
 import '../CSSFile/WholeNotes.css';
 import axios from 'axios';
+// import MoreMenu from '../Components/MoreMenu';
+import {Menu, MenuItem} from '@material-ui/core';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ArchiveNotes from '../Components/ArchiveNotes';
+import AddAlertIcon from '@material-ui/icons/AddAlert';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import ImageIcon from '@material-ui/icons/Image';
+import Color from '../Components/ChangeColor';
 
 export default function ShowNote (data) {
-  console.log ('title', data);
-
-  const noteArray = '';
-
+  // console.log ('title', data);
+  const [anchorEl, setAnchorEl] = React.useState (null);
+  const handleClick = event => {
+    setAnchorEl (event.currentTarget);
+  };
+  const handleClose1 = () => {
+    setAnchorEl (null);
+  };
   const [open, setOpen] = React.useState (false);
 
   const [title, setTitle] = React.useState (data.title);
   const [discription, setDiscription] = React.useState (data.discription);
-
+  const [archive, setArchive] = React.useState (false);
 
   const handleClickOpen = () => {
     setOpen (true);
@@ -33,35 +45,63 @@ export default function ShowNote (data) {
   const handleClose = () => {
     setOpen (false);
   };
+  const handleArchive = () => {
+    setArchive (!archive);
+  };
 
+  const DeleteNotes = () => {
+    let deleteNote = {};
+    deleteNote.id = data.id;
+    let token = localStorage.getItem ('Token');
+    axios
+      .delete ('http://localhost:8080/notesapi/deleteNote/' + data.id, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          token: token,
+        },
+      })
+      .then (Response => {
+        setOpen (false);
+        alert ('Note Deleted Successfully!!');
+      })
+      .catch (error => {
+        console.log (error.response.message, 'Note Not Updated');
+        alert ('Note Not Delete');
+      });
+  };
 
   const handleEditClose = () => {
     let updateNotes = {};
 
-    console.log (title, discription);
-     // updateNote.title = this.state.title;
-    // updateNote.discription = this.state.discription;
+    console.log ('title', data);
+    /*console.log (title, discription);*/
     updateNotes.title = title;
     updateNotes.discription = discription;
-    updateNotes.id=data.id;
-   
+    updateNotes.id = data.id;
+
     let token = localStorage.getItem ('Token');
-    let noteId = noteArray.id;
+    // let noteId = noteArray.id;
 
     // updateNote (data.id, updateNote, token)
-    axios.post("http://localhost:8080/notesapi/updateNote/"+data.id,updateNotes, {
-      headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          token: token,
-      }
-  })
-    .then (Response => {
-        console.log (Response.data.data);
-        console.log(Response.data.noteId);
-        // showAllNotes ();
-        alert ('Note Updated Successfully!!');
+    axios
+      .post (
+        'http://localhost:8080/notesapi/updateNote/' + data.id,
+        updateNotes,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            token: token,
+          },
+        }
+      )
+      .then (Response => {
+        /*console.log (Response.data.data);
+        console.log(Response.data.noteId);*/
 
-    setOpen (false);
+        // showAllNotes ();
+        // alert ('Note Updated Successfully!!');
+
+        setOpen (false);
       })
       .catch (error => {
         console.log (error.response.message, 'Note Not Updated');
@@ -69,36 +109,69 @@ export default function ShowNote (data) {
       });
   };
 
-  // const showAllNotes = () => {
-  //   let token = localStorage.getItem ('Token');
-  //   console.log ('show allnotes');
-
-  //   getAllNotes (token).then (Response => {
-  //     console.log (Response.data.data);
-  //     this.setState ({
-  //       notes: Response.data.data.reverse (),
-  //     });
-  //   });
-  // };
-
   return (
     <div>
-      <div>
-      {/* <img className="pinImage" src={Images} alt="pin logo" /> */}
-      <div>
-        <Typography  onClick={handleClickOpen}> {data.title}
-        </Typography>
-        {/* <Tooltip title="Pin note">
-            <img className="pinImage" src={Images} alt="pin logo" />
-          </Tooltip> */}
-        </div>
-        <Typography onClick={handleClickOpen}> {data.discription}</Typography>
+      <Typography onClick={handleClickOpen}>
+        {' '}{data.title}
+      </Typography>
 
-        <div className="iconsDialog">
-          <Labels />
-        </div>
+      <Typography onClick={handleClickOpen}> {data.discription}</Typography>
 
-      </div>
+      {/* <div className="iconsDialog"> */}
+      {/* <Labels /> */}
+      <IconButton aria-label="Remind me">
+        <Tooltip title="Reminde me">
+          <AddAlertIcon />
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Collaborator">
+        <Tooltip title="Collaborator">
+          <PersonAddIcon />
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Change color">
+        <Tooltip title="Change color">
+          {/* <ColorLensIcon /> */}
+          <Color />
+          {/* <Color noteId={this.props.noteData.id} handleGetNotes={this.props.handleGetNotes}></Color> */}
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Add image">
+        <Tooltip title="Add image">
+          <ImageIcon />
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Archive note">
+        <Tooltip title="Archive">
+          <ArchiveNotes onSelectArchive={handleArchive} data={data} />
+        </Tooltip>
+      </IconButton>
+
+      {/* <MoreMenu/> */}
+
+      <MoreVertIcon style={{top: '10px'}} onClick={handleClick} />
+      <Menu
+        id="simple-menu"
+        style={{top: '6%'}}
+        anchorEl={anchorEl}
+        open={Boolean (anchorEl)}
+        onClose={handleClose1}
+      >
+        {' '}
+        {/* <MenuItem>Add Label</MenuItem> */}
+        {/* <AddLabel/> */}
+        <MenuItem onClick={DeleteNotes}>Delete note</MenuItem>
+        <MenuItem>Change labels</MenuItem>
+        <MenuItem>Add drawing </MenuItem>
+        <MenuItem>Make a copy </MenuItem>
+        <MenuItem> Show checkboxes</MenuItem>
+        <MenuItem> Copy to Google Docs</MenuItem>
+      </Menu>
+      {/* </div> */}
 
       <Dialog
         className="dialogOpen"
@@ -113,7 +186,7 @@ export default function ShowNote (data) {
             multiline
             value={title}
             style={{width: '92%'}}
-            onChange = {e=>setTitle(e.target.value)}
+            onChange={e => setTitle (e.target.value)}
           />
 
           <Tooltip title="Pin note">
@@ -126,7 +199,8 @@ export default function ShowNote (data) {
             label="Multiline Placeholder"
             multiline
             value={discription}
-            onChange = {e=>setDiscription(e.target.value)}
+            style={{width: '95%'}}
+            onChange={e => setDiscription (e.target.value)}
           />
         </DialogContent>
 
@@ -157,6 +231,7 @@ export default function ShowNote (data) {
               Close
             </Button>
           </Tooltip>
+
         </DialogActions>
       </Dialog>
     </div>

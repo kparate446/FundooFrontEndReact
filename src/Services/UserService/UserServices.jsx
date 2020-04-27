@@ -63,4 +63,52 @@ export function updateNote(id, updateNoteDto, token) {
         }
     });
 }
+export function deleteNote(id, token) {
 
+    return axios.delete("http://localhost:8080/notesapi/deleteNote/"+id, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
+        }
+    });
+}
+
+export function changeColor(id, colorDTO, token) {
+    return axios.post("http://localhost:8080/notesapi/changeColor/"+id,colorDTO, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
+            "Accept": "*",
+        }
+    });
+}
+export function createLabel(createLabelDto, token) {
+
+    return axios.post("http://localhost:8080/lableapi/createLable", createLabelDto, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
+            "Accept": "*",
+        }
+    });
+}
+
+export function getAllLabels(token) {
+
+    return axios.get("http://localhost:8080/labelapi/getLabels", {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+export function addInArchive(id, token) {
+    var data = null;
+    return axios.post("http://localhost:8080/notesapi/archiveNotes/" + id, data, {
+
+        headers: {
+            "Content-Type": "appliaction/json; charset=utf-8",
+            token: token
+        }
+    });
+}

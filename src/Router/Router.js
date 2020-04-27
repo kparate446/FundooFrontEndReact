@@ -9,8 +9,11 @@ import Profile from '../Components/Profile';
 // import TakeNotes from '../Components/TakeNotes';
 // import WholeNotes from '../Components/WholeNotes';
 import Notes from '../Components/Notes';
-import ShowNote from '../Components/ShowNote';
-import NoteCard from '../Components/NoteCard';
+// import ShowNote from '../Components/ShowNote';
+// import NoteCard from '../Components/NoteCard';
+// import MoreMenu from '../Components/EditLabels';
+import ArchiveNotes from '../Components/ArchiveNotes';
+import EditLabels from '../Components/EditLabels';
 
 const Router = () => {
     return ( < BrowserRouter >
@@ -37,16 +40,22 @@ const Router = () => {
          
         {/* <Route path = "/dashboard/wholenotes"
         component = {WholeNotes}/>  */}
-        
-        <Route path = "/dashboard"
+        {/* 2 */}
+        <Route path = "/dashboard/notes"
         component = {Notes}/>
 
-        <Route path = "/shownotes"
-        component = {ShowNote}/>
+        {/* <Route path = "/shownotes"
+        component = {ShowNote}/> */}
 
         {/* <Route path = "/card"
         component = {NoteCard}/> */}
         
+         <Route path='/moremenu'
+         component={ArchiveNotes} />
+
+        <Route path='/labels'
+         component={EditLabels} />
+
         </BrowserRouter >
     );
 };
