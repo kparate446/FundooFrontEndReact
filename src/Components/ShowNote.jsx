@@ -124,7 +124,6 @@ export default function ShowNote (data) {
           <AddAlertIcon />
         </Tooltip>
       </IconButton>
-
       <IconButton aria-label="Collaborator">
         <Tooltip title="Collaborator">
           <PersonAddIcon />
@@ -231,7 +230,6 @@ export default function ShowNote (data) {
               Close
             </Button>
           </Tooltip>
-
         </DialogActions>
       </Dialog>
     </div>

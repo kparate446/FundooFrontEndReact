@@ -16,7 +16,8 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+// import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import AddLabel from '../Components/AddLabel';
 
 const theme = createMuiTheme ({
   overrides: {
@@ -75,14 +76,15 @@ export class MainManu extends Component {
                   <ListItemText primary="Reminders" />
                 </ListItem>
 
-                <ListItem className="over" button key="Edit labels">
+                {/* <ListItem className="over" button key="Edit labels">
                   <ListItemIcon>
                     <LabelOutlinedIcon />
                   </ListItemIcon>
                   <ListItemText primary="Edit labels" />
-                </ListItem>
+                </ListItem> */}
+                <AddLabel/>
 
-                <ListItem className="over" button key="Archive">
+                <ListItem className="over"  button key="Archive" onClick={() => this.props.history.push ('/dashboard/showarchivenote')}>
                   <ListItemIcon>
                     <ArchiveOutlinedIcon />
                   </ListItemIcon>

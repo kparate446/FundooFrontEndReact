@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Registration from '../Components/Registration';
 import Login from '../Components/Login';
 import ForgotPassword from '../Components/ForgotPassword';
@@ -14,50 +14,47 @@ import Notes from '../Components/Notes';
 // import MoreMenu from '../Components/EditLabels';
 import ArchiveNotes from '../Components/ArchiveNotes';
 import EditLabels from '../Components/EditLabels';
+import AddLabels from '../Components/AddLabel';
+import ShowArchiveNote from '../Components/ShowArchiveNote';
 
 const Router = () => {
-    return ( < BrowserRouter >
-        <Route path = "/register"
-        component = { Registration }/>
+  return (
+    <BrowserRouter>
+      <Route path="/register" component={Registration} />
 
-        <Route path = "/forgotpassword"
-        component = { ForgotPassword }/>
+      <Route path="/forgotpassword" component={ForgotPassword} />
 
-        <Route path = "/resetpassword"
-        component = { ResetPassword }/>
+      <Route path="/resetpassword" component={ResetPassword} />
 
-        <Route path = "/"
-        exact component = { Login }/> 
-        
-        <Route path = "/dashboard"
-         component = { Dashboard } />
+      <Route path="/" exact component={Login} />
 
-        {/* <Route path = "/dashboard/takenotes"
+      <Route path="/dashboard" component={Dashboard} />
+
+      {/* <Route path = "/dashboard/takenotes"
          component = { TakeNotes }/> */}
-         
-        <Route path = "/profile"
-        exact component = { Profile }/>
-         
-        {/* <Route path = "/dashboard/wholenotes"
-        component = {WholeNotes}/>  */}
-        {/* 2 */}
-        <Route path = "/dashboard/notes"
-        component = {Notes}/>
 
-        {/* <Route path = "/shownotes"
+      <Route path="/profile" exact component={Profile} />
+
+      {/* <Route path = "/dashboard/wholenotes"
+        component = {WholeNotes}/>  */}
+      {/* 2 */}
+      <Route path="/dashboard/notes" component={Notes} />
+
+      {/* <Route path = "/shownotes"
         component = {ShowNote}/> */}
 
-        {/* <Route path = "/card"
+      {/* <Route path = "/card"
         component = {NoteCard}/> */}
-        
-         <Route path='/moremenu'
-         component={ArchiveNotes} />
 
-        <Route path='/labels'
-         component={EditLabels} />
+      <Route path="/moremenu" component={ArchiveNotes} />
 
-        </BrowserRouter >
-    );
+      <Route path="/labels" component={EditLabels} />
+
+      <Route path="/label" component={AddLabels} />
+
+      <Route path="/dashboard/showarchivenote" component={ShowArchiveNote} />
+    </BrowserRouter>
+  );
 };
 
 export default Router;

@@ -112,3 +112,11 @@ export function addInArchive(id, token) {
         }
     });
 }
+export function getAllArchiveNotes(token) {
+    return axios.get("http://localhost:8080/notesapi/showArchiveNotes", {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}

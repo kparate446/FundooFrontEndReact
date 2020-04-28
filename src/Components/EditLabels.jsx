@@ -18,7 +18,7 @@ class EditLabels extends Component {
       labelName: '',
     };
   }
-
+ 
   axios = event => {
     this.setState ({
       [event.target.name]: event.target.value,
@@ -69,3 +69,5 @@ class EditLabels extends Component {
   }
 }
 export default EditLabels;
+
+

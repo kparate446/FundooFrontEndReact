@@ -31,7 +31,9 @@ export class Dashboard extends Component {
     super (props);
     this.state = {};
   }
-
+  handleShowAllArchiveNotes = () => {
+    this.props.history.push("/dashboard/showarchivenote");
+};
   render () {
     return (
       <div className="maindashboard">
@@ -47,7 +49,7 @@ export class Dashboard extends Component {
                 <MenuIcon />
               </IconButton> */}
               <div title="Main Menu" style={{marginLeft: '-1%'}}>
-                <MainManu />
+                <MainManu/>
               </div>
               <div className="image">
                 <img src={Keeplogo} alt="Kepp Logo" style={{width: '85%'}} />

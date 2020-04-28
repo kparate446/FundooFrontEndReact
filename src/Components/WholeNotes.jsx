@@ -101,7 +101,7 @@ class WholeNotes extends Component {
             <Tooltip title="Close" style={{marginLeft: '15%'}}>
               <Button
                 // onClick={this.props.handleClick}
-                onClick={this.notesForm}
+                onClick={this.notesForm }
               >
                 Close
               </Button>
