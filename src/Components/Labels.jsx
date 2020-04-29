@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import ImageIcon from '@material-ui/icons/Image';
-// import ArchiveIcon from '@material-ui/icons/Archive';
+import ArchiveIcon from '@material-ui/icons/Archive';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 // import ColorLensIcon from '@material-ui/icons/ColorLens';
@@ -10,7 +10,7 @@ import '../CSSFile/WholeNotes.css';
 // import More from '../Components/More';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import Color from '../Components/ChangeColor';
-import ArchiveNotes from '../Components/ArchiveNotes';
+// import ArchiveNotes from '../Components/ArchiveNotes';
 
 const theme = createMuiTheme ({});
 
@@ -52,8 +52,8 @@ class Labels extends Component {
 
           <IconButton aria-label="Archive note">
             <Tooltip title="Archive">
-              {/* <ArchiveIcon /> */}
-              <ArchiveNotes />
+              <ArchiveIcon />
+              {/* <ArchiveNotes /> */}
             </Tooltip>
           </IconButton>
 

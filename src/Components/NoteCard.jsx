@@ -11,18 +11,19 @@ const NoteCard = props => {
       multiline
       style={{
         borderRadius: 10,
-        width: 309,
+        // width: 309,
         display: 'flex',
         flexDirection: 'column',
-        margin: 5,
-        padding: 7,
+        margin: 7,
+        backgroundColor:props.items.color,
+        // padding: 7,
       }}
     >
-      {/* <ShowNote/> */}
       <ShowNote
         id={props.items.id}
         title={props.items.title}
         discription={props.items.discription}
+        trash = {props.trash}
       />
     </Card>
   );

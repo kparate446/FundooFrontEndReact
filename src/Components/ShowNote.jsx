@@ -10,7 +10,7 @@ import InputBase from '@material-ui/core/InputBase';
 import UndoTwoToneIcon from '@material-ui/icons/UndoTwoTone';
 import RedoTwoToneIcon from '@material-ui/icons/RedoTwoTone';
 import Tooltip from '@material-ui/core/Tooltip';
-import Labels from '../Components/Labels';
+// import Labels from '../Components/Labels';
 import Images from '../Assets/Pin.png';
 import '../CSSFile/WholeNotes.css';
 import axios from 'axios';
@@ -22,6 +22,10 @@ import AddAlertIcon from '@material-ui/icons/AddAlert';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ImageIcon from '@material-ui/icons/Image';
 import Color from '../Components/ChangeColor';
+import Trash from '../Components/TrashNotes';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
+
 
 export default function ShowNote (data) {
   // console.log ('title', data);
@@ -37,6 +41,7 @@ export default function ShowNote (data) {
   const [title, setTitle] = React.useState (data.title);
   const [discription, setDiscription] = React.useState (data.discription);
   const [archive, setArchive] = React.useState (false);
+  const [trash, setTrash] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen (true);
@@ -47,6 +52,9 @@ export default function ShowNote (data) {
   };
   const handleArchive = () => {
     setArchive (!archive);
+  };
+  const handleTrash = () => {
+    setTrash (!trash);
   };
 
   const DeleteNotes = () => {
@@ -119,9 +127,26 @@ export default function ShowNote (data) {
 
       {/* <div className="iconsDialog"> */}
       {/* <Labels /> */}
+      {/* {data.trash ?<h1>f</h1>:<h1>t</h1> } */}
+      {data.trash ? <div>
+      <IconButton aria-label="Delete forever">
+        <Tooltip title="Delete forever">
+          <DeleteForeverIcon onClick={DeleteNotes} />
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Restore">
+        <Tooltip title="Restore">
+          <RestoreFromTrashIcon >
+          {/* <MenuItem><Trash onSelectTrash={handleTrash} data={data} ></Trash> </MenuItem> */}
+          <Trash onSelectTrash={handleTrash} data={data} ></Trash>
+        </RestoreFromTrashIcon >
+        </Tooltip>
+      </IconButton>
+      </div>:<div>
       <IconButton aria-label="Remind me">
         <Tooltip title="Reminde me">
-          <AddAlertIcon />
+          <AddAlertIcon/>
         </Tooltip>
       </IconButton>
       <IconButton aria-label="Collaborator">
@@ -133,7 +158,7 @@ export default function ShowNote (data) {
       <IconButton aria-label="Change color">
         <Tooltip title="Change color">
           {/* <ColorLensIcon /> */}
-          <Color />
+          <Color data={data}/>
           {/* <Color noteId={this.props.noteData.id} handleGetNotes={this.props.handleGetNotes}></Color> */}
         </Tooltip>
       </IconButton>
@@ -163,13 +188,15 @@ export default function ShowNote (data) {
         {' '}
         {/* <MenuItem>Add Label</MenuItem> */}
         {/* <AddLabel/> */}
-        <MenuItem onClick={DeleteNotes}>Delete note</MenuItem>
-        <MenuItem>Change labels</MenuItem>
-        <MenuItem>Add drawing </MenuItem>
+        {/* <MenuItem onClick={DeleteNotes}>Delete note</MenuItem> */}
+        <MenuItem><Trash onSelectTrash={handleTrash} data={data} ></Trash> </MenuItem>
+        <MenuItem >Add labels</MenuItem>
+        <MenuItem onClick={DeleteNotes}>Add drawing </MenuItem>
         <MenuItem>Make a copy </MenuItem>
         <MenuItem> Show checkboxes</MenuItem>
         <MenuItem> Copy to Google Docs</MenuItem>
       </Menu>
+      </div>}
       {/* </div> */}
 
       <Dialog
@@ -204,8 +231,54 @@ export default function ShowNote (data) {
         </DialogContent>
 
         <DialogActions>
+        <IconButton aria-label="Remind me">
+        <Tooltip title="Reminde me">
+          <AddAlertIcon />
+        </Tooltip>
+      </IconButton>
+      <IconButton aria-label="Collaborator">
+        <Tooltip title="Collaborator">
+          <PersonAddIcon />
+        </Tooltip>
+      </IconButton>
 
-          <Labels />
+        <Tooltip title="Change color">
+          <Color />
+        </Tooltip>
+  
+        <IconButton aria-label="Add image">
+        <Tooltip title="Add image">
+          <ImageIcon />
+        </Tooltip>
+      </IconButton>
+
+      <IconButton aria-label="Archive note">
+        <Tooltip title="Archive">
+          <ArchiveNotes onSelectArchive={handleArchive} data={data} />
+        </Tooltip>
+      </IconButton>
+
+          {/* <Labels /> */}
+   <MoreVertIcon style={{top: '10px'}} onClick={handleClick} />
+      <Menu
+        id="simple-menu"
+        style={{top: '6%'}}
+        anchorEl={anchorEl}
+        open={Boolean (anchorEl)}
+        onClose={handleClose1}
+      >
+        {' '}
+        {/* <MenuItem>Add Label</MenuItem> */}
+        {/* <AddLabel/> */}
+        {/* <MenuItem onClick={DeleteNotes}>Delete note</MenuItem> */}
+        <MenuItem><Trash onSelectTrash={handleTrash} data={data} ></Trash> </MenuItem>
+        <MenuItem >Add labels</MenuItem>
+        <MenuItem>Add drawing </MenuItem>
+        <MenuItem>Make a copy </MenuItem>
+        <MenuItem> Show checkboxes</MenuItem>
+        <MenuItem> Copy to Google Docs</MenuItem>
+      </Menu>
+      
 
           <IconButton aria-label="Undo">
             <Tooltip title="Undo">

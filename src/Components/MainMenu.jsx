@@ -91,7 +91,7 @@ export class MainManu extends Component {
                   <ListItemText primary="Archive" />
                 </ListItem>
 
-                <ListItem className="over" button key="Trash">
+                <ListItem className="over" button key="Trash" onClick={() => this.props.history.push ('/dashboard/showtrashnote')}>
                   <ListItemIcon>
                     <DeleteOutlineOutlinedIcon />
                   </ListItemIcon>

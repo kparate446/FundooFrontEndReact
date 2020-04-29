@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ArchiveIcon from '@material-ui/icons/Archive';
+// import ArchiveIcon from '@material-ui/icons/Archive';
 import {Tooltip} from '@material-ui/core';
-import {addInArchive} from '../Services/UserService/UserServices';
+import {addTrash} from '../Services/UserService/UserServices';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -28,18 +28,16 @@ class ArchiveNotes extends Component {
     this.setState ({anchorEl: null});
   };
 
-  handleaddArchiveChange = () => {
+  handleTrashNotes = () => {
     let token = localStorage.getItem ('Token');
-    this.props.onSelectArchive (true);
+    this.props.onSelectTrash (true);
 
-    addInArchive (this.props.data.id, token)
+    addTrash (this.props.data.id, token)
       .then (Response => {
-        console.log ('note is archive', Response);
-        // alert ('Archive Note is Created');
-        this.setState({snackbaropen:true,snackbarmsg:'Archived'});
+        console.log ('note is trash', Response);
+        this.setState({snackbaropen:true,snackbarmsg:'Trash'});
       })
       .catch (err => {
-        // alert ('Unarchive');
         this.setState({snackbaropen:true,snackbarmsg:'failed'});
       });
   };
@@ -64,8 +62,9 @@ class ArchiveNotes extends Component {
         ]}
       />
       
-        <Tooltip title=" Archive">
-          <ArchiveIcon onClick={this.handleaddArchiveChange} />
+        <Tooltip title=" Trash">
+          {/* <ArchiveIcon onClick={this.handleaddArchiveChange} /> */}
+          <div onClick={this.handleTrashNotes} >Delete Note</div>
         </Tooltip>
       </div>
     );

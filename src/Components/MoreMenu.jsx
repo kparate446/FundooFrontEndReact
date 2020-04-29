@@ -28,7 +28,7 @@ export default function SimplePopover (props) {
         {' '}
         {/* <MenuItem>Add Label</MenuItem> */}
         <AddLabel />
-        <MenuItem>Delete note</MenuItem>
+        <MenuItem >Delete note</MenuItem>
         <MenuItem>Change labels</MenuItem>
         <MenuItem>Add drawing </MenuItem>
         <MenuItem>Make a copy </MenuItem>

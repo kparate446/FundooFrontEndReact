@@ -73,7 +73,7 @@ export function deleteNote(id, token) {
     });
 }
 
-export function changeColor(id, colorDTO, token) {
+export function changeColor( colorDTO,id, token) {
     return axios.post("http://localhost:8080/notesapi/changeColor/"+id,colorDTO, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -114,6 +114,31 @@ export function addInArchive(id, token) {
 }
 export function getAllArchiveNotes(token) {
     return axios.get("http://localhost:8080/notesapi/showArchiveNotes", {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+export function addTrash(id, token) {
+    var data = null;
+    return axios.post("http://localhost:8080/notesapi/trashedNotes/" + id, data, {
+        headers: {
+            "Content-Type": "appliaction/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+export function getAllTrashNotes(token) {
+    return axios.get("http://localhost:8080/notesapi/showTrashNotes", {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+export function getSearchNotes(title,token) {
+    return axios.get("http://localhost:8080/notesapi/findByTitle/"+title, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token

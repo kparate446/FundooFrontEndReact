@@ -13,7 +13,7 @@ class Notes extends Component {
     this.state = {
       clickAway: false,
       title: '',
-      description: '',
+      discription: '',
       notes: null,
     };
   }
@@ -75,10 +75,8 @@ class Notes extends Component {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            // justifyContent: 'padding',
-            // padding :'5%',
             marginTop: '2em',
-            marginLeft: '15%',
+            marginLeft: '5%',
           }}
         >
           {this.state.notes !== null &&

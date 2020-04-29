@@ -23,6 +23,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 // import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Profile from '../Components/Profile';
 import MainManu from '../Components/MainMenu';
+// import SearchNotes from '../Components/SearchNotes';
 
 const theme = createMuiTheme ({});
 
@@ -69,6 +70,7 @@ export class Dashboard extends Component {
                     placeholder="Search"
                     inputProps={{'aria-label': 'search'}}
                   />
+                  {/* <SearchNotes /> */}
                 </div>
               </Card>
 

@@ -16,6 +16,8 @@ import ArchiveNotes from '../Components/ArchiveNotes';
 import EditLabels from '../Components/EditLabels';
 import AddLabels from '../Components/AddLabel';
 import ShowArchiveNote from '../Components/ShowArchiveNote';
+import ShowTrashNote from '../Components/ShowTrashNote';
+import SearchNotes from '../Components/SearchNotes';
 
 const Router = () => {
   return (
@@ -53,6 +55,12 @@ const Router = () => {
       <Route path="/label" component={AddLabels} />
 
       <Route path="/dashboard/showarchivenote" component={ShowArchiveNote} />
+
+      <Route path="/dashboard/showtrashnote" component={ShowTrashNote} />
+
+      <Route path="/SearchNotes" component={SearchNotes} />
+
+      
     </BrowserRouter>
   );
 };

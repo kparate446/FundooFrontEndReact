@@ -16,6 +16,7 @@ class WholeNotes extends Component {
     this.state = {
       title: '',
       discription: '',
+
     };
   }
 
@@ -45,8 +46,7 @@ class WholeNotes extends Component {
   render () {
     return (
       <div>
-
-        <Card
+      <Card
           className="NoteCard"
           style={{marginTop: '3.5%', borderRadius: 10}}
         >

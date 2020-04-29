@@ -11,8 +11,6 @@ import  {changeColor} from '../Services/UserService/UserServices';
 const useStyles = theme => ({
     paper: {
         width: '185px',
-        maxWidth:'185px',
-        minWidth:'125px',
         backgroundColor:'white',
         boxShadow:'0.1em 0.1em 0.4em 0em grey',
         display: 'flex',
@@ -20,7 +18,6 @@ const useStyles = theme => ({
         justifyContent: "space-between",
         padding:'0.5%',
         flexWrap: 'wrap',
-        '&:hover':{}
     },
     iconButton: {
         width:'28px',
@@ -40,8 +37,9 @@ class ChangeColor extends Component  {
         }
     }
     handlePopoverOpen = event => {
-        console.log("NoteId--> ", this.props.noteId)
+        console.log("NoteId--> ", this.props.data.id)
         if(this.state.anchorEl===null){
+            
         this.setState({ anchorEl: event.currentTarget });
         }
         else{
@@ -50,7 +48,7 @@ class ChangeColor extends Component  {
       };
 
    async handleColorChange(value){
-    console.log("qqq--> ", this.props.noteId)
+    console.log("qqq--> ", this.props.data.id) 
     this.setState({
             color:value 
         });
@@ -58,16 +56,22 @@ class ChangeColor extends Component  {
             this.ChangeColor();
         }
         else{
-            this.props.color(this.state.color);
+            // this.color(this.state.color);
+            this.ChangeColor();
+         
+            console.log("Error");
         }
     }
     ChangeColor=()=>{
+        let token = localStorage.getItem('Token');
+        console.log(this.props.data.id);
         var colorData={
             color : this.state.color
         }
-         changeColor(colorData,this.props.noteId).then(
+         changeColor(colorData,this.props.data.id,token).then(
             response =>{
-                this.props.handle();
+                
+                alert('color change');
             }
         )
     }
@@ -75,7 +79,7 @@ class ChangeColor extends Component  {
         const { classes } = this.props;
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
-        return (
+        return (  
             <div>
                 <Tooltip title="Change color">
                 <IconButton onClick={this.handlePopoverOpen} >

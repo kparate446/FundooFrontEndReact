@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Container from "@material-ui/core/Container";
-import { getAllArchiveNotes } from '../Services/UserService/UserServices';
+import { getAllTrashNotes } from '../Services/UserService/UserServices';
 import NoteCard from '../Components/NoteCard';
 
-class ShowArchiveNotes extends Component {
+class ShowTrashNote extends Component {
 
     constructor(props) {
         super(props)
@@ -21,13 +21,11 @@ class ShowArchiveNotes extends Component {
         })
     }
 
-    showAllArchiveNotes = () => {
-
+    showAllTrashNotes = () => {
         let token = localStorage.getItem("Token");
         // console.log(token);
 
-        getAllArchiveNotes(token)
-
+        getAllTrashNotes(token)
             .then(Response => {
                 this.setState({
                     notes: (Response.data.data).reverse()
@@ -36,7 +34,7 @@ class ShowArchiveNotes extends Component {
     }
 
     componentDidMount() {
-        this.showAllArchiveNotes()
+        this.showAllTrashNotes()
     }
 
     render() {
@@ -54,14 +52,13 @@ class ShowArchiveNotes extends Component {
                     {
                         this.state.notes !== null &&
                         (this.state.notes).map((items) => (
-                            <NoteCard items={items} />
+                            <NoteCard trash={true} items={items} />
                         ))
                     }
-
                 </div>
             </Container >
         );
     }
 }
 
-export default ShowArchiveNotes;
+export default ShowTrashNote;
