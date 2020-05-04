@@ -1,5 +1,5 @@
 import axios from 'axios';
-var Baseurl="http://localhost:8080/";
+var url="http://localhost:8080/";
 
 export default  class AxiosServices {
   axiosPost(url, data) {
@@ -9,22 +9,21 @@ export default  class AxiosServices {
     return axios.get(url,data,token);
   }
 
-  Post(path,data,tokenAuth){
-       return axios.post(Baseurl+path,data,tokenAuth);
+  Post(path,data,token){
+       return axios.post(url+path,data,token);
     }
     
-    GET(path,data,tokenAuth){
-        return axios.get(Baseurl+path,data,tokenAuth);
+    GET(path,data,token){
+        return axios.get(url+path,data,token);
      }
      
-     PUT(path,data,tokenAuth){
-        return axios.put(Baseurl+path,data,tokenAuth)
+     PUT(path,data,token){
+        return axios.put(url+path,data,token)
      }
 
-     DELETE(path,tokenAuth){
-        return axios.delete(Baseurl+path,tokenAuth);
+     DELETE(path,token){
+        return axios.delete(url+path,token);
      }
-
 }
-// export default AxiosServices;
+
 

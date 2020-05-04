@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import '../CSSFile/ForgotPassword.css';
-// import Snackbar from '@material-ui/core/Snackbar';
 import {forgotPassword} from '../Services/UserService/UserServices';
 
 export class ForgotPassword extends Component {
@@ -53,14 +52,13 @@ export class ForgotPassword extends Component {
         .then (Response => {
           console.log (
             Response,
-            'Token has been sent to your mail, Please Verify it first'
+            'Token has been sent to your mail, Please Verify first'
           );
-          //  <SnackbarContent message="Token has been sent to your mail, Please Verify it first" />
           alert (`Token has been sent to youbr mail, Please Verify it first`);
         })
         .catch (err => {
-          console.log (Response, 'Account Recovery Failed');
-          alert (" Email Id Doesn't Exists");
+          console.log (Response, 'Invalid Email');
+          alert (' Invalid Email');
         });
     }
   };

@@ -26,7 +26,6 @@ class Notes extends Component {
 
   handleClick = () => {
     console.log ('in handle click');
-
     this.setState ({
       clickAway: !this.state.clickAway,
     });

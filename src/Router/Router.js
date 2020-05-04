@@ -14,10 +14,11 @@ import Notes from '../Components/Notes';
 // import MoreMenu from '../Components/EditLabels';
 import ArchiveNotes from '../Components/ArchiveNotes';
 import EditLabels from '../Components/EditLabels';
-import AddLabels from '../Components/AddLabel';
 import ShowArchiveNote from '../Components/ShowArchiveNote';
 import ShowTrashNote from '../Components/ShowTrashNote';
 import SearchNotes from '../Components/SearchNotes';
+import Trash from "../Components/TrashNotes";
+import AddLabels from "../Components/AddLabels";
 
 const Router = () => {
   return (
@@ -39,7 +40,6 @@ const Router = () => {
 
       {/* <Route path = "/dashboard/wholenotes"
         component = {WholeNotes}/>  */}
-      {/* 2 */}
       <Route path="/dashboard/notes" component={Notes} />
 
       {/* <Route path = "/shownotes"
@@ -52,15 +52,16 @@ const Router = () => {
 
       <Route path="/labels" component={EditLabels} />
 
-      <Route path="/label" component={AddLabels} />
-
       <Route path="/dashboard/showarchivenote" component={ShowArchiveNote} />
 
       <Route path="/dashboard/showtrashnote" component={ShowTrashNote} />
 
-      <Route path="/SearchNotes" component={SearchNotes} />
+      <Route path="/dashboard/SearchNotes" component={SearchNotes} />
 
-      
+      <Route path="/trash" component={Trash} />
+
+      <Route path="/labellll" component={AddLabels} />
+  
     </BrowserRouter>
   );
 };

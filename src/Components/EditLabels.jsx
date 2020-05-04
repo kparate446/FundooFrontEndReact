@@ -1,73 +1,114 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 import InputBase from '@material-ui/core/InputBase';
 import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-// import UndoIcon from '@material-ui/icons/Undo';
-// import RedoIcon from '@material-ui/icons/Redo';
 import '../CSSFile/WholeNotes.css';
-import {Button} from '@material-ui/core';
-// import Labels from '../Components/Labels';
-import {createLabel} from '../Services/UserService/UserServices';
+import axios from 'axios';
+import {ListItem, ListItemIcon, Divider} from '@material-ui/core';
+import ListItemText from '@material-ui/core/ListItemText';
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import CheckIcon from '@material-ui/icons/Check';
+import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-class EditLabels extends Component {
-  constructor (props) {
-    super (props);
-    this.state = {
-      labelName: '',
-    };
-  }
- 
-  axios = event => {
-    this.setState ({
-      [event.target.name]: event.target.value,
-    });
+export default function AddLabel (data) {
+  const [open, setOpen] = React.useState (false);
+
+  const [labelName, setlabelName] = React.useState (data.labelName);
+
+  const handleClickOpen = () => {
+    setOpen (true);
   };
 
-  labelsForm = () => {
+  const handleClose = () => {
+    setOpen (false);
+  };
+
+  const handleEditClose = () => {
     let labels = {};
-    labels.labelName = this.state.labelName;
-    console.log (labels);
+
+    console.log ('labelName', data);
+    labels.labelName = labelName;
     let token = localStorage.getItem ('Token');
-    console.log (token);
-    createLabel (labels, token)
-      .then (function (response) {
-        console.log (response);
-        alert (`labels Created`);
+
+    axios
+      .post ('http://localhost:8080/lableapi/createLable', labels, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          token: token,
+        },
       })
-      .catch (function (error) {
-        console.log (error);
-        alert (error);
+      .then (Response => {
+        alert ('Label Created Successfully!!');
+        setOpen (false);
+      })
+      .catch (error => {
+        console.log (error.response.message, 'Note Not Updated');
+        // alert ('Label Not Created');
       });
   };
-  render () {
-    return (
-      <div>
-        <IconButton onClick={this.DeleteLabelData}>
-          <DeleteIcon />
-        </IconButton>
-        <InputBase
-          className="labelName"
-          name="labelName"
-          placeholder="labelName"
-          onChange={this.axios}
-        />
-        <IconButton>
-          <EditIcon />
-        </IconButton>
+
+  return (
+    <div>
+      <ListItem
+        className="over"
+        button
+        key="Edit labels"
+        onClick={handleClickOpen}
+      >
+        <ListItemIcon>
+          <EditIcon/>
+        </ListItemIcon>
+        <ListItemText primary="Edit labels" />
+      </ListItem>
+      {/* </Typography> */}
+
+      {/* <div className="iconsDialog"> */}
+      {/* <Labels /> */}
+
+      <Dialog
+        className="dialogOpen"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-discription"
+      >
+        <DialogContent>
+          <div>Label note</div>
+          <br />
+          <ClearIcon />
+          <InputBase
+            label="Multiline Placeholder"
+            placeholder="   Title"
+            disableUnderline="false"
+            // multiline
+            value={labelName}
+            onChange={e => setlabelName (e.target.value)}
+          />
+          <CheckIcon onClick={handleEditClose} />
+          <Divider />
+        </DialogContent>
         <br />
-        <Tooltip title="Close" style={{marginLeft: '17%'}}>
-          <Button onClick={this.labelsForm}>
-            Close
-          </Button>
-        </Tooltip>
-        {/* </Popover> */}
+        <Divider />
+        <DialogActions>
 
-      </div>
-    );
-  }
+          <Tooltip title="Close">
+            <Button
+              className="closeButton"
+              margin="dense"
+              size="small"
+              color="primary"
+              onClick={handleEditClose}
+            >
+              Done
+            </Button>
+          </Tooltip>
+
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
 }
-export default EditLabels;
-
-

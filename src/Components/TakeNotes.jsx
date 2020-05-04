@@ -17,7 +17,6 @@ class Note extends Component {
     };
     console.log (this.props);
   }
-
   // clickNote = () => {
   //     let note = {};
   //     note.title = this.state.title;
@@ -60,5 +59,4 @@ class Note extends Component {
     );
   }
 }
-
 export default Note;

@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
 import '../CSSFile/ResetPassword.css';
-
 import {resetPassword} from '../Services/UserService/UserServices';
 
 export class ResetPassword extends Component {

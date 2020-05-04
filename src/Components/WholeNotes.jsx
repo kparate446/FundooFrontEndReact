@@ -10,13 +10,13 @@ import {Card, Button} from '@material-ui/core';
 import Labels from '../Components/Labels';
 import {createNote} from '../Services/UserService/UserServices';
 import More from '../Components/More';
+
 class WholeNotes extends Component {
   constructor (props) {
     super (props);
     this.state = {
       title: '',
       discription: '',
-
     };
   }
 
@@ -36,7 +36,6 @@ class WholeNotes extends Component {
     createNote (notes, token)
       .then (function (response) {
         console.log (response);
-
         alert (`Notes Created`);
       })
       .catch (function (error) {
@@ -46,7 +45,7 @@ class WholeNotes extends Component {
   render () {
     return (
       <div>
-      <Card
+        <Card
           className="NoteCard"
           style={{marginTop: '3.5%', borderRadius: 10}}
         >
@@ -75,9 +74,7 @@ class WholeNotes extends Component {
               // style={{fontSize: 0}}
             />
           </div>
-
           <div>
-
             <Labels />
             <IconButton aria-label="More">
               <Tooltip title="More">
@@ -101,7 +98,7 @@ class WholeNotes extends Component {
             <Tooltip title="Close" style={{marginLeft: '15%'}}>
               <Button
                 // onClick={this.props.handleClick}
-                onClick={this.notesForm }
+                onClick={this.notesForm}
               >
                 Close
               </Button>

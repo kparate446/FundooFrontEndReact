@@ -11,7 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 // import MoreIcon from '@material-ui/icons/MoreVert';
 import '../CSSFile/Dashboard.css';
 import Keeplogo from '../Assets/KeepLogo.png';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 // import Refresh from "@bit/mui-org.material-ui-icons.refresh";
 // import RefreshIcon from '@material-ui/icons/Refresh';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
@@ -23,8 +23,9 @@ import AppsIcon from '@material-ui/icons/Apps';
 // import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Profile from '../Components/Profile';
 import MainManu from '../Components/MainMenu';
-// import SearchNotes from '../Components/SearchNotes';
-
+import SearchNotes from '../Components/SearchNotes';
+// import InputBase from '@material-ui/core/InputBase';
+import Card from '@material-ui/core/Card';
 const theme = createMuiTheme ({});
 
 export class Dashboard extends Component {
@@ -33,27 +34,24 @@ export class Dashboard extends Component {
     this.state = {};
   }
   handleShowAllArchiveNotes = () => {
-    this.props.history.push("/dashboard/showarchivenote");
-};
+    this.props.history.push ('/dashboard/showarchivenote');
+  };
+
+  refreshDash = () => {
+    this.props.history.push('/dashboard')
+  }
+
   render () {
     return (
       <div className="maindashboard">
         <MuiThemeProvider theme={theme}>
           <AppBar position="static" style={{backgroundColor: 'white'}}>
             <Toolbar style={{color: 'black'}}>
-              {/* <IconButton
-                title="Main menu"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              >
-                <MenuIcon />
-              </IconButton> */}
               <div title="Main Menu" style={{marginLeft: '-1%'}}>
-                <MainManu/>
+                <MainManu />
               </div>
               <div className="image">
-                <img src={Keeplogo} alt="Kepp Logo" style={{width: '85%'}} />
+                <img src={Keeplogo} alt="Kepp Logo" style={{width: '90%'}} />
               </div>
               <Typography
                 className="keep"
@@ -62,21 +60,30 @@ export class Dashboard extends Component {
               >
                 Fundoo
               </Typography>
-              <Card className="card">
-                <div className="search" style={{height: '7vh'}}>
-                  <SearchIcon className="icon" />
+
+                 <div className="search" style={{height: '7vh',marginLeft:"2%"}} > 
+                 <SearchNotes /> 
+                 </div> 
+
+       {/* <Card className="card"style={{height: '7vh'}} onClick={() => this.props.history.push ('/dashboard/SearchNotes')} >
+              <SearchIcon className="icon" />
                   <InputBase
-                    style={{width: '100vh', marginLeft: '3%'}}
+                    style={{width: '10vh', marginLeft: '3%'}}
                     placeholder="Search"
                     inputProps={{'aria-label': 'search'}}
-                  />
-                  {/* <SearchNotes /> */}
-                </div>
-              </Card>
+                    onClick={() => this.props.history.push ('/dashboard/SearchNotes')}
+                  /> 
+                </Card>  */}
 
+                {/* <div className="search" style={{height: '0vh',marginLeft:"1%"}} onClick={() => this.props.history.push ('/dashboard/SearchNotes')}>  */}
+                 {/* <SearchNotes /> */}
+                 {/* onClick={() => this.props.history.push ('/dashboard/SearchNotes')} */}
+                {/* </div> */}
+                               
               <Tooltip
                 title="Refresh"
                 style={{color: 'grey', marginLeft: '10%'}}
+                onClick={this.refreshDash}
               >
                 <RefreshOutlinedIcon />
               </Tooltip>
@@ -113,12 +120,9 @@ export class Dashboard extends Component {
                 <Profile />
               </Tooltip>
             </Toolbar>
-
           </AppBar>
-
           {/* <AppBar className="card1"  style={{backgroundColor: ''}}>
           </AppBar>  */}
-
         </MuiThemeProvider>
       </div>
     );

@@ -45,6 +45,15 @@ export function createNote(createNoteDto, token) {
     });
 }
 
+export function chanageprofile(file, token) {
+    return axios.post("http://localhost:8080/userapi/uploadedProfile", file, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        token: token
+      }
+    });
+  }
+
 export function getAllNotes(token) {
 
     return axios.get("http://localhost:8080/notesapi/getNotes", {
@@ -95,7 +104,7 @@ export function createLabel(createLabelDto, token) {
 
 export function getAllLabels(token) {
 
-    return axios.get("http://localhost:8080/labelapi/getLabels", {
+    return axios.get("http://localhost:8080/lableapi/getLabels", {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token
@@ -138,7 +147,7 @@ export function getAllTrashNotes(token) {
     });
 }
 export function getSearchNotes(title,token) {
-    return axios.get("http://localhost:8080/notesapi/findByTitle/"+title, {
+    return axios.get("http://localhost:8080/notesapi/findByDescription/"+title, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token

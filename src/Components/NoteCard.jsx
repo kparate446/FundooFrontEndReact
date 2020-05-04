@@ -11,11 +11,11 @@ const NoteCard = props => {
       multiline
       style={{
         borderRadius: 10,
-        // width: 309,
+        width: 285,
         display: 'flex',
         flexDirection: 'column',
         margin: 7,
-        backgroundColor:props.items.color,
+        backgroundColor: props.items.color,
         // padding: 7,
       }}
     >
@@ -23,7 +23,7 @@ const NoteCard = props => {
         id={props.items.id}
         title={props.items.title}
         discription={props.items.discription}
-        trash = {props.trash}
+        trash={props.trash}
       />
     </Card>
   );

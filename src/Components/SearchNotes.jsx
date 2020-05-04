@@ -3,6 +3,8 @@ import Container from '@material-ui/core/Container';
 import {getSearchNotes} from '../Services/UserService/UserServices';
 import NoteCard from '../Components/NoteCard';
 import InputBase from '@material-ui/core/InputBase';
+import Card from '@material-ui/core/Card';
+import SearchIcon from '@material-ui/icons/Search';
 
 class SearchNotes extends Component {
   constructor (props) {
@@ -29,11 +31,11 @@ class SearchNotes extends Component {
   getSearchForm = () => {
     let notes = {};
     notes.title = this.state.title;
-    console.log(notes);
+    console.log (notes);
     let token = localStorage.getItem ('Token');
-    console.log(notes.title);
+    console.log (notes.title);
 
-    getSearchNotes (notes.title,token).then (Response => {
+    getSearchNotes (notes.title, token).then (Response => {
       this.setState ({
         notes: Response.data.data.reverse (),
       });
@@ -46,21 +48,24 @@ class SearchNotes extends Component {
 
   render () {
     return (
-      <Container style={{marginTop: '6em'}}>
+      <Container style={{marginTop: '0em'}}>
+       <Card style={{height: '7vh',width:'110%'}} >
         <div>
+        <SearchIcon/>
           <InputBase
-            className="Title"
+            className="Search"
             name="title"
-            label="Multiline Placeholder"
-            multiline
+            style={{width: '90vh', marginLeft: '3%',marginTop:'1%'}}
+            // label="Multiline Placeholder"
+            // multiline
             onChange={this.axios}
-            placeholder="Take a note..."
+            placeholder="Search"
             // style={{fontSize: 0}}
           />
-          <button onClick={this.getSearchForm }>Search</button>
+          <button onClick={this.getSearchForm}>Search</button>
 
         </div>
-
+        </Card>
         <div
           style={{
             display: 'flex',

@@ -16,8 +16,10 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-// import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-import AddLabel from '../Components/AddLabel';
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import EditLabel from '../Components/EditLabels';
+import { getAllLabels} from "../Services/UserService/UserServices";
+import Typography from '@material-ui/core/Typography';
 
 const theme = createMuiTheme ({
   overrides: {
@@ -34,8 +36,10 @@ const theme = createMuiTheme ({
 export class MainManu extends Component {
   constructor (props) {
     super (props);
-
-    this.state = {};
+    this.state = {
+      labelName: "",
+      label : null ,
+    };
   }
 
   handleDrawer = event => {
@@ -45,6 +49,41 @@ export class MainManu extends Component {
       open: !this.state.open,
     });
   };
+
+   axios = event => {
+    this.setState ({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleClick = event => {
+    this.setState({
+      anchorEl: event.currentTarget
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      anchorEl: null
+    });
+  };
+  
+  showAllLabels = () => {
+    let token = localStorage.getItem ('Token');
+    console.log ('show all Labels');
+    getAllLabels (token).then (Response => {
+      console.log (Response.data.data);
+      console.log ('show all Labels');
+      this.setState ({
+        label : Response.data.data,
+      });
+    });
+  };
+
+  componentDidMount () {
+    console.log ('Component did mount');
+    this.showAllLabels ();
+  }
 
   render () {
     let open = this.state.open;
@@ -75,23 +114,46 @@ export class MainManu extends Component {
                   </ListItemIcon>
                   <ListItemText primary="Reminders" />
                 </ListItem>
-
+                {this.state.label !== null ?
+                this.state.label.map(data => (
+                  <div>
+                    <ListItem className="over" button key="Edit labels">
+                  <ListItemIcon>
+                    <LabelOutlinedIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={data.labelName} />
+                </ListItem> 
+                    </div>
+                )
+            ):null }
                 {/* <ListItem className="over" button key="Edit labels">
                   <ListItemIcon>
                     <LabelOutlinedIcon />
                   </ListItemIcon>
                   <ListItemText primary="Edit labels" />
                 </ListItem> */}
-                <AddLabel/>
+                <EditLabel />
 
-                <ListItem className="over"  button key="Archive" onClick={() => this.props.history.push ('/dashboard/showarchivenote')}>
+                <ListItem
+                  className="over"
+                  button
+                  key="Archive"
+                  onClick={() =>
+                    this.props.history.push ('/dashboard/showarchivenote')}
+                >
                   <ListItemIcon>
                     <ArchiveOutlinedIcon />
                   </ListItemIcon>
                   <ListItemText primary="Archive" />
                 </ListItem>
 
-                <ListItem className="over" button key="Trash" onClick={() => this.props.history.push ('/dashboard/showtrashnote')}>
+                <ListItem
+                  className="over"
+                  button
+                  key="Trash"
+                  onClick={() =>
+                    this.props.history.push ('/dashboard/showtrashnote')}
+                >
                   <ListItemIcon>
                     <DeleteOutlineOutlinedIcon />
                   </ListItemIcon>

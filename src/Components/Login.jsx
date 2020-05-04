@@ -20,6 +20,7 @@ export class Login extends Component {
       firstName: '',
       lastName: '',
       email: '',
+      showPassword: '',
     };
   }
 
@@ -31,22 +32,9 @@ export class Login extends Component {
 
   loginForm = () => {
     let user = {};
-
     user.email = this.state.email;
     user.password = this.state.password;
 
-    // userLogin(user)
-    //     .then(Response => {
-    //         console.log('data', Response.data.data);
-    //         localStorage.setItem("Email", Response.data.userData.email)
-    //         localStorage.setItem("Token", Response.data.data)
-    //         console.log("Login Success", Response)
-    //         alert(`Login Successfull!!`);
-    //     })
-    //     .catch(err => {
-    //         console.log(Response, "User login failed");
-    //         alert(`user login failed`);
-    //     });
     userLogin (user)
       .then (function (response) {
         console.log (response);
@@ -55,6 +43,8 @@ export class Login extends Component {
         localStorage.setItem ('Email', response.data.data.email);
         localStorage.setItem ('FirstName', response.data.data.firstName);
         localStorage.setItem ('LastName', response.data.data.lastName);
+        localStorage.setItem ('Profile', response.data.data.profilePic);
+
         alert (`Login Successfull`);
       })
       .catch (function (error) {
@@ -109,11 +99,11 @@ export class Login extends Component {
                   label="password"
                   margin="dense"
                   style={{width: '90%'}}
-                  // inputProps={{
-                  //   style: {
-                  //     height: 35,
-                  //   },
-                  // }}
+                  inputProps={{
+                    style: {
+                      height: 35,
+                    },
+                  }}
                   onChange={this.axios}
                   InputProps={{
                     endAdornment: (
@@ -128,7 +118,6 @@ export class Login extends Component {
                             ? <Visibility />
                             : <VisibilityOff />}
                         </IconButton>
-
                       </InputAdornment>
                     ),
                   }}
