@@ -93,7 +93,7 @@ export function changeColor( colorDTO,id, token) {
 }
 export function createLabel(createLabelDto, token) {
 
-    return axios.post("http://localhost:8080/lableapi/createLable", createLabelDto, {
+    return axios.post("http://localhost:8080/labelapi/createLable", createLabelDto, {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token,
@@ -104,10 +104,40 @@ export function createLabel(createLabelDto, token) {
 
 export function getAllLabels(token) {
 
-    return axios.get("http://localhost:8080/lableapi/getLabels", {
+    return axios.get("http://localhost:8080/labelapi/getLabels", {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token
+        }
+    });
+}
+
+export function updateLabel( token,data,labelid) {
+    // var data = null;
+    return axios.put("http://localhost:8080/labelapi/updateLable/"+labelid,data, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
+        }
+    });
+}
+
+export function deletelabel(labelid, token) {
+
+    return axios.delete("http://localhost:8080/labelapi/deleteLable/"+labelid, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
+        }
+    });
+}
+
+export function addLabelWithNote( token,noteId,labelId) {
+    var data = null;
+    return axios.post("http://localhost:8080/labelapi/AddLablesInNotes/"+noteId+'/'+labelId,data, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
         }
     });
 }
@@ -151,6 +181,33 @@ export function getSearchNotes(title,token) {
         headers: {
             "Content-Type": "application/json; charset=utf-8",
             token: token
+        }
+    });
+}
+export function addPin(id, token) {
+    var data = null;
+    return axios.post("http://localhost:8080/notesapi/pinNotes/" + id, data, {
+        headers: {
+            "Content-Type": "appliaction/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+export function getAllPinNotes(token) {
+    return axios.get("http://localhost:8080/notesapi/showPinNotes", {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token
+        }
+    });
+}
+
+export function addReminder( token,reminderDto,noteId) {
+    var data = null;
+    return axios.post("http://localhost:8080/notesapi/addReminder/"+noteId,reminderDto,data, {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            token: token,
         }
     });
 }

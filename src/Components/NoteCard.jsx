@@ -14,13 +14,15 @@ const NoteCard = props => {
         width: 285,
         display: 'flex',
         flexDirection: 'column',
-        margin: 7,
+        margin: 10,
         backgroundColor: props.items.color,
-        // padding: 7,
+        padding: 12,
       }}
     >
       <ShowNote
+        update={props.update}
         id={props.items.id}
+        labelName={props.items.labelList}
         title={props.items.title}
         discription={props.items.discription}
         trash={props.trash}

@@ -24,8 +24,10 @@ import AppsIcon from '@material-ui/icons/Apps';
 import Profile from '../Components/Profile';
 import MainManu from '../Components/MainMenu';
 import SearchNotes from '../Components/SearchNotes';
+import Search from '../Components/Search';
 // import InputBase from '@material-ui/core/InputBase';
 import Card from '@material-ui/core/Card';
+
 const theme = createMuiTheme ({});
 
 export class Dashboard extends Component {
@@ -63,17 +65,18 @@ export class Dashboard extends Component {
 
                  <div className="search" style={{height: '7vh',marginLeft:"2%"}} > 
                  <SearchNotes /> 
+                 {/* <Search/> */}
                  </div> 
 
-       {/* <Card className="card"style={{height: '7vh'}} onClick={() => this.props.history.push ('/dashboard/SearchNotes')} >
-              <SearchIcon className="icon" />
+       {/* <Card className="card"style={{height: '7vh'}} onClick={() => this.props.history.push ('/dashboard/SearchNotes')} > */}
+              {/* <SearchIcon className="icon" />
                   <InputBase
                     style={{width: '10vh', marginLeft: '3%'}}
                     placeholder="Search"
                     inputProps={{'aria-label': 'search'}}
                     onClick={() => this.props.history.push ('/dashboard/SearchNotes')}
-                  /> 
-                </Card>  */}
+                  />  */}
+                {/* </Card>  */}
 
                 {/* <div className="search" style={{height: '0vh',marginLeft:"1%"}} onClick={() => this.props.history.push ('/dashboard/SearchNotes')}>  */}
                  {/* <SearchNotes /> */}
@@ -82,7 +85,7 @@ export class Dashboard extends Component {
                                
               <Tooltip
                 title="Refresh"
-                style={{color: 'grey', marginLeft: '10%'}}
+                style={{color: 'grey', marginLeft: '15%'}}
                 onClick={this.refreshDash}
               >
                 <RefreshOutlinedIcon />

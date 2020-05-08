@@ -28,6 +28,8 @@ import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import {withRouter} from 'react-router-dom';
 import Untrash from '../Components/Untrash';
 import AddLabels from '../Components/AddLabels';
+import PinNote from '../Components/PinNote';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 function ShowNote (data,props) {
   const [anchorEl, setAnchorEl] = React.useState (null);
@@ -42,8 +44,11 @@ function ShowNote (data,props) {
   const [discription, setDiscription] = React.useState (data.discription);
   const [archive, setArchive] = React.useState (false);
   const [trash, setTrash] = React.useState (false);
+  const [pin,setPin] = React.useState (false);
   const [labels,setLabels] = React.useState(false);
-
+  const [labelName,setLabelName] = React.useState(data.labelName);
+  const [dateAndTime,setDateAndTime] = React.useState(data.dateAndTime);
+  console.log(data);
   const handleTrash = () => {
     setTrash (!trash);
   };
@@ -56,9 +61,16 @@ function ShowNote (data,props) {
   const handleArchive = () => {
     setArchive (!archive);
   };
+  const handlePin = () => {
+    setPin (!pin);
+  };
   const handleLabels = () => {
     setLabels (!labels);
   };
+  const handleReminder  = () =>{
+    setDateAndTime(!dateAndTime);
+  }
+
   const DeleteNotes = () => {
     let deleteNote = {};
     deleteNote.id = data.id;
@@ -100,27 +112,29 @@ function ShowNote (data,props) {
         }
       )
       .then (Response => {
-        /*console.log (Response.data.data);
-        console.log(Response.data.noteId);*/
-        // showAllNotes ();
-        // alert ('Note Updated Successfully!!');
-        setOpen (false);
-         this.props.history.push ('/dashboard/notes')
+        // alert ('Note Updated Successfully!!');        
+         this.props.update();
+         console.log("I am call")
+        //  setOpen (false);
       })
       .catch (error => {
-        // this.props.history.push ('/dashboard/notes');
-        // console.log (error.response.message, 'Note Not Updated');
         // alert ('Note Not Updated');
       });
   };
 
   return (
     <div>
+      <Tooltip title="Pin note" style={{marginLeft:"90%",width: '10%'}}>
+            {/* <img className="pinImage" src={Images} alt="pin logo" /> */}
+            <PinNote onPinNote={handlePin} data={data} />
+          </Tooltip>
       <Typography onClick={handleClickOpen}>
         {' '}{data.title}
       </Typography>
+      
       <Typography onClick={handleClickOpen}> {data.discription}</Typography>
-      {/* {data.trash ?<h1>f</h1>:<h1>t</h1> } */}
+      <Typography > {data.labelName.map(items => <div>{items.labelName}</div>)}</Typography>
+     
       {data.trash
         ? <div>
             <IconButton aria-label="Delete forever">
@@ -188,7 +202,7 @@ function ShowNote (data,props) {
                 {/* Delete Notes */}
               </MenuItem>
               <MenuItem  >
-              <AddLabels/>
+              <AddLabels onSelectLabels={handleLabels} data={data}/>
               {/* <AddLabels/> */}
               </MenuItem>
               <MenuItem onClick={DeleteNotes}>Add drawing </MenuItem>
@@ -206,17 +220,29 @@ function ShowNote (data,props) {
         aria-describedby="alert-dialog-discription"
       >
         <DialogContent>
+        <Tooltip title="Pin note">
+          <PinNote  onPinNote={handlePin} data={data} />
+          </Tooltip>
           <InputBase
             label="Multiline Placeholder"
             multiline
             value={title}
             style={{width: '92%'}}
             onChange={e => setTitle (e.target.value)}
+              // endAdornment={
+              //       <InputAdornment position="end">
+              //         <Tooltip title="Pin note" >
+              //       <PinNote style={{width: '10%'}}
+              //       InputProps={{
+              //       width: '50%'
+              //     }} onPinNote={handlePin} data={data} />
+              //  </Tooltip>
+              // </InputAdornment>
+              //     }
           />
-
-          <Tooltip title="Pin note">
+          {/* <Tooltip title="Pin note">
             <img className="pinImage" src={Images} alt="pin logo" />
-          </Tooltip>
+          </Tooltip> */}
         </DialogContent>
 
         <DialogContent>
@@ -242,7 +268,7 @@ function ShowNote (data,props) {
           </IconButton>
 
           <Tooltip title="Change color">
-            <Color />
+            <Color data={data} />
           </Tooltip>
 
           <IconButton aria-label="Add image">
@@ -309,3 +335,4 @@ function ShowNote (data,props) {
   );
 }
 export default withRouter(ShowNote);
+ {/* {data.trash ?<h1>f</h1>:<h1>t</h1> } */}

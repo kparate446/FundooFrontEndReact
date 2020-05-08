@@ -19,7 +19,8 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import EditLabel from '../Components/EditLabels';
 import { getAllLabels} from "../Services/UserService/UserServices";
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
+import EditIcon from '@material-ui/icons/Edit';
 
 const theme = createMuiTheme ({
   overrides: {
@@ -27,7 +28,7 @@ const theme = createMuiTheme ({
       paper: {
         marginTop: '65px',
         width: '20%',
-        height: '925%',
+        height: '1040%',
       },
     },
   },
@@ -114,6 +115,7 @@ export class MainManu extends Component {
                   </ListItemIcon>
                   <ListItemText primary="Reminders" />
                 </ListItem>
+
                 {this.state.label !== null ?
                 this.state.label.map(data => (
                   <div>
@@ -126,13 +128,13 @@ export class MainManu extends Component {
                     </div>
                 )
             ):null }
-                {/* <ListItem className="over" button key="Edit labels">
+                <ListItem className="over" button key="Edit labels">
                   <ListItemIcon>
-                    <LabelOutlinedIcon />
+                    <EditIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Edit labels" />
-                </ListItem> */}
-                <EditLabel />
+                   <EditLabel />
+                  {/* <ListItemText primary="Edit labels" /> */}
+                </ListItem>
 
                 <ListItem
                   className="over"

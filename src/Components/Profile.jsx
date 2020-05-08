@@ -22,7 +22,7 @@ import {
 
 const useStyles = makeStyles (theme => ({
   typography: {
-    padding: theme.spacing (3),
+    padding: theme.spacing (5),
   },
 }));
 
@@ -30,7 +30,7 @@ function Profile (props) {
   let email = localStorage.getItem ('Email');
   let firstName = localStorage.getItem ('FirstName');
   let lastName = localStorage.getItem ('LastName');
-  let Profile =  localStorage.getItem ('Profile');
+  // let Profile =  localStorage.getItem ('Profile');
 
   const classes = useStyles ();
   const [anchor, setAnchor] = React.useState (null);
@@ -69,7 +69,7 @@ function Profile (props) {
     const formData = new FormData ();
     formData.append ('file', file, file.name);
     // console.log (formData);
-    let Profile = localStorage.getItem ('file.name');
+    // let Profile = localStorage.getItem ('file.name');
     chanageprofile (formData, token)
       .then (Response => {
         console.log (Response);
@@ -96,7 +96,7 @@ function Profile (props) {
         </Tooltip>
       </div>
       <Popover
-        style={{marginTop: '-10.5%'}}
+        style={{marginTop: '-12.5%'}}
         id={id}
         open={open}
         anchor={anchor}
@@ -108,7 +108,7 @@ function Profile (props) {
       >
         <Typography className={classes.typography}>
           <div className="mainprofile">
-            <div style={{justifyContent: 'center', display: 'flex', top: '%'}}>
+            <div style={{justifyContent: 'center', display: 'flex', top: '5%'}}>
               <Badge
                 overlap="circle"
                 anchorOrigin={{

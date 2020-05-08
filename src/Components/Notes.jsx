@@ -5,7 +5,7 @@ import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
 import NoteCard from '../Components/NoteCard';
 // import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
-import {getAllNotes} from '../Services/UserService/UserServices';
+import {getAllNotes, getAllLabels} from '../Services/UserService/UserServices';
 
 class Notes extends Component {
   constructor (props) {
@@ -15,6 +15,8 @@ class Notes extends Component {
       title: '',
       discription: '',
       notes: null,
+      labelName: '',
+      // label: null,
     };
   }
 
@@ -36,12 +38,16 @@ class Notes extends Component {
       clickAway: false,
     });
   };
+  update = () => {
+    this.showAllNotes ();
+  };
 
   showAllNotes = () => {
     let token = localStorage.getItem ('Token');
     console.log ('show all notes');
 
     getAllNotes (token).then (Response => {
+      // this.props.PinNote();
       console.log (Response.data.data);
       this.setState ({
         notes: Response.data.data.reverse (),
@@ -79,7 +85,12 @@ class Notes extends Component {
           }}
         >
           {this.state.notes !== null &&
-            this.state.notes.map (items => <NoteCard items={items} />)}
+            this.state.notes.map (items => (
+              <NoteCard update={this.update} items={items} />
+            ))}
+          {/* {this.state.label !== null &&
+            this.state.label.map (items => <NoteCard update={this.update} items={items} />)} */}
+
           {/* <NoteCard/> */}
         </div>
       </Container>

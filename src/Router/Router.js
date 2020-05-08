@@ -19,6 +19,8 @@ import ShowTrashNote from '../Components/ShowTrashNote';
 import SearchNotes from '../Components/SearchNotes';
 import Trash from "../Components/TrashNotes";
 import AddLabels from "../Components/AddLabels";
+import ShowPinNote from "../Components/ShowPinNote";
+import Reminder from "../Components/Reminder";
 
 const Router = () => {
   return (
@@ -33,6 +35,7 @@ const Router = () => {
 
       <Route path="/dashboard" component={Dashboard} />
 
+      <Route path="/dashboard/SearchNotes" component={SearchNotes} />
       {/* <Route path = "/dashboard/takenotes"
          component = { TakeNotes }/> */}
 
@@ -47,8 +50,12 @@ const Router = () => {
 
       {/* <Route path = "/card"
         component = {NoteCard}/> */}
+ 
+      <Route path="/reminder" component={Reminder} />
 
       <Route path="/moremenu" component={ArchiveNotes} />
+
+      <Route path="/labellll" component={AddLabels} />
 
       <Route path="/labels" component={EditLabels} />
 
@@ -56,12 +63,10 @@ const Router = () => {
 
       <Route path="/dashboard/showtrashnote" component={ShowTrashNote} />
 
-      <Route path="/dashboard/SearchNotes" component={SearchNotes} />
-
       <Route path="/trash" component={Trash} />
 
-      <Route path="/labellll" component={AddLabels} />
-  
+      <Route path="/showPinNote" component={ShowPinNote} />
+      
     </BrowserRouter>
   );
 };

@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
-// import ArchiveIcon from '@material-ui/icons/Archive';
+import ArchiveIcon from '@material-ui/icons/Archive';
 import {Tooltip} from '@material-ui/core';
-import {addTrash} from '../Services/UserService/UserServices';
+import {addPin} from '../Services/UserService/UserServices';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-import Trash from '../Components/TrashNotes';
-// import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
+import Images from '../Assets/Pin.png';
 
-class AddTrash extends Component {
+class PinNote extends Component {
   constructor (props) {
     super (props);
     this.state = {snackbaropen: false, snackbarmsg: ''};
-    // this.handleaddArchiveChange = this.handleaddArchiveChange
   }
-
   snackbarClose = event => {
     this.setState ({snackbaropen: false});
   };
-
   state = {
     anchorEl: null,
   };
@@ -31,14 +26,15 @@ class AddTrash extends Component {
     this.setState ({anchorEl: null});
   };
 
-  handleTrashNotes = () => {
+  handleaddPinChange = () => {
     let token = localStorage.getItem ('Token');
-    this.props.onSelectTrash (true);
+    this.props.onPinNote (true);
 
-    addTrash (this.props.data.id, token)
+    addPin (this.props.data.id, token)
       .then (Response => {
-        console.log ('note is trash', Response);
-        this.setState ({snackbaropen: true, snackbarmsg: 'Note Restore'});
+        console.log ('note is pin', Response);
+        // alert ('Pin Note');
+        this.setState ({snackbaropen: true, snackbarmsg: 'Pin'});
       })
       .catch (err => {
         this.setState ({snackbaropen: true, snackbarmsg: 'failed'});
@@ -66,18 +62,14 @@ class AddTrash extends Component {
           ]}
         />
 
-        <Tooltip  onClick={this.handleTrashNotes}>
-                <IconButton aria-label="Restore">
-              <Tooltip title="Restore">
-                <RestoreFromTrashIcon onClick={this.handleTrashNotes}>
-                  <Trash  />
-                </RestoreFromTrashIcon>
-              </Tooltip>
-            </IconButton>
-        </Tooltip>
+        {/* <Tooltip title=" Pin"> */}
+          <Tooltip title="Pin note" style={{marginLeft:"90%",width: '8.5%'}}>
+            <img className="pinImage" src={Images} alt="pin logo" onClick={this.handleaddPinChange}/>
+          </Tooltip>
+        {/* </Tooltip> */}
       </div>
     );
   }
 }
 
-export default AddTrash;
+export default PinNote;
