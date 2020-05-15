@@ -3,7 +3,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Fab from '@material-ui/core/Fab';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
-import IconButton from '@material-ui/core/IconButton';
+// import IconButton from '@material-ui/core/IconButton';
 import {ClickAwayListener} from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import {changeColor} from '../Services/UserService/UserServices';
@@ -73,10 +73,8 @@ class ChangeColor extends Component {
     const open = Boolean (anchorEl);
     return (
       <div>
-        <Tooltip title="Change color">
-          <IconButton onClick={this.handlePopoverOpen}>
+        <Tooltip title="Change color" onClick={this.handlePopoverOpen}>
             <ColorLensIcon fontSize="small" />
-          </IconButton>
         </Tooltip>
         {this.state.anchorEl !== null
           ? <ClickAwayListener

@@ -5,7 +5,7 @@ import Datetimepicker from '../Components/Datetimepicker';
 import {Tooltip} from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
 
-class Reminder extends React.Component {
+class AddReminder extends React.Component {
   constructor (props) {
     super (props);
     this.state = {
@@ -80,4 +80,4 @@ class Reminder extends React.Component {
     );
   }
 }
-export default Reminder;
+export default  (AddReminder);

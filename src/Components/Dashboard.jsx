@@ -63,7 +63,7 @@ export class Dashboard extends Component {
                 Fundoo
               </Typography>
 
-                 <div className="search" style={{height: '7vh',marginLeft:"2%"}} > 
+                 <div className="search" style={{height: '7vh',marginLeft:"4%"}} > 
                  <SearchNotes /> 
                  {/* <Search/> */}
                  </div> 

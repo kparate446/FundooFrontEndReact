@@ -49,20 +49,22 @@ class SearchNotes extends Component {
   render () {
     return (
       <Container style={{marginTop: '0em'}}>
-       <Card style={{height: '7vh',width:'110%'}} >
+       <Card style={{height: '7vh',width:'115%'}} >
         <div>
-        <SearchIcon/>
+        <SearchIcon style={{marginLeft:"2%",marginTop:"1%"}}/>
           <InputBase
             className="Search"
             name="title"
             style={{width: '90vh', marginLeft: '3%',marginTop:'1%'}}
             // label="Multiline Placeholder"
             // multiline
+            // onChange={this.Searchtext}
             onChange={this.axios}
+            onClick={this.getSearchForm}
             placeholder="Search"
             // style={{fontSize: 0}}
           />
-          <button onClick={this.getSearchForm}>Search</button>
+          {/* <button onClick={this.getSearchForm}>Search</button> */}
 
         </div>
         </Card>

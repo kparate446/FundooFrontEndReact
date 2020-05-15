@@ -5,7 +5,7 @@ import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
 import NoteCard from '../Components/NoteCard';
 // import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
-import {getAllNotes, getAllLabels} from '../Services/UserService/UserServices';
+import {getAllNotes} from '../Services/UserService/UserServices';
 
 class Notes extends Component {
   constructor (props) {
@@ -48,7 +48,7 @@ class Notes extends Component {
 
     getAllNotes (token).then (Response => {
       // this.props.PinNote();
-      console.log (Response.data.data);
+      // console.log (Response.data.data);
       this.setState ({
         notes: Response.data.data.reverse (),
       });
@@ -58,6 +58,7 @@ class Notes extends Component {
   componentDidMount () {
     console.log ('Component did mount');
     this.showAllNotes ();
+    
   }
 
   render () {
@@ -88,10 +89,6 @@ class Notes extends Component {
             this.state.notes.map (items => (
               <NoteCard update={this.update} items={items} />
             ))}
-          {/* {this.state.label !== null &&
-            this.state.label.map (items => <NoteCard update={this.update} items={items} />)} */}
-
-          {/* <NoteCard/> */}
         </div>
       </Container>
     );

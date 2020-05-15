@@ -53,6 +53,7 @@ export class Login extends Component {
       });
   };
   render () {
+// console.log('render work');
     return (
       <Card className="log">
         <CardContent>

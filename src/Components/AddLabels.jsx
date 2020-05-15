@@ -12,7 +12,7 @@ import {
   addLabelWithNote,
   createLabel,
 } from '../Services/UserService/UserServices';
-import ShowNote from "../Components/ShowNote";
+// import ShowNote from "../Components/ShowNote";
 
 class Addlabels extends React.Component {
   constructor (props) {
@@ -79,14 +79,14 @@ class Addlabels extends React.Component {
     // let noteid= this.props.data.id;
     console.log ('data object', data);
     console.log ('Note Id------------->' + this.props.data.id);
-    let labelid = data.id;
+    // let labelid = data.id;
     console.log ('Label Id------------->' + data.id);
     let token = localStorage.getItem ('Token');
     console.log (token);
     addLabelWithNote (token,this.props.data.id, data.id )
       .then (function (response) {
         console.log (response);
-        alert (`Add Label with Note`);
+        // alert (`Add Label with Note`);
       })
       .catch (function (error) {
         console.log('error--->'+error);
@@ -99,7 +99,6 @@ class Addlabels extends React.Component {
   }
 
   render () {
-    const {classes} = this.props;
     const {anchorEl} = this.state;
     const open = Boolean (anchorEl);
 
@@ -133,7 +132,6 @@ class Addlabels extends React.Component {
                 <Input
                   name="labelName"
                   placeholder="Enter label name"
-                  onChange={this.HandlelablevalueChange}
                   fullWidth
                   margin="normal"
                   onChange={this.axios}
@@ -148,6 +146,7 @@ class Addlabels extends React.Component {
                 />
               </FormControl>
             </div>
+            <div>
             {this.state.label !== null
               ? this.state.label.map (data => (
                   <div>
@@ -159,6 +158,7 @@ class Addlabels extends React.Component {
                   </div>
                 ))
               : null}
+              </div>
             <Divider />
             {this.state.labelName !== ''
               ? <div>
@@ -179,8 +179,9 @@ class Addlabels extends React.Component {
               : null}
           </div>
         </Popover>
-      </div>
 
+      </div>
+    
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
-import ClearIcon from "@material-ui/icons/Clear";
+// import ClearIcon from "@material-ui/icons/Clear";
 // import TextField from "@material-ui/core/TextField";
 import CheckIcon from '@material-ui/icons/Check';
 import {Divider} from '@material-ui/core';
@@ -87,7 +87,7 @@ class EditLabels extends React.Component {
     let updatelabels = {};
     updatelabels.labelName = this.state.labelName;
     console.log (this.state.labelName);
-    let id = data.id;
+    // let id = data.id;
     let token = localStorage.getItem ('Token');
     console.log ('id-->' + data.id);
 
@@ -131,7 +131,6 @@ class EditLabels extends React.Component {
                 <Input
                   name="labelName"
                   placeholder="Enter label name"
-                  onChange={this.HandlelablevalueChange}
                   fullWidth
                   margin="normal"
                   onChange={this.axios}

@@ -90,7 +90,7 @@ function Profile (props) {
         <Tooltip title="Fundoo Account">
           <Avatar
             alt={firstName}
-            src={localStorage.getItem ('ProfilePic')}
+            src={localStorage.getItem ('Profile')}
             onClick={handleClick}
           />
         </Tooltip>

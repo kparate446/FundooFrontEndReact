@@ -26,6 +26,8 @@ const NoteCard = props => {
         title={props.items.title}
         discription={props.items.discription}
         trash={props.trash}
+        collabrators={props.items.collabrators}
+        reminder={props.items.reminder}
       />
     </Card>
   );

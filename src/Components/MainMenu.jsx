@@ -73,8 +73,8 @@ export class MainManu extends Component {
     let token = localStorage.getItem ('Token');
     console.log ('show all Labels');
     getAllLabels (token).then (Response => {
-      console.log (Response.data.data);
-      console.log ('show all Labels');
+      // console.log (Response.data.data);
+      // console.log ('show all Labels');
       this.setState ({
         label : Response.data.data,
       });
@@ -109,7 +109,10 @@ export class MainManu extends Component {
                   <ListItemText primary="Notes" />
                 </ListItem>
 
-                <ListItem className="over" button key="Reminders">
+                <ListItem 
+                className="over"
+                onClick={() => this.props.history.push ('/dashboard/showReminder')} 
+                button key="Reminders">
                   <ListItemIcon>
                     <AddAlertOutlinedIcon />
                   </ListItemIcon>

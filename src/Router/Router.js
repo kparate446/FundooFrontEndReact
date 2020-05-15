@@ -20,7 +20,10 @@ import SearchNotes from '../Components/SearchNotes';
 import Trash from "../Components/TrashNotes";
 import AddLabels from "../Components/AddLabels";
 import ShowPinNote from "../Components/ShowPinNote";
-import Reminder from "../Components/Reminder";
+import AddReminder from "../Components/AddReminder";
+import AddCollabrator from "../Components/AddCollabrator";
+import Datetimepicker from '../Components/Datetimepicker';
+import ShowReminder from '../Components/ShowReminder';
 
 const Router = () => {
   return (
@@ -43,15 +46,15 @@ const Router = () => {
 
       {/* <Route path = "/dashboard/wholenotes"
         component = {WholeNotes}/>  */}
-      <Route path="/dashboard/notes" component={Notes} />
+      {/* <Route path="/showPinNote" component={ShowPinNote} /> */}
 
+      <Route path="/dashboard/notes" component={Notes} />
+        
       {/* <Route path = "/shownotes"
         component = {ShowNote}/> */}
 
       {/* <Route path = "/card"
         component = {NoteCard}/> */}
- 
-      <Route path="/reminder" component={Reminder} />
 
       <Route path="/moremenu" component={ArchiveNotes} />
 
@@ -67,6 +70,14 @@ const Router = () => {
 
       <Route path="/showPinNote" component={ShowPinNote} />
       
+      <Route path="/addReminder" component={AddReminder} />
+      
+      <Route path="/addCollabrator" component={AddCollabrator} />
+
+      <Route path="/datetimepicker" component={Datetimepicker} />
+
+      <Route path="/dashboard/showReminder" component={ShowReminder} />
+
     </BrowserRouter>
   );
 };
