@@ -13,6 +13,7 @@ import {
   createLabel,
 } from '../Services/UserService/UserServices';
 // import ShowNote from "../Components/ShowNote";
+// import Labels from '../CSSFile/Labels.css';
 
 class Addlabels extends React.Component {
   constructor (props) {
@@ -105,9 +106,9 @@ class Addlabels extends React.Component {
     return (
       <div>
         <div
+          className ="addlabels"
           aria-owns={open ? 'simple-popper' : undefined}
           onClick={this.handleClick}
-          style={{paddingRight: '12px'}}
         >
           Add label
         </div>
@@ -125,7 +126,7 @@ class Addlabels extends React.Component {
             horizontal: 'center',
           }}
         >
-          <div style={{padding: '4.5%'}}>
+          <div className="labelNotes">
             <div>Label note</div>
             <div>
               <FormControl>

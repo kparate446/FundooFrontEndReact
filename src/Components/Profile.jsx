@@ -19,6 +19,7 @@ import {
   DialogContent,
   DialogContentText,
 } from '@material-ui/core';
+import '../CSSFile/Profile.css';
 
 const useStyles = makeStyles (theme => ({
   typography: {
@@ -86,7 +87,7 @@ function Profile (props) {
 
   return (
     <div>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div className="profileAvatar">
         <Tooltip title="Fundoo Account">
           <Avatar
             alt={firstName}
@@ -108,7 +109,7 @@ function Profile (props) {
       >
         <Typography className={classes.typography}>
           <div className="mainprofile">
-            <div style={{justifyContent: 'center', display: 'flex', top: '5%'}}>
+            <div className="mainIcon" >
               <Badge
                 overlap="circle"
                 anchorOrigin={{
@@ -131,22 +132,12 @@ function Profile (props) {
             </div>
 
             <div
-              style={{
-                justifyContent: 'center',
-                display: 'flex',
-                top: '2%',
-                padding: '2%',
-              }}
+            className="name"
             >
               <b>{firstName} {lastName}</b>
             </div>
             <div
-              style={{
-                justifyContent: 'center',
-                display: 'flex',
-                top: '5%',
-                color: 'gray',
-              }}
+            className="email"
             >
               <b>{email}</b>
 
@@ -154,12 +145,7 @@ function Profile (props) {
             <br />
             <div
               className="profileaccount"
-              style={{
-                backgroundColor: '#e0e0e0',
-                padding: '3% ',
-                paddingBottom: '3%',
-                borderRadius: '10px',
-              }}
+              
             >
               Manage Your Fundoo Account
             </div>
@@ -170,16 +156,17 @@ function Profile (props) {
             <div style={{marginTop: '5%'}}>
               {/* <PersonAddIcon/> */}
               <MenuItem
+              className="addAccount"
                 title="Fundoo Account"
                 // onClick={() => this.props.history.push ('/')}
                 onClick={handleLoginChange}
-                style={{justifyContent: 'center', display: 'flex'}}
               >
                 Add another account
               </MenuItem>
 
             </div>
             <div
+              classNames="signout"
               style={{
                 justifyContent: 'center',
                 display: 'flex',

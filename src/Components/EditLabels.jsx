@@ -17,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {deletelabel, updateLabel} from '../Services/UserService/UserServices';
 import TextField from '@material-ui/core/TextField';
+// import Labels from '../CSSFile/Labels.css';
 
 class EditLabels extends React.Component {
   constructor (props) {
@@ -60,10 +61,10 @@ class EditLabels extends React.Component {
 
   showAllLabels = () => {
     let token = localStorage.getItem ('Token');
-    console.log ('show all Labels');
+    // console.log ('show all Labels');
     getAllLabels (token).then (Response => {
-      console.log (Response.data.data);
-      console.log ('show all Labels');
+      // console.log (Response.data.data);
+      // console.log ('show all Labels');
       this.setState ({
         label: Response.data.data,
       });
@@ -102,7 +103,7 @@ class EditLabels extends React.Component {
   };
 
   componentDidMount () {
-    console.log ('Component did mount');
+    // console.log ('Component did mount');
     this.showAllLabels ();
   }
 
@@ -121,7 +122,7 @@ class EditLabels extends React.Component {
           Edit labels
         </div>
         <Dialog open={this.state.open} onClose={this.handleClose}>
-          <div style={{padding: '10%'}}>
+          <div className="editlabels">
             <div>Edit Labels</div>
             <div>
               <FormControl>
@@ -141,7 +142,6 @@ class EditLabels extends React.Component {
                     <InputAdornment position="end">
                       <Tooltip title="Create label">
                         <CheckIcon
-                          style={{paddingLeft: '5%', paddingTop: '10px'}}
                           onClick={this.Addlabels}
                         />
                       </Tooltip>
@@ -152,13 +152,9 @@ class EditLabels extends React.Component {
             </div>
             {this.state.label !== null
               ? this.state.label.map (data => (
-                  <div>
+                  <div key={data}>
                     <Typography
-                      style={{
-                        marginTop: '5px',
-                        marginBottom: '12px ',
-                        width: '100%',
-                      }}
+                    className ="deleteLabels"
                     >
                       <div>
                         <DeleteIcon onClick={e => this.deleteLabel (data)} />
@@ -184,12 +180,7 @@ class EditLabels extends React.Component {
             <Divider />
             <Divider />
             <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                paddingTop: '5%',
-                paddingBottom: '5%',
-              }}
+            className="doneIcon"
               onClick={this.handleClose}
             >
               Done

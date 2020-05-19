@@ -58,12 +58,11 @@ export class Dashboard extends Component {
               <Typography
                 className="keep"
                 variant="h5"
-                style={{color: 'grey', marginRight: '1.2%'}}
               >
                 Fundoo
               </Typography>
 
-                 <div className="search" style={{height: '7vh',marginLeft:"4%"}} > 
+                 <div className="search"  > 
                  <SearchNotes /> 
                  {/* <Search/> */}
                  </div> 
@@ -84,21 +83,22 @@ export class Dashboard extends Component {
                 {/* </div> */}
                                
               <Tooltip
+              className="refresh"
                 title="Refresh"
-                style={{color: 'grey', marginLeft: '15%'}}
                 onClick={this.refreshDash}
               >
                 <RefreshOutlinedIcon />
               </Tooltip>
 
               <Tooltip
+              className = "listView"
                 title="List View"
-                style={{color: 'grey', marginLeft: '1.7%'}}
               >
                 <ViewAgendaSharpIcon />
               </Tooltip>
 
-              {/* <Tooltip */}<IconButton
+              {/* <Tooltip */}
+              <IconButton
                 title="Settings"
                 style={{color: 'grey', marginLeft: '1.7%'}}
                 onClick={() => this.props.history.push ('/')}
@@ -108,8 +108,8 @@ export class Dashboard extends Component {
               </IconButton>
 
               <Tooltip
+              className="apps"
                 title="Fundoo apps"
-                style={{color: 'grey', marginLeft: '3.5%', marginRight: '1%'}}
               >
                 <AppsIcon />
               </Tooltip>

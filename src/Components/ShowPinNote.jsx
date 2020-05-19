@@ -41,15 +41,7 @@ class ShowArchiveNotes extends Component {
   render () {
     return (
       <Container style={{marginTop: '6em'}}>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginTop: '2em',
-            marginLeft: '5%',
-          }}
-        >
+        <div className="pinNoteMapping">
           {this.state.notes !== null &&
             this.state.notes.map (items => <NoteCard items={items} />)}
         </div>

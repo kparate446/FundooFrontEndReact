@@ -9,7 +9,7 @@ import {
 } from '../Services/UserService/UserServices';
 import ClearIcon from '@material-ui/icons/Clear';
 import {Avatar} from '@material-ui/core';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+// import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -17,7 +17,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import Collabrator from '../CSSFile/Collabrator.css';
 
 class UpdateCollabrator extends React.Component {
   constructor (props) {
@@ -28,7 +29,7 @@ class UpdateCollabrator extends React.Component {
       collabrator: null,
     };
   }
-  
+
   axios = event => {
     this.setState ({
       [event.target.name]: event.target.value,
@@ -81,7 +82,7 @@ class UpdateCollabrator extends React.Component {
   showAllCollabrator = () => {
     let token = localStorage.getItem ('Token');
     // console.log ('show all Labels');
-    
+
     getCollabrator (token).then (Response => {
       // console.log ('show all Collabrator');
       this.setState ({
@@ -105,8 +106,8 @@ class UpdateCollabrator extends React.Component {
 
     return (
       <div>
-        <Tooltip  onClick={this.handleClick}>
-            <AccountCircleIcon style={{width: '30px', height: '30px',color: 'gray'}}/>
+        <Tooltip className="collabratoIcon" onClick={this.handleClick}>
+          <AccountCircleIcon />
         </Tooltip>
         <Dialog
           id="simple-popper"
@@ -114,8 +115,8 @@ class UpdateCollabrator extends React.Component {
           anchorEl={anchorEl}
           onClose={this.handleClose}
         >
-          <div style={{padding: '4.5%'}}>
-            <h3 Style={{margineft: '50%'}}>Collabrators</h3>
+          <div className="collaratorName">
+            <h3>Collabrators</h3>
             <Divider />
             {this.props.data.collabrators !== null
               ? this.props.data.collabrators.map (data => (
@@ -132,7 +133,7 @@ class UpdateCollabrator extends React.Component {
                   </div>
                 ))
               : null}
-              {/* <Typography onClick={handleClickOpen}>
+            {/* <Typography onClick={handleClickOpen}>
               {' '}{props.data.mailReceiver}
             </Typography> */}
 
@@ -158,11 +159,9 @@ class UpdateCollabrator extends React.Component {
           </div>
           <Paper
             component="form"
+            className="collabratorPaper"
             style={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
               backgroundColor: 'rgba(0,0,0,0.07)',
-              padding: '0.5em',
             }}
           >
             <Button

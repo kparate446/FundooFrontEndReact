@@ -17,6 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
+// import Collabrator from '../CSSFile/Collabrator.css';
 
 class AddCollabrator extends React.Component {
   constructor (props) {
@@ -26,9 +27,9 @@ class AddCollabrator extends React.Component {
       mailReceiver: '',
       collabrator: null,
     };
-    console.log(props.data.collabrators);
+    // console.log (props.data.collabrators);
   }
-  
+
   axios = event => {
     this.setState ({
       [event.target.name]: event.target.value,
@@ -81,7 +82,7 @@ class AddCollabrator extends React.Component {
   showAllCollabrator = () => {
     let token = localStorage.getItem ('Token');
     // console.log ('show all Labels');
-    
+
     getCollabrator (token).then (Response => {
       // console.log ('show all Collabrator');
       this.setState ({
@@ -114,8 +115,8 @@ class AddCollabrator extends React.Component {
           anchorEl={anchorEl}
           onClose={this.handleClose}
         >
-          <div style={{padding: '4.5%'}}>
-            <h3 Style={{margineft: '50%'}}>Collabrators</h3>
+          <div className="collaratorName">
+            <h3>Collabrators</h3>
             <Divider />
             {/* {
               this.props.data.collabrators.map(ele=>(
@@ -126,7 +127,7 @@ class AddCollabrator extends React.Component {
             */}
             {this.props.data.collabrators !== null
               ? this.props.data.collabrators.map (data => (
-                  <div>
+                  <div key={data}>
                     <ListItem button>
                       <ListItemAvatar>
                         <Avatar>
@@ -170,11 +171,9 @@ class AddCollabrator extends React.Component {
           </div>
           <Paper
             component="form"
+            className="collabratorPaper"
             style={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
               backgroundColor: 'rgba(0,0,0,0.07)',
-              padding: '0.5em',
             }}
           >
             <Button

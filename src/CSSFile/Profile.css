@@ -1,4 +1,48 @@
-.mainprofile {
+.profileAvatar {
+    display: flex;
+    flex-direction: row;
+}
+
+.mainIcon {
+    justify-content: center;
+    display: flex;
+    top: 5%;
+}
+
+.name {
+    justify-content: center;
+    display: flex;
+    top: 2%;
+    padding: 2%;
+}
+
+.email {
+    justify-content: center;
+    display: flex;
+    top: 5%;
+    color: gray;
+}
+
+.profileaccount {
+    background-color: #e0e0e0;
+    padding: 2%;
+    padding-bottom: 3%;
+    border-radius: 10px;
+}
+
+.addAccount {
+    justify-content: center;
+    display: flex;
+}
+
+.signout {
+    justify-content: center;
+    display: flex;
+    padding: 5%;
+}
+
+
+/* .mainprofile {
     padding: 5%;
     display: flex;
     justify-content: space-evenly;
@@ -24,4 +68,4 @@
     font-family: none;
     font-size: inherit;
     opacity: 0.1%;
-}
+} */

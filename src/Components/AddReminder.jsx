@@ -1,15 +1,15 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+// import {withStyles} from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Datetimepicker from '../Components/Datetimepicker';
 import {Tooltip} from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
+// import Reminder from "../CSSFile/Reminder.css";
 
 class AddReminder extends React.Component {
   constructor (props) {
     super (props);
-    this.state = {
-      
+    this.state = {      
     };
   }
   handleClick = event => {

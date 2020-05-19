@@ -71,7 +71,7 @@ export class MainManu extends Component {
   
   showAllLabels = () => {
     let token = localStorage.getItem ('Token');
-    console.log ('show all Labels');
+    // console.log ('show all Labels');
     getAllLabels (token).then (Response => {
       // console.log (Response.data.data);
       // console.log ('show all Labels');
@@ -82,7 +82,7 @@ export class MainManu extends Component {
   };
 
   componentDidMount () {
-    console.log ('Component did mount');
+    // console.log ('Component did mount');
     this.showAllLabels ();
   }
 
@@ -121,7 +121,7 @@ export class MainManu extends Component {
 
                 {this.state.label !== null ?
                 this.state.label.map(data => (
-                  <div>
+                  <div key={data}>
                     <ListItem className="over" button key="Edit labels">
                   <ListItemIcon>
                     <LabelOutlinedIcon />

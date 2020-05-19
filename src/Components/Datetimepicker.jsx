@@ -13,6 +13,7 @@ import {addReminder} from '../Services/UserService/UserServices';
 // import TextField from '@material-ui/core/TextField';
 import {Tooltip} from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
+// import Reminder from '../CSSFile/Reminder.css';
 
 const theme = createMuiTheme ({
   overrides: {
@@ -52,10 +53,10 @@ class Datetimepicker extends React.Component {
     let noteid = this.props.data.id;
     let token = localStorage.getItem ('Token');
     let date = this.state.selectedReminder;
-    console.log(token);
-    console.log("date---->"+date)
-    addReminder (token, {dateAndTime:new Date(date)}, noteid)
-    .then (function (response) {
+    console.log (token);
+    console.log ('date---->' + date);
+    addReminder (token, {dateAndTime: new Date (date)}, noteid)
+      .then (function (response) {
         console.log (response);
         alert ('Reminder Added');
       })
@@ -73,7 +74,6 @@ class Datetimepicker extends React.Component {
 
   render () {
     const {anchorEl} = this.state;
-    const {currentDate} = this.state;
     const open = Boolean (anchorEl);
 
     return (
@@ -87,11 +87,10 @@ class Datetimepicker extends React.Component {
           <span style={{marginLeft: '32px'}}> Pick date & time</span>
         </div> */}
         <Tooltip title="Remind me">
-          <AddAlertOutlinedIcon fontSize="inherit" 
-            onClick={this.handleClick} />
+          <AddAlertOutlinedIcon fontSize="inherit" onClick={this.handleClick} />
         </Tooltip>
         <Popover
-          style={{top: '5px', borderRadius: '4%', width: '180%',marginLeft:"7%"}}
+          className="simplepopover"
           id="simple-popper"
           open={open}
           anchorEl={anchorEl}
@@ -113,14 +112,7 @@ class Datetimepicker extends React.Component {
             <span style={{marginLeft: '32px'}}> Pick date & time</span>
           </div>
 
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexDirection: 'column',
-              padding: '4%',
-            }}
-          >
+          <div className="picker">
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <MuiThemeProvider theme={theme}>
                 <KeyboardDatePicker
@@ -140,14 +132,7 @@ class Datetimepicker extends React.Component {
               </MuiThemeProvider>
             </MuiPickersUtilsProvider>
           </div>
-          <div
-            onClick={this.handleClose}
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              padding: '4%',
-            }}
-          >
+          <div className="save" onClick={this.handleClose}>
             Save
           </div>
         </Popover>

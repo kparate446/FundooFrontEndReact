@@ -36,7 +36,7 @@ export class Login extends Component {
     user.password = this.state.password;
 
     userLogin (user)
-      .then (function (response) {
+      .then (response => {
         console.log (response);
         console.log ('data', response.data.data);
         localStorage.setItem ('Token', response.data.message);
@@ -44,10 +44,10 @@ export class Login extends Component {
         localStorage.setItem ('FirstName', response.data.data.firstName);
         localStorage.setItem ('LastName', response.data.data.lastName);
         localStorage.setItem ('Profile', response.data.data.profilePic);
-
         alert (`Login Successfull`);
+        this.props.history.push("/dashboard/notes");
       })
-      .catch (function (error) {
+      .catch (error => {
         console.log (error);
         alert (`Login Failed`);
       });

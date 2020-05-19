@@ -7,3 +7,87 @@
     border: 'solid rgba(128, 128, 128, 0.21)';
     margin: 10;
 }
+
+.showNotes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+    margin-left: 5%;
+}
+
+.pinNotes {
+    margin-left: 90%;
+    width: 8.5%;
+}
+
+
+/* Search Notes */
+
+.Search {
+    width: 90vh;
+    margin-left: 3%;
+    margin-top: 1%;
+}
+
+.searchNotesMapping {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+    /* margin-left: 5%; */
+}
+
+
+/* Pin Notes */
+
+.pinNoteMapping {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+    margin-left: 5%;
+}
+
+@media (max-width :600px) {
+    .noteCard {
+        border-radius: 10;
+        width: 288;
+        height: 180;
+        display: flex;
+        flex-direction: column;
+        border: 'solid rgba(128, 128, 128, 0.21)';
+        margin: 10;
+    }
+    .showNotes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2em;
+        margin-left: 5%;
+    }
+    .pinNotes {
+        margin-left: 90%;
+        width: 8.5%;
+    }
+    /* Search Notes */
+    .Search {
+        width: 90vh;
+        margin-left: 3%;
+        margin-top: 1%;
+    }
+    .searchNotesMapping {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2em;
+        /* margin-left: 5%; */
+    }
+    .pinNoteMapping {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 2em;
+        margin-left: 5%;
+    }
+}

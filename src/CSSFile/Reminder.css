@@ -1,0 +1,19 @@
+.simplepopover {
+    top: 5px;
+    border-radius: 4%;
+    width: 180%;
+    margin-left: 7%;
+}
+
+.picker {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 4%;
+}
+
+.save {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4%;
+}

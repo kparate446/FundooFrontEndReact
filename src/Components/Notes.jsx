@@ -5,7 +5,8 @@ import TakeNotes from '../Components/TakeNotes';
 import WholeNotes from '../Components/WholeNotes';
 import NoteCard from '../Components/NoteCard';
 // import {updateNote, getAllNotes} from '../Services/UserService/UserServices';
-import {getAllNotes} from '../Services/UserService/UserServices';
+import {getAllNotes,getAllPinNotes} from '../Services/UserService/UserServices';
+import notes from '../CSSFile/Notes.css';
 
 class Notes extends Component {
   constructor (props) {
@@ -44,9 +45,10 @@ class Notes extends Component {
 
   showAllNotes = () => {
     let token = localStorage.getItem ('Token');
-    console.log ('show all notes');
+    // console.log ('show all notes');
 
     getAllNotes (token).then (Response => {
+      // this.showAllPinNotes();
       // this.props.PinNote();
       // console.log (Response.data.data);
       this.setState ({
@@ -55,10 +57,21 @@ class Notes extends Component {
     });
   };
 
+  showAllPinNotes = () => {
+    let token = localStorage.getItem ('Token');
+    console.log (token);
+    getAllPinNotes (token).then (Response => {
+      
+      this.getAllNotes();
+      this.setState ({
+        notes: Response.data.data.reverse (),
+      });
+    });
+  };
+
   componentDidMount () {
-    console.log ('Component did mount');
+    // console.log ('Component did mount');
     this.showAllNotes ();
-    
   }
 
   render () {
@@ -76,18 +89,10 @@ class Notes extends Component {
               : <TakeNotes handleClick={this.handleClick} />}
           </div>
         </ClickAwayListener>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginTop: '2em',
-            marginLeft: '5%',
-          }}
-        >
+        <div className="showNotes">
           {this.state.notes !== null &&
             this.state.notes.map (items => (
-              <NoteCard update={this.update} items={items} />
+              <NoteCard key={items} update={this.update} items={items} />
             ))}
         </div>
       </Container>

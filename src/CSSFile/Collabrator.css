@@ -1,0 +1,19 @@
+.h3 {
+    margin-left: "10%";
+}
+
+.collaratorName {
+    padding: 4.5%;
+}
+
+.collabratorPaper {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0.5em;
+}
+
+.collabratoIcon {
+    width: 30px;
+    height: 30px;
+    color: gray;
+}

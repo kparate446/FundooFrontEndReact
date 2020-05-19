@@ -5,6 +5,7 @@ import {addPin} from '../Services/UserService/UserServices';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Images from '../Assets/Pin.png';
+// import notes from '../CSSFile/Notes.css';
 
 class PinNote extends Component {
   constructor (props) {
@@ -63,9 +64,14 @@ class PinNote extends Component {
         />
 
         {/* <Tooltip title=" Pin"> */}
-          <Tooltip title="Pin note" style={{marginLeft:"90%",width: '8.5%'}}>
-            <img className="pinImage" src={Images} alt="pin logo" onClick={this.handleaddPinChange}/>
-          </Tooltip>
+        <Tooltip className="pinNotes" title="Pin note">
+          <img
+            className="pinImage"
+            src={Images}
+            alt="pin logo"
+            onClick={this.handleaddPinChange}
+          />
+        </Tooltip>
         {/* </Tooltip> */}
       </div>
     );

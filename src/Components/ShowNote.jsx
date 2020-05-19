@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -32,12 +32,15 @@ import PinNote from '../Components/PinNote';
 // import ClearIcon from '@material-ui/icons/Clear';
 import Chip from '@material-ui/core/Chip';
 import AddCollabrator from '../Components/AddCollabrator';
-import AddReminder from '../Components/AddReminder';
+// import AddReminder from '../Components/AddReminder';
 import Datetimepicker from '../Components/Datetimepicker';
-import {deleteLabelWithNote,deleteReminder} from '../Services/UserService/UserServices';
-import ClearIcon from '@material-ui/icons/Clear';
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Collabrator from "../Components/Collabrator";
+import {
+  deleteLabelWithNote,
+  deleteReminder,
+} from '../Services/UserService/UserServices';
+// import ClearIcon from '@material-ui/icons/Clear';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Collabrator from '../Components/Collabrator';
 
 function ShowNote (data, props) {
   const [anchorEl, setAnchorEl] = React.useState (null);
@@ -47,7 +50,7 @@ function ShowNote (data, props) {
   const handleClose1 = () => {
     setAnchorEl (null);
   };
-  
+
   const [open, setOpen] = React.useState (false);
   const [title, setTitle] = React.useState (data.title);
   const [discription, setDiscription] = React.useState (data.discription);
@@ -55,10 +58,10 @@ function ShowNote (data, props) {
   const [trash, setTrash] = React.useState (false);
   const [pin, setPin] = React.useState (false);
   const [labels, setLabels] = React.useState (false);
-  const [dateAndTime, setDateAndTime] = React.useState (data.dateAndTime);
-  const [collabrator, setCollabrator] = React.useState (data.collabrator);
+  // const [dateAndTime, setDateAndTime] = React.useState (data.dateAndTime);
+  // const [collabrator, setCollabrator] = React.useState (data.collabrator);
   const [reminder, setReminder] = React.useState (data.reminder);
-  
+
   // console.log (data);
   const handleTrash = () => {
     setTrash (!trash);
@@ -72,16 +75,16 @@ function ShowNote (data, props) {
   const handleArchive = () => {
     setArchive (!archive);
   };
-  const handleReminder = () => {
-    setReminder (!reminder);
-  };
+  // const handleReminder = () => {
+  //   setReminder (!reminder);
+  // };
   const handlePin = () => {
     setPin (!pin);
   };
   const handleLabels = () => {
     setLabels (!labels);
   };
-  
+
   const DeleteNotes = () => {
     let deleteNote = {};
     deleteNote.id = data.id;
@@ -96,6 +99,7 @@ function ShowNote (data, props) {
       .then (Response => {
         setOpen (false);
         alert ('Note Deleted Successfully!!');
+        this.props.history.push ('/dashboard/notes');
       })
       .catch (error => {
         console.log (error.response.message, 'Note Not Updated');
@@ -103,14 +107,14 @@ function ShowNote (data, props) {
       });
   };
 
-  const handleDeleteLabel = (items) => {
+  const handleDeleteLabel = items => {
     let deleteLabels = {};
     deleteLabels.id = data.id;
-    console.log("Note Id--->"+data.id);
-    console.log("Label Id----->"+items.id);
+    console.log ('Note Id--->' + data.id);
+    console.log ('Label Id----->' + items.id);
     let token = localStorage.getItem ('Token');
-    console.log(token);
-    deleteLabelWithNote(token, data.id,items.id)
+    console.log (token);
+    deleteLabelWithNote (token, data.id, items.id)
       .then (Response => {
         setOpen (false);
         alert ('labels Deleted Successfully!!');
@@ -119,21 +123,22 @@ function ShowNote (data, props) {
         // console.log('error--->'+error);
       });
   };
-  
-  const handleDeleteReminder = (data) => {
-    console.log("Reminder Id----->"+data.reminder.id);
+
+  const handleDeleteReminder = data => {
+    console.log ('Reminder Id----->' + data.reminder.id);
     let token = localStorage.getItem ('Token');
-    console.log(token);
-    deleteReminder(token, data.reminder.id)
+    console.log (token);
+    deleteReminder (token, data.reminder.id)
       .then (Response => {
         setOpen (false);
-        alert ('Reminder Deleted Successfully!!');
+        // alert ('Reminder Deleted Successfully!!');
+        this.props.history.push ('/dashboard/notes');
       })
       .catch (error => {
         // console.log('error--->'+error);
       });
   };
-  
+
   const handleEditClose = () => {
     let updateNotes = {};
     console.log ('title', data);
@@ -154,15 +159,21 @@ function ShowNote (data, props) {
         }
       )
       .then (Response => {
+        this.props.history.push ('/dashboard/notes');
         // alert ('Note Updated Successfully!!');
-        this.props.update ();
-         setOpen (false);
+        // this.props.update ();
+        //  setOpen (false);
         console.log ('I am call');
       })
       .catch (error => {
         // alert ('Note Not Updated');
       });
   };
+
+  // useEffect(() => {
+  //   console.log("use Effect called");
+  //   this.props.update ();
+  // },[]);
 
   return (
     <div>
@@ -180,37 +191,46 @@ function ShowNote (data, props) {
         {data.discription != null ? data.discription : null}
       </Typography>
       {/* <Typography> */}
-        {data.labelName != null
-          ? data.labelName.map (items => (
-              <Chip
-                label={items.labelName}
-                onDelete={() => handleDeleteLabel(items)}
-                style={{marginBottom:'2%',marginLeft:'2%'
-                }}  
-              />
-            ))
-          : null}
-
-      {' '}
-      {data.collabrators != null
-        ? data.collabrators.map (items =>(
-          //  <Chip label={items.mailReceiver} />
-          <Tooltip title={items.mailReceiver}>
-              <AccountCircleIcon style={{width: '30px', height: '30px',color: 'gray'}}/>
-              {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
-          </Tooltip>
+      {data.labelName != null
+        ? data.labelName.map (items => (
+            <Chip
+              key={items}
+              label={items.labelName}
+              onDelete={() => handleDeleteLabel (items)}
+              style={{
+                marginBottom: '2%',
+                marginLeft: '2%',
+                color: 'gray',
+              }}
+            />
           ))
         : null}
 
-         {data.reminder!=null ?
-         <Chip
-          label={data.reminder.dateAndTime}
-          onDelete={() => handleDeleteReminder(data)}
-         />
-       : null} 
-       
-      {data.trash?
-       <div>
+      {' '}
+      {data.collabrators != null
+        ? data.collabrators.map (
+            items => //  <Chip label={items.mailReceiver} />
+            (
+              <Tooltip key={items} title={items.mailReceiver}>
+                <AccountCircleIcon
+                  style={{width: '30px', height: '30px', color: 'grey'}}
+                />
+                {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
+              </Tooltip>
+            )
+          )
+        : null}
+
+      {data.reminder != null
+        ? <Chip
+            label={data.reminder.dateAndTime}
+            onDelete={() => handleDeleteReminder (data)}
+            style={{color: 'gray'}}
+          />
+        : null}
+
+      {data.trash
+        ? <div>
             <IconButton aria-label="Delete forever">
               <Tooltip title="Delete forever">
                 <DeleteForeverIcon onClick={DeleteNotes} />
@@ -332,37 +352,43 @@ function ShowNote (data, props) {
           />
         </DialogContent>
         <DialogContent>
-        {data.labelName != null
-          ? data.labelName.map (items => (
-              <Chip
-                label={items.labelName}
-                onDelete={() => handleDeleteLabel(items)}
-                style={{marginBottom:'2%',marginLeft:'2%'
-                }}  
-              />
-            ))
-          : null}
-      {/* </Typography> */}
-      {' '}
-      {data.collabrators != null
-        ? data.collabrators.map (items =>(
-          //  <Chip label={items.mailReceiver} />
-          <Tooltip title={items.mailReceiver}>
-              <AccountCircleIcon style={{width: '30px', height: '30px',color: 'gray'}}/>
-              {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
-          </Tooltip>
-          ))
-        : null}
+          {data.labelName != null
+            ? data.labelName.map (items => (
+                <Chip
+                  key={items}
+                  label={items.labelName}
+                  onDelete={() => handleDeleteLabel (items)}
+                  style={{
+                    marginBottom: '2%',
+                    marginLeft: '2%',
+                  }}
+                />
+              ))
+            : null}
+          {/* </Typography> */}
+          {' '}
+          {data.collabrators != null
+            ? data.collabrators.map (
+                items => //  <Chip label={items.mailReceiver} />
+                (
+                  <Tooltip title={items.mailReceiver}>
+                    <AccountCircleIcon
+                      style={{width: '30px', height: '30px', color: 'gray'}}
+                    />
+                    {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
+                  </Tooltip>
+                )
+              )
+            : null}
 
-      {/* <Typography > */}
-         {data.reminder!=null ?
-         <Chip
-          label={data.reminder.dateAndTime}
-          onDelete={() => handleDeleteReminder(data)}
-         />
-       : null
-      } 
-      </DialogContent>
+          {/* <Typography > */}
+          {data.reminder != null
+            ? <Chip
+                label={data.reminder.dateAndTime}
+                onDelete={() => handleDeleteReminder (data)}
+              />
+            : null}
+        </DialogContent>
         <DialogActions>
           <IconButton aria-label="Remind me">
             <Tooltip title="Reminde me">

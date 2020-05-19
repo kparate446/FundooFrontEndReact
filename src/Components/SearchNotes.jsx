@@ -5,6 +5,7 @@ import NoteCard from '../Components/NoteCard';
 import InputBase from '@material-ui/core/InputBase';
 import Card from '@material-ui/core/Card';
 import SearchIcon from '@material-ui/icons/Search';
+import notes from '../CSSFile/Notes.css';
 
 class SearchNotes extends Component {
   constructor (props) {
@@ -31,9 +32,9 @@ class SearchNotes extends Component {
   getSearchForm = () => {
     let notes = {};
     notes.title = this.state.title;
-    console.log (notes);
+    // console.log (notes);
     let token = localStorage.getItem ('Token');
-    console.log (notes.title);
+    // console.log (notes.title);
 
     getSearchNotes (notes.title, token).then (Response => {
       this.setState ({
@@ -48,38 +49,29 @@ class SearchNotes extends Component {
 
   render () {
     return (
-      <Container style={{marginTop: '0em'}}>
-       <Card style={{height: '7vh',width:'115%'}} >
-        <div>
-        <SearchIcon style={{marginLeft:"2%",marginTop:"1%"}}/>
-          <InputBase
-            className="Search"
-            name="title"
-            style={{width: '90vh', marginLeft: '3%',marginTop:'1%'}}
-            // label="Multiline Placeholder"
-            // multiline
-            // onChange={this.Searchtext}
-            onChange={this.axios}
-            onClick={this.getSearchForm}
-            placeholder="Search"
-            // style={{fontSize: 0}}
-          />
-          {/* <button onClick={this.getSearchForm}>Search</button> */}
+      <Container>
+        <Card style={{height: '7vh', width: '115%'}}>
+          <div>
+            <SearchIcon style={{marginLeft: '2%', marginTop: '1%'}} />
+            <InputBase
+              className="Search"
+              name="title"
+              // label="Multiline Placeholder"
+              // multiline
+              // onChange={this.Searchtext}
+              onChange={this.axios}
+              onKeyPress={this.getSearchForm}
+              // onClick={this.getSearchForm}
+              placeholder="Search"
+              // style={{fontSize: 0}}
+            />
+            {/* <button onClick={this.getSearchForm}>Search</button> */}
 
-        </div>
+          </div>
         </Card>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            marginTop: '2em',
-            marginLeft: '5%',
-          }}
-        >
+        <div className="searchNotesMapping">
           {this.state.notes !== null &&
             this.state.notes.map (items => <NoteCard items={items} />)}
-
         </div>
       </Container>
     );
