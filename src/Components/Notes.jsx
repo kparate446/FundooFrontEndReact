@@ -17,10 +17,9 @@ class Notes extends Component {
       discription: '',
       notes: null,
       labelName: '',
-      // label: null,
+      pin: null,
     };
   }
-
   handleChangeText = event => {
     this.setState ({
       [event.target.name]: event.target.value,
@@ -45,12 +44,8 @@ class Notes extends Component {
 
   showAllNotes = () => {
     let token = localStorage.getItem ('Token');
-    // console.log ('show all notes');
 
     getAllNotes (token).then (Response => {
-      // this.showAllPinNotes();
-      // this.props.PinNote();
-      // console.log (Response.data.data);
       this.setState ({
         notes: Response.data.data.reverse (),
       });
@@ -61,16 +56,15 @@ class Notes extends Component {
     let token = localStorage.getItem ('Token');
     console.log (token);
     getAllPinNotes (token).then (Response => {
-      
-      this.getAllNotes();
       this.setState ({
-        notes: Response.data.data.reverse (),
+        pin: Response.data.data.reverse (),
       });
     });
   };
 
   componentDidMount () {
     // console.log ('Component did mount');
+    this.showAllPinNotes();
     this.showAllNotes ();
   }
 
@@ -87,8 +81,14 @@ class Notes extends Component {
                   handleClick={this.handleClick}
                 />
               : <TakeNotes handleClick={this.handleClick} />}
-          </div>
+          </div>          
         </ClickAwayListener>
+        <div className="showNotes">
+          {this.state.pin !== null &&
+            this.state.pin.map (items => (
+              <NoteCard key={items} update={this.update} items={items} />
+            ))}
+        </div>
         <div className="showNotes">
           {this.state.notes !== null &&
             this.state.notes.map (items => (

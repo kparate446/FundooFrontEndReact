@@ -28,7 +28,21 @@ import Search from '../Components/Search';
 // import InputBase from '@material-ui/core/InputBase';
 import Card from '@material-ui/core/Card';
 
-const theme = createMuiTheme ({});
+const theme = createMuiTheme({
+  overrides: {
+      MuiDrawer: {
+          paper: {
+              top: "13%"
+          }
+      },
+
+      PersistentDrawerLeft: {
+          drawer: {
+              width: "100%"
+          }
+      }
+  }
+});
 
 export class Dashboard extends Component {
   constructor (props) {
