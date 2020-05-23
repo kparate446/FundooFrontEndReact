@@ -1,8 +1,6 @@
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
-// import ClearIcon from "@material-ui/icons/Clear";
-// import TextField from "@material-ui/core/TextField";
 import CheckIcon from '@material-ui/icons/Check';
 import {Divider} from '@material-ui/core';
 import {Tooltip} from '@material-ui/core';
@@ -10,14 +8,10 @@ import {createLabel, getAllLabels} from '../Services/UserService/UserServices';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
-// import SearchIcon from "@material-ui/icons/Search";
-// import AddRoundedIcon from "@material-ui/icons/AddRounded";
-// import { IconButton } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {deletelabel, updateLabel} from '../Services/UserService/UserServices';
 import TextField from '@material-ui/core/TextField';
-// import Labels from '../CSSFile/Labels.css';
 
 class EditLabels extends React.Component {
   constructor (props) {
@@ -88,7 +82,6 @@ class EditLabels extends React.Component {
     let updatelabels = {};
     updatelabels.labelName = this.state.labelName;
     console.log (this.state.labelName);
-    // let id = data.id;
     let token = localStorage.getItem ('Token');
     console.log ('id-->' + data.id);
 
@@ -103,7 +96,6 @@ class EditLabels extends React.Component {
   };
 
   componentDidMount () {
-    // console.log ('Component did mount');
     this.showAllLabels ();
   }
 
@@ -126,9 +118,6 @@ class EditLabels extends React.Component {
             <div>Edit Labels</div>
             <div>
               <FormControl>
-                {/* <Tooltip title="Cancel"> */}
-                {/* <ClearIcon /> */}
-                {/* </Tooltip> */}
                 <Input
                   name="labelName"
                   placeholder="Enter label name"
@@ -158,7 +147,6 @@ class EditLabels extends React.Component {
                     >
                       <div>
                         <DeleteIcon onClick={e => this.deleteLabel (data)} />
-                        {/* {data.labelName} */}
                         <TextField
                           id="standard-full-width"
                           style={{margin: 8, width: '70%'}}

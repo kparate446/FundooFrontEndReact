@@ -9,7 +9,6 @@ class ArchiveNotes extends Component {
   constructor (props) {
     super (props);
     this.state = {snackbaropen: false, snackbarmsg: ''};
-    // this.handleaddArchiveChange = this.handleaddArchiveChange
   }
   snackbarClose = event => {
     this.setState ({snackbaropen: false});
@@ -37,8 +36,7 @@ class ArchiveNotes extends Component {
         this.setState ({snackbaropen: true, snackbarmsg: 'Archived'});
       })
       .catch (err => {
-        // alert ('Unarchive');
-        this.setState ({snackbaropen: true, snackbarmsg: 'failed'});
+         this.setState ({snackbaropen: true, snackbarmsg: 'failed'});
       });
   };
 

@@ -9,11 +9,8 @@ import InputBase from '@material-ui/core/InputBase';
 import UndoTwoToneIcon from '@material-ui/icons/UndoTwoTone';
 import RedoTwoToneIcon from '@material-ui/icons/RedoTwoTone';
 import Tooltip from '@material-ui/core/Tooltip';
-// import Labels from '../Components/Labels';
-// import Images from '../Assets/Pin.png';
 import '../CSSFile/WholeNotes.css';
 import axios from 'axios';
-// import MoreMenu from '../Components/MoreMenu';
 import {Menu, MenuItem} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArchiveNotes from '../Components/ArchiveNotes';
@@ -23,22 +20,17 @@ import ImageIcon from '@material-ui/icons/Image';
 import Color from '../Components/ChangeColor';
 import Trash from '../Components/TrashNotes';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-// import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
 import {withRouter} from 'react-router-dom';
 import Untrash from '../Components/Untrash';
 import AddLabels from '../Components/AddLabels';
 import PinNote from '../Components/PinNote';
-// import InputAdornment from '@material-ui/core/InputAdornment';
-// import ClearIcon from '@material-ui/icons/Clear';
 import Chip from '@material-ui/core/Chip';
 import AddCollabrator from '../Components/AddCollabrator';
-// import AddReminder from '../Components/AddReminder';
 import Datetimepicker from '../Components/Datetimepicker';
 import {
   deleteLabelWithNote,
   deleteReminder,
 } from '../Services/UserService/UserServices';
-// import ClearIcon from '@material-ui/icons/Clear';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Collabrator from '../Components/Collabrator';
 
@@ -58,11 +50,8 @@ function ShowNote (data, props) {
   const [trash, setTrash] = React.useState (false);
   const [pin, setPin] = React.useState (false);
   const [labels, setLabels] = React.useState (false);
-  // const [dateAndTime, setDateAndTime] = React.useState (data.dateAndTime);
-  // const [collabrator, setCollabrator] = React.useState (data.collabrator);
   const [reminder, setReminder] = React.useState (data.reminder);
 
-  // console.log (data);
   const handleTrash = () => {
     setTrash (!trash);
   };
@@ -75,9 +64,6 @@ function ShowNote (data, props) {
   const handleArchive = () => {
     setArchive (!archive);
   };
-  // const handleReminder = () => {
-  //   setReminder (!reminder);
-  // };
   const handlePin = () => {
     setPin (!pin);
   };
@@ -120,7 +106,6 @@ function ShowNote (data, props) {
         alert ('labels Deleted Successfully!!');
       })
       .catch (error => {
-        // console.log('error--->'+error);
       });
   };
 
@@ -131,11 +116,9 @@ function ShowNote (data, props) {
     deleteReminder (token, data.reminder.id)
       .then (Response => {
         setOpen (false);
-        // alert ('Reminder Deleted Successfully!!');
         this.props.history.push ('/dashboard/notes');
       })
       .catch (error => {
-        // console.log('error--->'+error);
       });
   };
 
@@ -160,25 +143,15 @@ function ShowNote (data, props) {
       )
       .then (Response => {
         this.props.history.push ('/dashboard/notes');
-        // alert ('Note Updated Successfully!!');
-        // this.props.update ();
-        //  setOpen (false);
         console.log ('I am call');
       })
       .catch (error => {
-        // alert ('Note Not Updated');
       });
   };
-
-  // useEffect(() => {
-  //   console.log("use Effect called");
-  //   this.props.update ();
-  // },[]);
 
   return (
     <div>
       <Tooltip title="Pin note" style={{marginLeft: '90%', width: '10%'}}>
-        {/* <img className="pinImage" src={Images} alt="pin logo" /> */}
         <PinNote onPinNote={handlePin} data={data} />
       </Tooltip>
 
@@ -190,7 +163,7 @@ function ShowNote (data, props) {
       <Typography onClick={handleClickOpen}>
         {data.discription != null ? data.discription : null}
       </Typography>
-      {/* <Typography> */}
+  
       {data.labelName != null
         ? data.labelName.map (items => (
             <Chip
@@ -209,13 +182,12 @@ function ShowNote (data, props) {
       {' '}
       {data.collabrators != null
         ? data.collabrators.map (
-            items => //  <Chip label={items.mailReceiver} />
+            items => 
             (
               <Tooltip key={items} title={items.mailReceiver}>
                 <AccountCircleIcon
                   style={{width: '30px', height: '30px', color: 'grey'}}
                 />
-                {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
               </Tooltip>
             )
           )
@@ -239,33 +211,25 @@ function ShowNote (data, props) {
 
             <IconButton aria-label="Restore">
               <Tooltip title="Restore">
-                {/* <RestoreFromTrashIcon> */}
-                {/* <MenuItem><Trash onSelectTrash={handleTrash} data={data} ></Trash> </MenuItem> */}
                 <Untrash onSelectTrash={handleTrash} data={data} />
-                {/* </RestoreFromTrashIcon> */}
               </Tooltip>
             </IconButton>
           </div>
         : <div>
             <IconButton aria-label="Remind me">
               <Tooltip title="Reminde me">
-                {/* <AddAlertIcon /> */}
-                {/* <AddReminder onSelectReminder={handleArchive} data={data}/> */}
                 <Datetimepicker onSelectReminder={handleArchive} data={data} />
               </Tooltip>
             </IconButton>
             <IconButton aria-label="Collaborator">
               <Tooltip title="Collaborator">
-                {/* <PersonAddIcon /> */}
                 <AddCollabrator onSelectLabels={handleArchive} data={data} />
               </Tooltip>
             </IconButton>
 
             <IconButton aria-label="Change color">
               <Tooltip title="Change color">
-                {/* <ColorLensIcon /> */}
                 <Color data={data} />
-                {/* <Color noteId={this.props.noteData.id} handleGetNotes={this.props.handleGetNotes}></Color> */}
               </Tooltip>
             </IconButton>
 
@@ -281,7 +245,6 @@ function ShowNote (data, props) {
               </Tooltip>
             </IconButton>
 
-            {/* <MoreMenu/> */}
             <MoreVertIcon style={{top: '10px'}} onClick={handleClick} />
             <Menu
               id="simple-menu"
@@ -291,16 +254,11 @@ function ShowNote (data, props) {
               onClose={handleClose1}
             >
               {' '}
-              {/* <MenuItem>Add Label</MenuItem> */}
-              {/* <AddLabel/> */}
-              {/* <MenuItem onClick={DeleteNotes}>Delete note</MenuItem> */}
               <MenuItem>
                 <Trash onSelectTrash={handleTrash} data={data} />{' '}
-                {/* Delete Notes */}
               </MenuItem>
               <MenuItem>
                 <AddLabels onSelectLabels={handleLabels} data={data} />
-                {/* <AddLabels/> */}
               </MenuItem>
               <MenuItem onClick={DeleteNotes}>Add drawing </MenuItem>
               <MenuItem>Make a copy </MenuItem>
@@ -326,20 +284,7 @@ function ShowNote (data, props) {
             value={title}
             style={{width: '92%'}}
             onChange={e => setTitle (e.target.value)}
-            // endAdornment={
-            //       <InputAdornment position="end">
-            //         <Tooltip title="Pin note" >
-            //       <PinNote style={{width: '10%'}}
-            //       InputProps={{
-            //       width: '50%'
-            //     }} onPinNote={handlePin} data={data} />
-            //  </Tooltip>
-            // </InputAdornment>
-            //     }
           />
-          {/* <Tooltip title="Pin note">
-            <img className="pinImage" src={Images} alt="pin logo" />
-          </Tooltip> */}
         </DialogContent>
 
         <DialogContent>
@@ -365,23 +310,20 @@ function ShowNote (data, props) {
                 />
               ))
             : null}
-          {/* </Typography> */}
           {' '}
           {data.collabrators != null
             ? data.collabrators.map (
-                items => //  <Chip label={items.mailReceiver} />
+                items => 
                 (
                   <Tooltip title={items.mailReceiver}>
                     <AccountCircleIcon
                       style={{width: '30px', height: '30px', color: 'gray'}}
                     />
-                    {/* <Collabrator onSelectLabels={handleLabels} data={data}/> */}
                   </Tooltip>
                 )
               )
             : null}
 
-          {/* <Typography > */}
           {data.reminder != null
             ? <Chip
                 label={data.reminder.dateAndTime}
@@ -417,7 +359,6 @@ function ShowNote (data, props) {
             </Tooltip>
           </IconButton>
 
-          {/* <Labels /> */}
           <MoreVertIcon style={{top: '10px'}} onClick={handleClick} />
           <Menu
             id="simple-menu"
@@ -427,9 +368,7 @@ function ShowNote (data, props) {
             onClose={handleClose1}
           >
             {' '}
-            {/* <MenuItem>Add Label</MenuItem> */}
-            {/* <AddLabel/> */}
-            {/* <MenuItem onClick={DeleteNotes}>Delete note</MenuItem> */}
+
             <MenuItem>
               <Trash onSelectTrash={handleTrash} data={data} />{' '}
             </MenuItem>

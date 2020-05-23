@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import ArchiveIcon from '@material-ui/icons/Archive';
 import {Tooltip} from '@material-ui/core';
 import {addTrash} from '../Services/UserService/UserServices';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -9,7 +8,6 @@ class TrashNotes extends Component {
   constructor (props) {
     super (props);
     this.state = {snackbaropen: false, snackbarmsg: ''};
-    // this.handleaddArchiveChange = this.handleaddArchiveChange
   }
 
   snackbarClose = event => {
@@ -62,9 +60,7 @@ class TrashNotes extends Component {
             </IconButton>,
           ]}
         />
-
         <Tooltip title=" Trash">
-          {/* <ArchiveIcon onClick={this.handleaddArchiveChange} /> */}
           <div onClick={this.handleTrashNotes}>Delete Note</div>
         </Tooltip>
       </div>

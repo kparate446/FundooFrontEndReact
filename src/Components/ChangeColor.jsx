@@ -3,7 +3,6 @@ import {withStyles} from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import Fab from '@material-ui/core/Fab';
 import ColorLensIcon from '@material-ui/icons/ColorLens';
-// import IconButton from '@material-ui/core/IconButton';
 import {ClickAwayListener} from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
 import {changeColor} from '../Services/UserService/UserServices';

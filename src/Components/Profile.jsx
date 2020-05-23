@@ -11,7 +11,6 @@ import Divider from '@material-ui/core/Divider';
 import {Avatar} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import {chanageprofile} from '../Services/UserService/UserServices';
-// import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import {
   TextField,
   Dialog,
@@ -31,8 +30,6 @@ function Profile (props) {
   let email = localStorage.getItem ('Email');
   let firstName = localStorage.getItem ('FirstName');
   let lastName = localStorage.getItem ('LastName');
-  // let Profile =  localStorage.getItem ('Profile');
-
   const classes = useStyles ();
   const [anchor, setAnchor] = React.useState (null);
   const [openDialog, setOpenDialog] = React.useState (false);
@@ -69,8 +66,7 @@ function Profile (props) {
     let token = localStorage.getItem ('Token');
     const formData = new FormData ();
     formData.append ('file', file, file.name);
-    // console.log (formData);
-    // let Profile = localStorage.getItem ('file.name');
+    
     chanageprofile (formData, token)
       .then (Response => {
         console.log (Response);
@@ -150,20 +146,15 @@ function Profile (props) {
               Manage Your Fundoo Account
             </div>
             <br />
-            {/* <Divider /> */}
-
             <Divider />
             <div style={{marginTop: '5%'}}>
-              {/* <PersonAddIcon/> */}
               <MenuItem
               className="addAccount"
                 title="Fundoo Account"
-                // onClick={() => this.props.history.push ('/')}
                 onClick={handleLoginChange}
               >
                 Add another account
               </MenuItem>
-
             </div>
             <div
               classNames="signout"

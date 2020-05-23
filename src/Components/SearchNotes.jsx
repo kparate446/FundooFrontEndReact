@@ -32,9 +32,7 @@ class SearchNotes extends Component {
   getSearchForm = () => {
     let notes = {};
     notes.title = this.state.title;
-    // console.log (notes);
     let token = localStorage.getItem ('Token');
-    // console.log (notes.title);
 
     getSearchNotes (notes.title, token).then (Response => {
       this.setState ({
@@ -56,17 +54,10 @@ class SearchNotes extends Component {
             <InputBase
               className="Search"
               name="title"
-              // label="Multiline Placeholder"
-              // multiline
-              // onChange={this.Searchtext}
               onChange={this.axios}
               onKeyPress={this.getSearchForm}
-              // onClick={this.getSearchForm}
               placeholder="Search"
-              // style={{fontSize: 0}}
             />
-            {/* <button onClick={this.getSearchForm}>Search</button> */}
-
           </div>
         </Card>
         <div className="searchNotesMapping">

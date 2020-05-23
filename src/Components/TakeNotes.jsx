@@ -15,13 +15,7 @@ class Note extends Component {
       title: '',
       description: '',
     };
-    // console.log (this.props);
   }
-  // clickNote = () => {
-  //     let note = {};
-  //     note.title = this.state.title;
-  //     note.description = this.state.description;
-  // }
 
   render () {
     return (

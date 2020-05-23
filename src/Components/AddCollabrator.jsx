@@ -17,17 +17,14 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
-// import Collabrator from '../CSSFile/Collabrator.css';
 
 class AddCollabrator extends React.Component {
   constructor (props) {
-    // console.log('Props---->',props);
     super (props);
     this.state = {
       mailReceiver: '',
       collabrator: null,
     };
-    // console.log (props.data.collabrators);
   }
 
   axios = event => {
@@ -140,9 +137,6 @@ class AddCollabrator extends React.Component {
                   </div>
                 ))
               : null}
-            {/* <Typography onClick={handleClickOpen}>
-              {' '}{props.data.mailReceiver}
-            </Typography> */}
 
             <div>
               <FormControl>
@@ -163,11 +157,6 @@ class AddCollabrator extends React.Component {
               </FormControl>
             </div>
             <Divider />
-            {/* {
-              this.props.data.collabrators.map(ele=>(
-              <div key={ele.id}>{ele.mailReceiver}</div>
-              ))
-            } */}
           </div>
           <Paper
             component="form"

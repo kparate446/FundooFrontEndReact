@@ -71,14 +71,12 @@ class WholeNotes extends Component {
               multiline
               onChange={this.axios}
               placeholder="Take a note..."
-              // style={{fontSize: 0}}
             />
           </div>
           <div>
             <Labels />
             <IconButton aria-label="More">
               <Tooltip title="More">
-                {/* <MoreVertIcon /> */}
                 <More />
               </Tooltip>
             </IconButton>
@@ -97,14 +95,12 @@ class WholeNotes extends Component {
 
             <Tooltip title="Close" style={{marginLeft: '15%'}}>
               <Button
-                // onClick={this.props.handleClick}
                 onClick={this.notesForm}
               >
                 Close
               </Button>
             </Tooltip>
           </div>
-          {/* </Popover> */}
         </Card>
       </div>
     );

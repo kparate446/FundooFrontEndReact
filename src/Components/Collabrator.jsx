@@ -9,7 +9,6 @@ import {
 } from '../Services/UserService/UserServices';
 import ClearIcon from '@material-ui/icons/Clear';
 import {Avatar} from '@material-ui/core';
-// import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
@@ -18,11 +17,9 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-// import Collabrator from '../CSSFile/Collabrator.css';
 
 class UpdateCollabrator extends React.Component {
   constructor (props) {
-    // console.log('Props---->',props);
     super (props);
     this.state = {
       mailReceiver: '',
@@ -81,10 +78,7 @@ class UpdateCollabrator extends React.Component {
 
   showAllCollabrator = () => {
     let token = localStorage.getItem ('Token');
-    // console.log ('show all Labels');
-
     getCollabrator (token).then (Response => {
-      // console.log ('show all Collabrator');
       this.setState ({
         collabrator: Response.data.data,
       });
@@ -96,7 +90,6 @@ class UpdateCollabrator extends React.Component {
   };
 
   componentDidMount () {
-    // console.log ('show All Collabrator');
     this.showAllCollabrator ();
   }
 
@@ -133,9 +126,6 @@ class UpdateCollabrator extends React.Component {
                   </div>
                 ))
               : null}
-            {/* <Typography onClick={handleClickOpen}>
-              {' '}{props.data.mailReceiver}
-            </Typography> */}
 
             <div>
               <FormControl>

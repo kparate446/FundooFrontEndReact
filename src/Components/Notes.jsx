@@ -63,7 +63,6 @@ class Notes extends Component {
   };
 
   componentDidMount () {
-    // console.log ('Component did mount');
     this.showAllPinNotes();
     this.showAllNotes ();
   }

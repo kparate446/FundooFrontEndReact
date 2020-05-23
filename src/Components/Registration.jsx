@@ -53,15 +53,15 @@ class Registration extends Component {
       errors['email'] = '*Enter the Email Id';
       formIsValid = false;
     }
-    // if (!RegExp("(0/91)?[7-9][0-9]{9}").test(this.state.phoneNumber)) {
-    //     errors['phoneNumber'] = '*Enter valid Phone Number'
-    // }
-    // if (!this.state.phoneNumber) {
-    //     errors['phoneNumber'] = '*Enter your Phone Number'
-    //     formIsValid = false
-    // }
+    if (!RegExp("(0/91)?[7-9][0-9]{9}").test(this.state.phoneNumber)) {
+        errors['phoneNumber'] = '*Enter valid Phone Number'
+    }
+    if (!this.state.phoneNumber) {
+        errors['phoneNumber'] = '*Enter your Phone Number'
+        formIsValid = false
+    }
 
-    /**if (!RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})").test(this.state.password)) {
+    if (!RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})").test(this.state.password)) {
             errors['password'] = '*Enter the valid password'
             formIsValid = false
         }
@@ -76,7 +76,7 @@ class Registration extends Component {
         if (this.state.password !== this.state.confirmPassword) {
             errors['confirmPassword'] = '*Password doesn\'t match'
             formIsValid = false
-        }*/
+        }
 
     this.setState ({
       errors: errors,

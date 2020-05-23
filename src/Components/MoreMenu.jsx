@@ -1,11 +1,9 @@
 import React from 'react';
 import {Menu, MenuItem} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-// import Color from '../Components/ChangeColor';
 import AddLabel from '../Components/AddLabel';
-// import DeleteNotes from '../Components/ShowNote';
 
-export default function SimplePopover (props) {
+export default function MoreMenu (props) {
   const [setAnchorEl] = React.useState (null);
 
   const handleClick = event => {
@@ -21,12 +19,9 @@ export default function SimplePopover (props) {
       <Menu
         id="simple-menu"
         style={{top: '6%'}}
-        // anchorEl={anchorEl}
-        // open={Boolean (anchorEl)}
         onClose={handleClose}
       >
         {' '}
-        {/* <MenuItem>Add Label</MenuItem> */}
         <AddLabel />
         <MenuItem>Delete note</MenuItem>
         <MenuItem>Change labels</MenuItem>

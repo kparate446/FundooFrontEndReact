@@ -1,10 +1,8 @@
 import React from 'react';
-// import {withStyles} from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Datetimepicker from '../Components/Datetimepicker';
 import {Tooltip} from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
-// import Reminder from "../CSSFile/Reminder.css";
 
 class AddReminder extends React.Component {
   constructor (props) {
@@ -56,7 +54,6 @@ class AddReminder extends React.Component {
             >
               Reminder :
             </div>
-            {/* <br/> */}
             <div className="today" onClick={this.handleClose}>
               <div> Later today</div>
               <div>Mon,8:00 PM</div>

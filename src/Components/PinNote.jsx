@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-// import ArchiveIcon from '@material-ui/icons/Archive';
 import {Tooltip} from '@material-ui/core';
 import {addPin} from '../Services/UserService/UserServices';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Images from '../Assets/Pin.png';
-// import notes from '../CSSFile/Notes.css';
 
 class PinNote extends Component {
   constructor (props) {
@@ -34,7 +32,6 @@ class PinNote extends Component {
     addPin (this.props.data.id, token)
       .then (Response => {
         console.log ('note is pin', Response);
-        // alert ('Pin Note');
         this.setState ({snackbaropen: true, snackbarmsg: 'Pin'});
       })
       .catch (err => {
@@ -59,11 +56,9 @@ class PinNote extends Component {
               onClick={this.snackbarClose}
             >
               x
-            </IconButton>,
+            </IconButton>
           ]}
         />
-
-        {/* <Tooltip title=" Pin"> */}
         <Tooltip className="pinNotes" title="Pin note">
           <img
             className="pinImage"
@@ -72,7 +67,6 @@ class PinNote extends Component {
             onClick={this.handleaddPinChange}
           />
         </Tooltip>
-        {/* </Tooltip> */}
       </div>
     );
   }

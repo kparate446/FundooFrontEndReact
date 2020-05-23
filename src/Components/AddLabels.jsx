@@ -12,8 +12,6 @@ import {
   addLabelWithNote,
   createLabel,
 } from '../Services/UserService/UserServices';
-// import ShowNote from "../Components/ShowNote";
-// import Labels from '../CSSFile/Labels.css';
 
 class Addlabels extends React.Component {
   constructor (props) {
@@ -77,17 +75,14 @@ class Addlabels extends React.Component {
 
   AddLabelWithNote =(data) => {
     this.props.onSelectLabels (true);
-    // let noteid= this.props.data.id;
     console.log ('data object', data);
     console.log ('Note Id------------->' + this.props.data.id);
-    // let labelid = data.id;
     console.log ('Label Id------------->' + data.id);
     let token = localStorage.getItem ('Token');
     console.log (token);
     addLabelWithNote (token,this.props.data.id, data.id )
       .then (function (response) {
         console.log (response);
-        // alert (`Add Label with Note`);
       })
       .catch (function (error) {
         console.log('error--->'+error);
@@ -151,9 +146,6 @@ class Addlabels extends React.Component {
             {this.state.label !== null
               ? this.state.label.map (data => (
                   <div>
-                    {/* <Typography  style={{ marginLeft: '16px', marginBottom: '12px ', width: '80%' }}>
-                        {data.labelName}
-                    </Typography> */}
                     <Checkbox onClick={e => this.AddLabelWithNote (data)} />
                     {data.labelName}
                   </div>
@@ -180,9 +172,7 @@ class Addlabels extends React.Component {
               : null}
           </div>
         </Popover>
-
-      </div>
-    
+      </div>    
     );
   }
 }

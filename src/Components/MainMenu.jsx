@@ -19,7 +19,6 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 import EditLabel from '../Components/EditLabels';
 import { getAllLabels} from "../Services/UserService/UserServices";
-// import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 
 const theme = createMuiTheme ({
@@ -71,10 +70,7 @@ export class MainManu extends Component {
   
   showAllLabels = () => {
     let token = localStorage.getItem ('Token');
-    // console.log ('show all Labels');
     getAllLabels (token).then (Response => {
-      // console.log (Response.data.data);
-      // console.log ('show all Labels');
       this.setState ({
         label : Response.data.data,
       });
@@ -82,7 +78,6 @@ export class MainManu extends Component {
   };
 
   componentDidMount () {
-    // console.log ('Component did mount');
     this.showAllLabels ();
   }
 
@@ -136,7 +131,6 @@ export class MainManu extends Component {
                     <EditIcon />
                   </ListItemIcon>
                    <EditLabel />
-                  {/* <ListItemText primary="Edit labels" /> */}
                 </ListItem>
 
                 <ListItem

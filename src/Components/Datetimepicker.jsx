@@ -1,6 +1,5 @@
 import React from 'react';
 import Popover from '@material-ui/core/Popover';
-// import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {
@@ -10,10 +9,8 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import {addReminder} from '../Services/UserService/UserServices';
-// import TextField from '@material-ui/core/TextField';
 import {Tooltip} from '@material-ui/core';
 import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined';
-// import Reminder from '../CSSFile/Reminder.css';
 
 const theme = createMuiTheme ({
   overrides: {
@@ -31,7 +28,6 @@ class Datetimepicker extends React.Component {
 
     this.state = {
       selectedReminder: new Date (),
-      // currentDate: new Date (),
     };
   }
 
@@ -78,14 +74,6 @@ class Datetimepicker extends React.Component {
 
     return (
       <div>
-        {/* <div onClick={this.handleClick} className="pickdatetime">
-          <AccessTimeIcon
-            fontSize="inherit"
-            style={{position: 'fixed'}}
-            onClick={this.handleClick}
-          />
-          <span style={{marginLeft: '32px'}}> Pick date & time</span>
-        </div> */}
         <Tooltip title="Remind me">
           <AddAlertOutlinedIcon fontSize="inherit" onClick={this.handleClick} />
         </Tooltip>
